@@ -4,8 +4,8 @@ Box = function (game, x, y, size) {
 
     var graphics = game.add.graphics(0, 0)
     graphics.beginFill(0xFFFFFF, 1)
-    graphics.drawRoundedRect(x, y, size, size, 5)
-
+    graphics.lineStyle(3, 0x0066cc, 1);
+    graphics.drawRoundedRect(x, y, size, size, 8)
     this.addChild(graphics)
 
     game.physics.arcade.enable(this)
