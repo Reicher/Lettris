@@ -1,10 +1,16 @@
-Box = function (game, x, y) {
+Box = function (game, x, y, size) {
 
-    Phaser.Sprite.call(this, game, x, y, 'box');
+    Phaser.Sprite.call(this, game, x, y)
 
-    game.physics.arcade.enable(this);
+    var graphics = game.add.graphics(0, 0)
+    graphics.beginFill(0xFFFFFF, 1)
+    graphics.drawRoundedRect(x, y, size, size, 5)
 
-    game.add.existing(this);
+    this.addChild(graphics)
+
+    game.physics.arcade.enable(this)
+
+    game.add.existing(this)
 }
 
 Box.prototype = Object.create(Phaser.Sprite.prototype);
