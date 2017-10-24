@@ -7,11 +7,10 @@ Lettris.Game.prototype = {
 
 	game.physics.startSystem(Phaser.Physics.ARCADE)
 
-	game.physics.arcade.gravity.y = 200
+	game.physics.arcade.gravity.y = 150
 
 	this.boxes = game.add.group();
-
-	this.boxes.add(new Box(game, 50, 50, 40))
+	this.boxes.add(new Box(game, 'A'))
     },
 
     update: function () {
