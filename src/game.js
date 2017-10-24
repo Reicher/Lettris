@@ -6,12 +6,28 @@ Lettris.Game.prototype = {
 	console.log("GAME ON!")
 
 	game.physics.startSystem(Phaser.Physics.ARCADE)
-	game.physics.arcade.gravity.y = 150
-
+	game.physics.arcade.gravity.y = 80
 
 	this.boxes = game.add.group();
-	this.boxes.add(new Box(game, 'A'))
-	this.boxes.add(new Box(game, 'B', 0, 80))
+
+	game.time.events.loop(Phaser.Timer.SECOND * 2,
+			      this.spawn_random_box,
+			      this)
+    },
+
+    spawn_random_box: function () {
+	var letter = this.game.rnd.pick(['A',
+					 'B',
+					 'C',
+					 'D',
+					 'E',
+					 'F'])
+
+	var pos = this.game.rnd.integer()%this.game.width
+
+	this.boxes.add(new Box(this.game,
+			       letter,
+			       pos))
     },
 
     update: function () {
