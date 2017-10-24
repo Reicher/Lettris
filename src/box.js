@@ -14,7 +14,9 @@ Box = function (game, letter, x = 0, y = 0, size = 40) {
     text.anchor.setTo(0.5)
     this.addChild(text)
 
-    game.physics.arcade.enable(this)
+    game.physics.arcade.enableBody(this)
+    this.body.collideWorldBounds = true
+    this.body.bounce.set(0.2);
     game.add.existing(this)
 }
 
