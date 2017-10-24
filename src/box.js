@@ -10,7 +10,7 @@ Box = function (game, letter, x = 0, y = 0, size = 40) {
 
     // Letter
     var style = { font: "30px Arial", fill: "#000000" }
-    var text = this.game.add.text(size/2, size/2, letter, style)
+    var text = this.game.add.text(x + size/2, y + size/2, letter, style)
     text.anchor.setTo(0.5)
     this.addChild(text)
 
