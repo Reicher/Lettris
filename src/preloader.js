@@ -7,6 +7,9 @@ Lettris.Preloader.prototype = {
 
 	//this.preloadBar = this.add.sprite((Lettris.WIDTH - 311) / 2, (Lettris.HEIGHT - 27) / 2, 'preloaderBar');
 	//this.load.setPreloadSprite(this.preloadBar);
+
+	this.load.image('box', 'assets/box.png');
+
     },
     create: function () {
 	// start the MainMenu state
