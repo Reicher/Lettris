@@ -3,6 +3,7 @@ Lettris.Game = function (game) {
 
 Lettris.Game.prototype = {
     create: function (game) {
+	game.world.setBounds(0, -40, game.width, game.height);
 	// Enable p2 physics (Needs tinkering around)
 	game.physics.startSystem(Phaser.Physics.P2JS);
 	game.physics.p2.gravity.y = 300;
