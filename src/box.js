@@ -1,5 +1,5 @@
-Box = function (game, x = 0, y = 0) {
-    Phaser.Sprite.call(this, game, x, y, 'box')
+Box = function (game, x = 0) {
+    Phaser.Sprite.call(this, game, x, -40, 'box')
 
     // Physics (Needs a lot of tinkering)
     game.physics.p2.enable(this);
@@ -12,6 +12,10 @@ Box = function (game, x = 0, y = 0) {
     var text = this.game.add.text(0, 0, letter, style)
     text.anchor.setTo(0.5)
     this.addChild(text)
+
+    // Interaction
+    this.inputEnabled = true;
+    this.events.onInputDown.add(this.marked, this);
 }
 
 Box.prototype = Object.create(Phaser.Sprite.prototype);
@@ -19,4 +23,10 @@ Box.prototype.constructor = Box;
 
 Box.prototype.update = function () {
 
+}
+
+Box.prototype.marked = function () {
+    // For now, should be put into a list
+    // that represent the possible word?
+    this.destroy()
 }

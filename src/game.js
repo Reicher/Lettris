@@ -3,11 +3,13 @@ Lettris.Game = function (game) {
 
 Lettris.Game.prototype = {
     create: function (game) {
+
 	game.world.setBounds(0, -40, game.width, game.height);
+
 	// Enable p2 physics (Needs tinkering around)
 	game.physics.startSystem(Phaser.Physics.P2JS);
 	game.physics.p2.gravity.y = 300;
-	game.physics.p2.restitution = 0.1;
+	game.physics.p2.restitution = 0.05
 
 	this.boxes = game.add.group();
 
@@ -25,7 +27,4 @@ Lettris.Game.prototype = {
 
     update: function () {
     },
-
-    render: function() {
-    }
 };
