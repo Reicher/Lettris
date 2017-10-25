@@ -5,8 +5,10 @@ Lettris.Game.prototype = {
     create: function (game) {
 	console.log("GAME ON!")
 
-	game.physics.startSystem(Phaser.Physics.ARCADE)
-	game.physics.arcade.gravity.y = 80
+	//  Enable p2 physics
+	game.physics.startSystem(Phaser.Physics.P2JS);
+	game.physics.p2.gravity.y = 300;
+	game.physics.p2.restitution = 0.1;
 
 	this.boxes = game.add.group();
 
@@ -31,7 +33,7 @@ Lettris.Game.prototype = {
     },
 
     update: function () {
-	this.game.physics.arcade.collide(this.boxes);
+	//this.game.physics.arcade.collide(this.boxes);
     },
 
     render: function() {

@@ -1,19 +1,20 @@
 Box = function (game, letter, x = 0, y = 0) {
     Phaser.Sprite.call(this, game, x, y, 'box')
 
+    game.physics.p2.enable(this);
+    this.body.collideWorldBounds = true
+    this.body.fixedRotation = true;
+
     // Letter
     var style = { font: "30px Arial", fill: "#000000" }
 
-    var text = this.game.add.text(this.width/2,
-				  this.width/2,
+    var text = this.game.add.text(0,
+				  0,
 				  letter,
 				  style)
     text.anchor.setTo(0.5)
     this.addChild(text)
 
-    game.physics.arcade.enableBody(this)
-    this.body.collideWorldBounds = true
-    this.body.bounce.set(0.2);
     game.add.existing(this)
 }
 
