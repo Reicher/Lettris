@@ -16,19 +16,19 @@ Grid = function (game, columns) {
 }
 
 Grid.prototype.addBox = function (column) {
+
+    for(var row = this.rows; row >= 0; row--)
+	if( !this.cell[column][row] )
+	    break;
+
     var x = this.box_size/2 + column * this.box_size
-    var y = this.box_size * this.rows - this.box_size/2
+    var y = this.box_size * row - this.box_size/2
+    var dist = y + this.box_size/2
+
     var box = new Box(this.game, x, y)
-
-    // var y_pos =
-    // for(var r = 0; r < row; r++)
-
-
-    this.cell[column][3] = box;
-
+    this.cell[column][row] = box
     var tween = this.game.add.tween(box).
-	from( { y: -this.box_size/2 }, 1000).start()
-
+	from( { y: -this.box_size/2 }, dist * 3).start()
 
     return box
 }
