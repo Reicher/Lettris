@@ -1,10 +1,6 @@
-Box = function (game, x = 0) {
-    Phaser.Sprite.call(this, game, x, -40, 'box')
-
-    // Physics (Needs a lot of tinkering)
-    game.physics.p2.enable(this);
-    this.body.collideWorldBounds = true
-    this.body.fixedRotation = true;
+Box = function (game, x = 0, y = -20) {
+    Phaser.Sprite.call(this, game, x, y, 'box')
+    this.anchor.setTo(0.5)
 
     // Letter (should probably not be completely random)
     var letter = game.rnd.pick("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
