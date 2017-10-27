@@ -1,5 +1,9 @@
-Box = function (game, x = 0, y = -20) {
-    Phaser.Sprite.call(this, game, x, y, 'box')
+Box = function (game, gx, size) {
+    Phaser.Sprite.call(this, game,
+		       size/2  + gx * size,
+		       size/2 ,
+		       'box')
+    this.size = size
     this.anchor.setTo(0.5)
 
     // Letter (should probably not be completely random)
@@ -19,6 +23,11 @@ Box.prototype.constructor = Box;
 
 Box.prototype.update = function () {
 
+}
+
+Box.prototype.tweenFall = function (gy) {
+    var y = -this.size/2 + gy * this.size
+    this.game.add.tween(this).to( { y: y }, gy * 100).start()
 }
 
 Box.prototype.marked = function () {
