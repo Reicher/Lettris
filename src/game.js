@@ -16,7 +16,6 @@ Lettris.Game.prototype = {
 	var column = this.game.rnd.integer() % this.grid.columns
 	var box = this.grid.addBox(column)
 	this.boxes.add(box)
-
     },
 
     update: function () {
