@@ -1,8 +1,9 @@
 Box = function (game, x = 0) {
-    Phaser.Sprite.call(this, game, x, -40, 'box')
+    Phaser.Sprite.call(this, game, x-20, -20, 'box')
+    this.anchor.setTo(0.5)
 
     // Physics (Needs a lot of tinkering)
-    game.physics.p2.enable(this);
+    game.physics.arcade.enable(this);
     this.body.collideWorldBounds = true
     this.body.fixedRotation = true;
 
