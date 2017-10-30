@@ -1,4 +1,4 @@
-Box = function (game, x = 0) {
+Box = function (game, x, markSignal) {
     Phaser.Sprite.call(this, game, x-20, -20, 'box')
     this.anchor.setTo(0.5)
 
@@ -10,13 +10,14 @@ Box = function (game, x = 0) {
     // Letter (should probably not be completely random)
     var letter = game.rnd.pick("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     var style = { font: "30px Arial", fill: "#000000" }
-    var text = this.game.add.text(0, 0, letter, style)
-    text.anchor.setTo(0.5)
-    this.addChild(text)
+    this.text = this.game.add.text(0, 0, letter, style)
+    this.text.anchor.setTo(0.5)
+    this.addChild(this.text)
 
     // Interaction
     this.inputEnabled = true;
     this.events.onInputDown.add(this.click, this);
+    this.markSignal = markSignal
 }
 
 Box.prototype = Object.create(Phaser.Sprite.prototype);
@@ -27,12 +28,10 @@ Box.prototype.update = function () {
 }
 
 Box.prototype.click = function () {
-    if( !this.marked){
+    this.markSignal.dispatch(this)
+
+    if( this.tint == 0xffffff)
 	this.tint = 0xfff000
-	this.marked = true
-    }
-    else{
+    else
 	this.tint = 0xffffff
-	this.marked = false
-    }
 }
