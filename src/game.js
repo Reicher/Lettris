@@ -7,6 +7,7 @@ Lettris.Game.prototype = {
 	this.markSignal = new Phaser.Signal()
 	this.markSignal.add(this.mark_logic, this);
 	this.markedList = []
+	this.word = ""
 
 	game.world.setBounds(0, -40, game.width, game.height-80);
 
@@ -28,7 +29,18 @@ Lettris.Game.prototype = {
     },
 
     mark_logic: function(box) {
-	this.markedList.push(box.text.text) // todo: should store box
+	var id = this.markedList.findIndex(i => (i.x == box.x && i.y == box.y))
+	if( id == -1 )
+	    this.markedList.push(box)
+	else
+	    this.markedList.splice(id, 1)
+
+
+	var newText = ""
+	this.markedList.forEach(function(b) {
+	    newText += b.text.text
+	}, this);
+	this.word.setText(newText)
     },
 
     spawn_random_box: function () {
@@ -40,6 +52,5 @@ Lettris.Game.prototype = {
     },
 
     update: function () {
-	this.word.text = this.markedList.join()
     },
 };
