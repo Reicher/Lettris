@@ -4,18 +4,18 @@ Lettris.Game = function (game) {
 Lettris.Game.prototype = {
     create: function (game) {
 
-	this.boxClicked = new Phaser.Signal()
-
 	game.world.setBounds(0, -40, game.width, game.height-80);
 
 	game.physics.startSystem(Phaser.Physics.P2JS);
 	game.physics.p2.gravity.y = 300;
 	game.physics.p2.restitution = 0.5
 
-	this.boxes = game.add.group();
+	this.boxClicked = new Phaser.Signal()
 
 	// Create GUI
 	this.gui = new GUI(game, this.boxClicked)
+
+	this.boxes = game.add.group();
 
 	// Start box-droping loop
 	game.time.events.loop(Phaser.Timer.SECOND * 2,
