@@ -1,7 +1,5 @@
-Box = function (game, x, markSignal) {
+Box = function (game, x, boxClicked) {
     Phaser.Sprite.call(this, game, x-20, -20, 'box')
-    this.id =
-
     this.anchor.setTo(0.5)
 
     // Physics
@@ -19,7 +17,7 @@ Box = function (game, x, markSignal) {
     // Interaction
     this.inputEnabled = true;
     this.events.onInputDown.add(this.click, this);
-    this.markSignal = markSignal
+    this.clickSignal = boxClicked
 }
 
 Box.prototype = Object.create(Phaser.Sprite.prototype);
@@ -30,10 +28,10 @@ Box.prototype.update = function () {
 }
 
 Box.prototype.click = function () {
-    this.markSignal.dispatch(this)
-
     if( this.tint == 0xffffff)
 	this.tint = 0xfff000
     else
 	this.tint = 0xffffff
+
+    this.clickSignal.dispatch(this)
 }

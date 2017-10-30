@@ -4,10 +4,9 @@ Lettris.Game = function (game) {
 Lettris.Game.prototype = {
     create: function (game) {
 
-	this.markSignal = new Phaser.Signal()
-	this.markSignal.add(this.mark_logic, this);
+	this.boxClicked = new Phaser.Signal()
+	this.boxClicked.add(this.handle_box_click, this);
 	this.markedList = []
-	this.word = ""
 
 	game.world.setBounds(0, -40, game.width, game.height-80);
 
@@ -18,29 +17,31 @@ Lettris.Game.prototype = {
 	this.boxes = game.add.group();
 	this.gui = game.add.group();
 
+	// Create GUI
 	this.gui.create(0, game.height-120, 'lower_panel')
-	this.word = this.game.add.text(game.width/2, game.height-60)
+	this.word = this.game.add.text(game.width/2, game.height-70)
 	this.word.anchor.setTo(0.5)
 	this.gui.addChild(this.word)
 
+	// Start box-droping loop
 	game.time.events.loop(Phaser.Timer.SECOND * 2,
 			      this.spawn_random_box,
 			      this)
     },
 
-    mark_logic: function(box) {
-	var id = this.markedList.findIndex(i => (i.x == box.x && i.y == box.y))
+    handle_box_click: function(box) {
+	// A little ugly to check x/y positions? but it works :D
+	var id = this.markedList.findIndex(i => (i.x == box.x &&
+						 i.y == box.y))
 	if( id == -1 )
 	    this.markedList.push(box)
 	else
 	    this.markedList.splice(id, 1)
 
-
-	var newText = ""
+	this.word.text = ""
 	this.markedList.forEach(function(b) {
-	    newText += b.text.text
+	    this.word.text += b.text.text
 	}, this);
-	this.word.setText(newText)
     },
 
     spawn_random_box: function () {
@@ -48,7 +49,7 @@ Lettris.Game.prototype = {
 
 	this.boxes.add(new Box(this.game,
 			       pos*40,
-			       this.markSignal))
+			       this.boxClicked))
     },
 
     update: function () {
