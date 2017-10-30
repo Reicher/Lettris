@@ -7,9 +7,9 @@ Lettris.Game.prototype = {
 	game.world.setBounds(0, -40, game.width, game.height-80);
 
 	// Enable p2 physics (Needs tinkering around)
-	game.physics.startSystem(Phaser.Physics.Arcade);
-	game.physics.arcade.gravity.y = 300;
-	game.physics.arcade.restitution = 0.05
+	game.physics.startSystem(Phaser.Physics.P2JS);
+	game.physics.p2.gravity.y = 300;
+	game.physics.p2.restitution = 0.5
 
 	this.boxes = game.add.group();
 	this.gui = game.add.group();
@@ -30,6 +30,6 @@ Lettris.Game.prototype = {
     },
 
     update: function () {
-	    this.game.physics.arcade.collide(this.boxes);
+//	    this.game.physics.p2.collide(this.boxes);
     },
 };

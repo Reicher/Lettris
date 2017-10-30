@@ -3,9 +3,9 @@ Box = function (game, x = 0) {
     this.anchor.setTo(0.5)
 
     // Physics (Needs a lot of tinkering)
-    game.physics.arcade.enable(this);
+    game.physics.p2.enable(this);
     this.body.collideWorldBounds = true
-    this.body.fixedRotation = true;
+    //this.body.fixedRotation = true;
 
     // Letter (should probably not be completely random)
     var letter = game.rnd.pick("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
@@ -16,7 +16,7 @@ Box = function (game, x = 0) {
 
     // Interaction
     this.inputEnabled = true;
-    this.events.onInputDown.add(this.marked, this);
+    this.events.onInputDown.add(this.click, this);
 }
 
 Box.prototype = Object.create(Phaser.Sprite.prototype);
@@ -26,8 +26,13 @@ Box.prototype.update = function () {
 
 }
 
-Box.prototype.marked = function () {
-    // For now, should be put into a list
-    // that represent the possible word?
-    this.destroy()
+Box.prototype.click = function () {
+    if( !this.marked){
+	this.tint = 0xfff000
+	this.marked = true
+    }
+    else{
+	this.tint = 0xffffff
+	this.marked = false
+    }
 }
