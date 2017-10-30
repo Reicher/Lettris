@@ -1,4 +1,4 @@
-Box = function (game, x = 0) {
+Box = function (game, x, boxClicked) {
     Phaser.Sprite.call(this, game, x, -20, 'box')
     this.anchor.setTo(0.5)
 
