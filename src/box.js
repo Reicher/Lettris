@@ -13,6 +13,8 @@ Box = function (game, x, boxClicked) {
     this.text.anchor.setTo(0.5)
     this.addChild(this.text)
 
+    this.points = 1 // should be depending on letter
+
     // Interaction
     this.inputEnabled = true;
     this.events.onInputDown.add(this.click, this);

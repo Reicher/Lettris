@@ -24,11 +24,14 @@ GUI.prototype.update = function () {
 }
 
 GUI.prototype.handle_word_click = function (box) {
+    var score = 0
     this.markedList.forEach(function(box) {
+	score += box.points
 	box.destroy()
     }, this);
     this.markedList = []
     this.word.text = ""
+    console.log("Word score: " + score);
 }
 
 GUI.prototype.handle_box_click = function (box) {
