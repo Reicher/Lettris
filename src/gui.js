@@ -27,7 +27,7 @@ GUI.prototype.update = function () {
 
 GUI.prototype.handle_word_click = function (box) {
 
-    if(len(this.word.text) > 1 &&
+    if(this.word.text.length > 1 &&
        this.dictionary.indexOf(this.word.text) == -1)
 	return
 
@@ -44,7 +44,7 @@ GUI.prototype.handle_word_click = function (box) {
 GUI.prototype.handle_box_click = function (box) {
     // A little ugly to check x/y positions? but it works :D
     var id = this.markedList.findIndex(b => (b.x == box.x &&
-					     b.y == box.y))
+					    b.y == box.y))
     if( id == -1 )
 	this.markedList.push(box)
     else
