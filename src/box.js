@@ -7,13 +7,15 @@ Box = function (game, x, boxClicked) {
     this.body.collideWorldBounds = true
 
     // Letter (should probably not be completely random)
-    var letter = game.rnd.pick("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    var letterKey = game.rnd.pick("abcdefghijklmnopqrstuvwxyz")
+    var letter = game.cache.getJSON('eng-std').letters[letterKey];
+
     var style = { font: "30px Arial", fill: "#000000" }
-    this.text = this.game.add.text(0, 0, letter, style)
+    this.text = this.game.add.text(0, 0, letterKey, style)
     this.text.anchor.setTo(0.5)
     this.addChild(this.text)
 
-    this.points = 1 // should be depending on letter
+    this.points = letter.points;
 
     // Interaction
     this.inputEnabled = true;
