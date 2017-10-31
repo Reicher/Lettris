@@ -11,7 +11,9 @@ Lettris.Preloader.prototype = {
 	this.load.image('box', 'assets/box.png');
 	this.load.image('lower_panel', 'assets/lower_panel.png');
 
-	this.load.json('eng-std', 'assets/lang/eng/letters.json');
+	// Should later be loaded when choosing language
+	this.load.json('let-eng-std', 'assets/lang/eng/letters.json');
+	this.load.json('dic-eng-std', 'assets/lang/eng/dictionary.json');
     },
     create: function () {
 	// start the MainMenu state

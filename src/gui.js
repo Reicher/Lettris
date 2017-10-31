@@ -1,6 +1,8 @@
 GUI = function (game, boxClicked) {
     Phaser.Group.call(this, game);
 
+    this.dictionary = game.cache.getJSON('dic-eng-std')
+
     // Upper Panel
 
     // Lower Panel
@@ -9,21 +11,26 @@ GUI = function (game, boxClicked) {
     			      game.height-120+lower_panel.height/2)
     this.word.anchor.setTo(0.5)
     this.word.inputEnabled = true;
-    this.word.events.onInputDown.add(this.handle_word_click, this);
+    this.word.events.onInputDown.add(this.handle_word_click, this)
     this.add(this.word)
 
-    boxClicked.add(this.handle_box_click, this);
+    boxClicked.add(this.handle_box_click, this)
     this.markedList = []
 }
 
-GUI.prototype = Object.create(Phaser.Group.prototype);
-GUI.prototype.constructor = GUI;
+GUI.prototype = Object.create(Phaser.Group.prototype)
+GUI.prototype.constructor = GUI
 
 GUI.prototype.update = function () {
 
 }
 
 GUI.prototype.handle_word_click = function (box) {
+
+    if(len(this.word.text) > 1 &&
+       this.dictionary.indexOf(this.word.text) == -1)
+	return
+
     var score = 0
     this.markedList.forEach(function(box) {
 	score += box.points
@@ -31,7 +38,7 @@ GUI.prototype.handle_word_click = function (box) {
     }, this);
     this.markedList = []
     this.word.text = ""
-    console.log("Word score: " + score);
+    console.log("Word score: " + score)
 }
 
 GUI.prototype.handle_box_click = function (box) {
@@ -46,5 +53,5 @@ GUI.prototype.handle_box_click = function (box) {
     this.word.text = ""
     this.markedList.forEach(function(b) {
 	this.word.text += b.text.text
-    }, this);
+    }, this)
 }

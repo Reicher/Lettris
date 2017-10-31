@@ -8,7 +8,7 @@ Box = function (game, x, boxClicked) {
 
     // Letter (should probably not be completely random)
     var letterKey = game.rnd.pick("abcdefghijklmnopqrstuvwxyz")
-    var letter = game.cache.getJSON('eng-std').letters[letterKey];
+    var letter = game.cache.getJSON('let-eng-std').letters[letterKey]
 
     var style = { font: "30px Arial", fill: "#000000" }
     this.text = this.game.add.text(0, 0, letterKey, style)
@@ -19,7 +19,7 @@ Box = function (game, x, boxClicked) {
 
     // Interaction
     this.inputEnabled = true;
-    this.events.onInputDown.add(this.click, this);
+    this.events.onInputDown.add(this.click, this)
     this.clickSignal = boxClicked
 }
 
