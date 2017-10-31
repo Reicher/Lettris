@@ -9,7 +9,7 @@ Lettris.Game.prototype = {
 
 	game.physics.startSystem(Phaser.Physics.P2JS);
 	game.physics.p2.gravity.y = 300;
-	game.physics.p2.restitution = 0.5
+	game.physics.p2.restitution = 0.05
 
 	this.boxClicked = new Phaser.Signal()
 
