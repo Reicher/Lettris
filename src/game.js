@@ -20,11 +20,18 @@ Lettris.Game.prototype = {
 	this.boxes = game.add.group();
 
 	// Start box-droping loop
-	game.time.events.loop(Phaser.Timer.SECOND * 2,
+	game.time.events.loop(Phaser.Timer.SECOND * 1,
 			      this.spawn_random_box, this)
     },
 
     spawn_random_box: function () {
+	// check if any box is stuck = game over
+	this.boxes.forEach(function(box) {
+	    if( box.y < 0)
+		this.state.start('GameOver');
+	}, this);
+
+	// put out a new box
 	var widthHalf = this.game.cache.getImage('box').width / 2;
 	var pos = this.game.rnd.integerInRange(
 	    widthHalf + 1, this.game.width - widthHalf - 1);
