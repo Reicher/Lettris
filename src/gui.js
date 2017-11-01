@@ -2,7 +2,6 @@ GUI = function (game, boxClicked) {
     Phaser.Group.call(this, game);
 
     this.dictionary = game.cache.getJSON('dic-eng-std')
-
     this.score = 0
 
     // Upper Panel
@@ -25,30 +24,28 @@ GUI = function (game, boxClicked) {
 GUI.prototype = Object.create(Phaser.Group.prototype)
 GUI.prototype.constructor = GUI
 
-GUI.prototype.update = function () {
-
-}
-
 GUI.prototype.handle_word_click = function (box) {
 
+    // Check if word is in dictionary
     if(this.word.text.length > 1 &&
        this.dictionary.indexOf(this.word.text) == -1)
 	return
 
+    // Remove all word letters
     this.markedList.forEach(function(box) {
 	this.score += box.points
-	box.destroy()
+	box.remove()
     }, this);
+
     this.markedList = []
     this.word.text = ""
-    console.log("Word score: " + this.score)
     this.scoreText.setText(this.score)
 }
 
 GUI.prototype.handle_box_click = function (box) {
     // A little ugly to check x/y positions? but it works :D
     var id = this.markedList.findIndex(b => (b.x == box.x &&
-					    b.y == box.y))
+					     b.y == box.y))
     if( id == -1 )
 	this.markedList.push(box)
     else

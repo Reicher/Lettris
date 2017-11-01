@@ -36,10 +36,6 @@ Box = function (game, x, boxClicked) {
 Box.prototype = Object.create(Phaser.Sprite.prototype);
 Box.prototype.constructor = Box;
 
-Box.prototype.update = function () {
-
-}
-
 Box.prototype.click = function () {
     if( this.tint == 0xffffff)
 	this.tint = 0xfff000
@@ -47,4 +43,8 @@ Box.prototype.click = function () {
 	this.tint = 0xffffff
 
     this.clickSignal.dispatch(this)
+}
+
+Box.prototype.remove = function () {
+    this.destroy()
 }

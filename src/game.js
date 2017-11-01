@@ -4,31 +4,30 @@ Lettris.Game = function (game) {
 Lettris.Game.prototype = {
     create: function (game) {
 
-	// -1 and width+2 in x-axis to prevent "wall friction"
-	game.world.setBounds(0, 0, game.width, game.height-80);
-
+	// Physics stuff
 	game.physics.startSystem(Phaser.Physics.P2JS);
 	game.physics.p2.setBoundsToWorld(true, true, false, true)
 	game.physics.p2.gravity.y = 300;
 	game.physics.p2.restitution = 0.05
 
+	game.world.setBounds(0, 0, game.width, game.height-80);
+
 	this.boxClicked = new Phaser.Signal()
 
-	// Create GUI
 	this.gui = new GUI(game, this.boxClicked)
 
 	this.boxes = game.add.group();
 
 	// Start box-droping loop
 	game.time.events.loop(Phaser.Timer.SECOND * 1,
-			      this.spawn_random_box, this)
+			      this.spawn_box, this)
     },
 
-    spawn_random_box: function () {
-	// check if any box is stuck = game over
+    spawn_box: function () {
+	// check if any box is stuck above screen => game over
 	this.boxes.forEach(function(box) {
 	    if( box.y < 0)
-		this.state.start('GameOver');
+		this.state.start('GameOver', true, false, this.gui.score);
 	}, this);
 
 	// put out a new box
@@ -39,8 +38,5 @@ Lettris.Game.prototype = {
 	this.boxes.add(new Box(this.game,
 			       pos,
 			       this.boxClicked))
-    },
-
-    update: function () {
     },
 };
