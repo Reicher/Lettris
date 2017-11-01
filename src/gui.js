@@ -3,7 +3,11 @@ GUI = function (game, boxClicked) {
 
     this.dictionary = game.cache.getJSON('dic-eng-std')
 
+    this.score = 0
+
     // Upper Panel
+    this.scoreText = game.add.text(0, 0, "0")
+    this.add(this.scoreText)
 
     // Lower Panel
     var lower_panel = this.create(0, game.height-80, 'lower_panel')
@@ -31,14 +35,14 @@ GUI.prototype.handle_word_click = function (box) {
        this.dictionary.indexOf(this.word.text) == -1)
 	return
 
-    var score = 0
     this.markedList.forEach(function(box) {
-	score += box.points
+	this.score += box.points
 	box.destroy()
     }, this);
     this.markedList = []
     this.word.text = ""
-    console.log("Word score: " + score)
+    console.log("Word score: " + this.score)
+    this.scoreText.setText(this.score)
 }
 
 GUI.prototype.handle_box_click = function (box) {
