@@ -6,9 +6,9 @@ GUI = function (game, boxClicked) {
     // Upper Panel
 
     // Lower Panel
-    var lower_panel = this.create(0, game.height-120, 'lower_panel')
+    var lower_panel = this.create(0, game.height-80, 'lower_panel')
     this.word = game.add.text(game.world.centerX,
-    			      game.height-120+lower_panel.height/2)
+    			      game.height-80+lower_panel.height/2)
     this.word.anchor.setTo(0.5)
     this.word.inputEnabled = true;
     this.word.events.onInputDown.add(this.handle_word_click, this)
