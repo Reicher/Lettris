@@ -12,9 +12,7 @@ Lettris.Game.prototype = {
 
 	game.world.setBounds(0, 0, game.width, game.height-80);
 
-	this.boxClicked = new Phaser.Signal()
-
-	this.gui = new GUI(game, this.boxClicked)
+	this.gui = new GUI(game)
 
 	this.boxes = game.add.group();
 
@@ -37,6 +35,6 @@ Lettris.Game.prototype = {
 
 	this.boxes.add(new Box(this.game,
 			       pos,
-			       this.boxClicked))
+			       this.gui.boxClicked))
     },
 };

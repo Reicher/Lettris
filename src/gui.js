@@ -3,6 +3,10 @@ GUI = function (game, boxClicked) {
 
     this.dictionary = game.cache.getJSON('dic-eng-std')
     this.score = 0
+    this.markedList = []
+
+    this.boxClicked = new Phaser.Signal()
+    this.boxClicked.add(this.handle_box_click, this)
 
     // Upper Panel
     this.scoreText = game.add.text(0, 0, "0")
@@ -16,9 +20,6 @@ GUI = function (game, boxClicked) {
     this.word.inputEnabled = true;
     this.word.events.onInputDown.add(this.handle_word_click, this)
     this.add(this.word)
-
-    boxClicked.add(this.handle_box_click, this)
-    this.markedList = []
 }
 
 GUI.prototype = Object.create(Phaser.Group.prototype)
