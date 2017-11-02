@@ -1,20 +1,16 @@
-Box = function (game, x, boxClicked) {
-    Phaser.Sprite.call(this, game, x, -20, 'box')
+Box = function (game, pos, letter, points, boxClicked) {
+    Phaser.Sprite.call(this, game, pos, -20, 'box')
     this.anchor.setTo(0.5)
 
     // Physics
     game.physics.p2.enable(this);
     this.body.collideWorldBounds = true
 
-    // Letter (should probably not be completely random)
-    var letterKey = game.rnd.pick("abcdefghijklmnopqrstuvwxyz")
-    var letter = game.cache.getJSON('let-eng-std').letters[letterKey]
-
-    this.points = letter.points;
+    this.points = points
 
     // letter text
     var style = { font: "30px Arial", fill: "#000000" }
-    this.text = this.game.add.text(0, 0, letterKey, style)
+    this.text = this.game.add.text(0, 0, letter, style)
     this.text.anchor.setTo(0.5)
     this.addChild(this.text)
 

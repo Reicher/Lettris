@@ -14,10 +14,14 @@ Lettris.Game.prototype = {
 
 	this.gui = new GUI(game)
 
+	this.bag = new Bag(game,
+			   'let-eng-std',
+			   this.gui.boxClicked)
+
 	this.boxes = game.add.group();
 
 	// Start box-droping loop
-	game.time.events.loop(Phaser.Timer.SECOND * 1,
+	game.time.events.loop(Phaser.Timer.SECOND * 2,
 			      this.spawn_box, this)
     },
 
@@ -33,8 +37,8 @@ Lettris.Game.prototype = {
 	var pos = this.game.rnd.integerInRange(
 	    widthHalf + 1, this.game.width - widthHalf - 1);
 
-	this.boxes.add(new Box(this.game,
-			       pos,
-			       this.gui.boxClicked))
+	var box = this.bag.dropBox(pos)
+
+	this.boxes.add(box)
     },
 };
