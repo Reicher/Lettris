@@ -20,9 +20,11 @@ Bag.prototype.dropBox = function (pos) {
 
     var letter =  Phaser.ArrayUtils.removeRandomItem(this.letters)
     var points = this.json[letter].points
+    var size = 40
 
     return new Box(this.game,
 		   pos,
+		   size,
 		   letter,
 		   points,
 		   this.boxClicked)

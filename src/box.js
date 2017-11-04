@@ -1,6 +1,8 @@
-Box = function (game, pos, letter, points, boxClicked) {
-    Phaser.Sprite.call(this, game, pos, -20, 'box')
+Box = function (game, pos, size, letter, points, boxClicked) {
+    Phaser.Sprite.call(this, game, pos, -size/2, 'box')
     this.anchor.setTo(0.5)
+
+    this.scale.setTo(size/40, size/40) // since our sprite is 40
 
     // Physics
     game.physics.p2.enable(this);
@@ -16,12 +18,11 @@ Box = function (game, pos, letter, points, boxClicked) {
 
     // points text
     var style = { font: "10px Arial", fill: "#000000" }
-    var point_text = this.game.add.text(this.width/2  - 3,
-					this.height/2 + 4,
+    var point_text = this.game.add.text(17, 23,
 					this.points,
 					style)
     point_text.anchor.setTo(1)
-    this.addChild(point_text)
+    this.text.addChild(point_text)
 
     // Interaction
     this.inputEnabled = true;
