@@ -19,10 +19,10 @@ Bag.prototype.getTypeYouDeserve = function () {
     var n = this.game.rnd.integer()%100
 
     if ( n <= (100 + this.gameData.karma) )
-	return 'normal'
+	return 'box'
 
     this.gameData.karma += 5
-    return this.game.rnd.pick( ['big', 'wide'])
+    return this.game.rnd.pick( ['big-box', 'wide-box'])
 }
 
 Bag.prototype.dropBox = function (pos) {

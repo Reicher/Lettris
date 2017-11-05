@@ -1,18 +1,6 @@
-Box = function (game, pos, type, letter, points, boxClicked) {
-
-    switch(type){
-    case 'big':
-	var size = 60
-	Phaser.Sprite.call(this, game, pos, -size/2, 'box')
-	this.scale.setTo(size/40, size/40)
-	break;
-    case 'wide':
-	Phaser.Sprite.call(this, game, pos, -size/2, 'wide-box')
-	break;
-    case 'normal':
-    default:
-	Phaser.Sprite.call(this, game, pos, -20, 'box')
-    }
+Box = function (game, pos, key, letter, points, boxClicked) {
+    var size = game.cache.getImage(key)
+    Phaser.Sprite.call(this, game, pos, -size/2, key)
     this.anchor.setTo(0.5)
 
     // Physics

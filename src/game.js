@@ -12,7 +12,7 @@ Lettris.Game.prototype = {
 
 	game.world.setBounds(0, 0, game.width, game.height-80);
 
-	this.gameData = {score: 0, karma: 0}
+	this.gameData = {score: 0, karma: -30} // Arvssynd
 
 	this.gui = new GUI(game, this.gameData)
 	this.bag = new Bag(game,
