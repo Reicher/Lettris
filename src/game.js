@@ -3,6 +3,7 @@ Lettris.Game = function (game) {
 
 Lettris.Game.prototype = {
     create: function (game) {
+	game.add.sprite(0, 0, 'sprites', 'background');
 
 	// Physics stuff
 	game.physics.startSystem(Phaser.Physics.P2JS);

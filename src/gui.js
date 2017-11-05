@@ -11,7 +11,7 @@ GUI = function (game, gameData) {
 
     var reset  = this.create(10, 9, 'sprites', 'clear')
     reset.inputEnabled = true;
-    reset.events.onInputDown.add(this.handle_clear_click, this)
+    reset.events.onInputDown.add(this.clear, this)
 
     var accept = this.create(75, 9, 'sprites', 'accept')
     accept.inputEnabled = true;
@@ -36,8 +36,7 @@ GUI = function (game, gameData) {
 GUI.prototype = Object.create(Phaser.Group.prototype)
 GUI.prototype.constructor = GUI
 
-GUI.prototype.handle_clear_click = function (box) {
-    console.log('TODO: implement clear')
+GUI.prototype.clear = function () {
     this.markedList.forEach(function(box) {
 	box.mark(false)
     }, this);
@@ -61,9 +60,9 @@ GUI.prototype.handle_accept_click = function (box) {
 
     this.gameData.karma += (-7 + score)
     this.gameData.score += score
-    this.markedList = []
-    this.word.text = ""
     this.scoreText.setText(this.gameData.score)
+
+    this.clear()
 }
 
 GUI.prototype.handle_box_click = function (box) {
