@@ -23,7 +23,7 @@ Box = function (game, pos, type, letter, points, boxClicked) {
 
     // letter text
     var style = { font: "30px Arial", fill: "#000000" }
-    this.text = this.game.add.text(0, 0, letter, style)
+    this.text = this.game.add.text(0, 0, letter.toUpperCase(), style)
     this.text.anchor.setTo(0.5)
     this.addChild(this.text)
 

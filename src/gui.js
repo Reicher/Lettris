@@ -29,7 +29,7 @@ GUI.prototype.handle_word_click = function (box) {
 
     // Check if word is in dictionary
     if(this.word.text.length > 1 &&
-       this.dictionary.indexOf(this.word.text) == -1)
+       this.dictionary.indexOf(this.word.text.toLowerCase()) == -1)
 	return
 
     // Remove all word letters
