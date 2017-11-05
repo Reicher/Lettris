@@ -11,7 +11,7 @@ Lettris.Preloader.prototype = {
 	this.load.image('box', 'assets/box.png');
 	this.load.image('big-box', 'assets/big-box.png');
 	this.load.image('wide-box', 'assets/wide-box.png');
-	this.load.image('lower_panel', 'assets/lower_panel.png');
+	this.load.image('panel', 'assets/panel.png');
 
 	// Should later be loaded when choosing language
 	this.load.json('let-eng-std', 'assets/lang/eng/letters.json');

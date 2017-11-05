@@ -8,14 +8,18 @@ GUI = function (game, gameData) {
     this.boxClicked = new Phaser.Signal()
     this.boxClicked.add(this.handle_box_click, this)
 
-    // Upper Panel
-    this.scoreText = game.add.text(0, 0, "0")
+    var panel = this.create(0, game.height-80, 'panel')
+
+    var style = { font: "15px Arial", align: "center" };
+    this.scoreText = game.add.text(game.world.centerX,
+				   game.height-65,
+				   "0",
+				   style)
+    this.scoreText.anchor.setTo(0.5)
     this.add(this.scoreText)
 
-    // Lower Panel
-    var lower_panel = this.create(0, game.height-80, 'lower_panel')
     this.word = game.add.text(game.world.centerX,
-    			      game.height-80+lower_panel.height/2)
+    			      game.height-30)
     this.word.anchor.setTo(0.5)
     this.word.inputEnabled = true;
     this.word.events.onInputDown.add(this.handle_word_click, this)
