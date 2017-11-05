@@ -35,7 +35,7 @@ Lettris.Game.prototype = {
 	}, this);
 
 	// put out a new box
-	var widthHalf = this.game.cache.getImage('box').width / 2;
+	var widthHalf = 20; // TODO: fix placing...
 	var pos = this.game.rnd.integerInRange(
 	    widthHalf + 1, this.game.width - widthHalf - 1);
 

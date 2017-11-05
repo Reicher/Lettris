@@ -8,7 +8,7 @@ GUI = function (game, gameData) {
     this.boxClicked = new Phaser.Signal()
     this.boxClicked.add(this.handle_box_click, this)
 
-    var panel = this.create(0, game.height-80, 'panel')
+    var panel = this.create(0, game.height-80, 'sprites', 'panel')
 
     var style = { font: "15px Arial", align: "center" };
     this.scoreText = game.add.text(game.world.centerX,

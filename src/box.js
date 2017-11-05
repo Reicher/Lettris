@@ -1,7 +1,7 @@
 Box = function (game, pos, key, letter, points, boxClicked) {
-    var size = game.cache.getImage(key)
-    Phaser.Sprite.call(this, game, pos, -size/2, key)
+    Phaser.Sprite.call(this, game, pos, 0, 'sprites', key)
     this.anchor.setTo(0.5)
+    this.y = -this.width/2
 
     // Physics
     game.physics.p2.enable(this);

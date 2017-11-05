@@ -3,7 +3,7 @@ Lettris.Boot = function (game) {};
 Lettris.Boot.prototype = {
 	preload: function () {
 		// preload the loading indicator first before anything else
-		this.load.image('preloaderBar', 'assets/Loading_bar.png');
+		this.load.image('preloaderBar', 'assets/loading-bar.png');
 	},
 	create: function () {
 		// set scale options
