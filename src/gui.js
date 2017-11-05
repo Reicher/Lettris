@@ -32,7 +32,7 @@ GUI.prototype.constructor = GUI
 GUI.prototype.handle_word_click = function (box) {
 
     // Check if word is in dictionary
-    if(this.word.text.length > 1 &&
+    if(this.word.text.length < 2 ||
        this.dictionary.indexOf(this.word.text.toLowerCase()) == -1)
 	return
 
