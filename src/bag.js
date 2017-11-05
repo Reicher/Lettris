@@ -1,6 +1,7 @@
-Bag = function (game, lang, boxClicked) {
+Bag = function (game, lang, gameData, boxClicked) {
     this.game = game
     this.letters = []
+    this.gameData = gameData
     this.boxClicked = boxClicked
 
     this.json = game.cache.getJSON(lang).letters
@@ -14,17 +15,26 @@ Bag.prototype.fill = function () {
     }
 }
 
+Bag.prototype.getTypeYouDeserve = function () {
+    var n = this.game.rnd.integer()%100
+
+    if ( n <= (100 + this.gameData.karma) )
+	return 'normal'
+
+    this.gameData.karma += 5
+    return this.game.rnd.pick( ['big', 'wide'])
+}
+
 Bag.prototype.dropBox = function (pos) {
     if( this.letters.length < 1 )
 	this.fill()
 
     var letter =  Phaser.ArrayUtils.removeRandomItem(this.letters)
     var points = this.json[letter].points
-    var size = 40
 
     return new Box(this.game,
 		   pos,
-		   size,
+		   this.getTypeYouDeserve(),
 		   letter,
 		   points,
 		   this.boxClicked)

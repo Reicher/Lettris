@@ -9,6 +9,7 @@ Lettris.Preloader.prototype = {
 	//this.load.setPreloadSprite(this.preloadBar);
 
 	this.load.image('box', 'assets/box.png');
+	this.load.image('wide-box', 'assets/wide-box.png');
 	this.load.image('lower_panel', 'assets/lower_panel.png');
 
 	// Should later be loaded when choosing language

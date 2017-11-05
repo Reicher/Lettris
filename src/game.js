@@ -12,10 +12,12 @@ Lettris.Game.prototype = {
 
 	game.world.setBounds(0, 0, game.width, game.height-80);
 
-	this.gui = new GUI(game)
+	this.gameData = {score: 0, karma: 0}
 
+	this.gui = new GUI(game, this.gameData)
 	this.bag = new Bag(game,
 			   'let-eng-std',
+			   this.gameData,
 			   this.gui.boxClicked)
 
 	this.boxes = game.add.group();
@@ -38,6 +40,7 @@ Lettris.Game.prototype = {
 	    widthHalf + 1, this.game.width - widthHalf - 1);
 
 	var box = this.bag.dropBox(pos)
+	console.log(this.gameData.karma)
 
 	this.boxes.add(box)
     },

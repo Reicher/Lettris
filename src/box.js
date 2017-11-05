@@ -1,7 +1,18 @@
-Box = function (game, pos, size, letter, points, boxClicked) {
-    Phaser.Sprite.call(this, game, pos, -size/2, 'box')
+Box = function (game, pos, type, letter, points, boxClicked) {
 
-    this.scale.setTo(size/40, size/40) // since our sprite is 40
+    switch(type){
+    case 'big':
+	var size = 60
+	Phaser.Sprite.call(this, game, pos, -size/2, 'box')
+	this.scale.setTo(size/40, size/40)
+	break;
+    case 'wide':
+	Phaser.Sprite.call(this, game, pos, -size/2, 'wide-box')
+	break;
+    case 'normal':
+    default:
+	Phaser.Sprite.call(this, game, pos, -20, 'box')
+    }
     this.anchor.setTo(0.5)
 
     // Physics
@@ -18,7 +29,7 @@ Box = function (game, pos, size, letter, points, boxClicked) {
 
     // points text
     var style = { font: "10px Arial", fill: "#000000" }
-    var point_text = this.game.add.text(17, 23, this.points, style)
+    var point_text = this.game.add.text(17, 21, this.points, style)
     point_text.anchor.setTo(1)
     this.text.addChild(point_text)
 

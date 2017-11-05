@@ -1,8 +1,8 @@
-GUI = function (game, boxClicked) {
+GUI = function (game, gameData) {
     Phaser.Group.call(this, game);
 
     this.dictionary = game.cache.getJSON('dic-eng-std')
-    this.score = 0
+    this.gameData = gameData
     this.markedList = []
 
     this.boxClicked = new Phaser.Signal()
@@ -33,14 +33,17 @@ GUI.prototype.handle_word_click = function (box) {
 	return
 
     // Remove all word letters
+    var score = 0
     this.markedList.forEach(function(box) {
-	this.score += box.points
+	score += box.points
 	box.remove()
     }, this);
 
+    this.gameData.karma += (-7 + score)
+    this.gameData.score += score
     this.markedList = []
     this.word.text = ""
-    this.scoreText.setText(this.score)
+    this.scoreText.setText(this.gameData.score)
 }
 
 GUI.prototype.handle_box_click = function (box) {
