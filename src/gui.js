@@ -1,5 +1,6 @@
 GUI = function (game, gameData) {
     Phaser.Group.call(this, game);
+    this.y = game.height-80
 
     this.dictionary = game.cache.getJSON('dic-eng-std')
     this.gameData = gameData
@@ -8,28 +9,38 @@ GUI = function (game, gameData) {
     this.boxClicked = new Phaser.Signal()
     this.boxClicked.add(this.handle_box_click, this)
 
-    var panel = this.create(0, game.height-80, 'sprites', 'panel')
+    var reset  = this.create(10, 9, 'sprites', 'clear')
+    reset.inputEnabled = true;
+    reset.events.onInputDown.add(this.handle_clear_click, this)
+
+    var accept = this.create(75, 9, 'sprites', 'accept')
+    accept.inputEnabled = true;
+    accept.events.onInputDown.add(this.handle_accept_click, this)
+
+    var panel  = this.create(0, 0, 'sprites', 'panel')
 
     var style = { font: "15px Arial", align: "center" };
     this.scoreText = game.add.text(game.world.centerX,
-				   game.height-65,
+				   14,
 				   "0",
 				   style)
     this.scoreText.anchor.setTo(0.5)
     this.add(this.scoreText)
 
-    this.word = game.add.text(game.world.centerX,
-    			      game.height-30)
-    this.word.anchor.setTo(0.5)
-    this.word.inputEnabled = true;
-    this.word.events.onInputDown.add(this.handle_word_click, this)
+
+    this.word = game.add.text(game.world.centerX-30,
+    			      35)
     this.add(this.word)
 }
 
 GUI.prototype = Object.create(Phaser.Group.prototype)
 GUI.prototype.constructor = GUI
 
-GUI.prototype.handle_word_click = function (box) {
+GUI.prototype.handle_clear_click = function (box) {
+    console.log('TODO: implement clear')
+}
+
+GUI.prototype.handle_accept_click = function (box) {
 
     // Check if word is in dictionary
     if(this.word.text.length < 2 ||
