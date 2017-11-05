@@ -3,6 +3,8 @@ Box = function (game, pos, key, letter, points, boxClicked) {
     this.anchor.setTo(0.5)
     this.y = -this.width/2
 
+    this.marked = false
+
     // Physics
     game.physics.p2.enable(this);
     this.body.collideWorldBounds = true
@@ -31,12 +33,18 @@ Box.prototype = Object.create(Phaser.Sprite.prototype);
 Box.prototype.constructor = Box;
 
 Box.prototype.click = function () {
-    if( this.tint == 0xffffff)
+    this.mark( !this.marked )
+
+    this.clickSignal.dispatch(this)
+}
+
+Box.prototype.mark = function (mark) {
+    if( mark )
 	this.tint = 0xfff000
     else
 	this.tint = 0xffffff
 
-    this.clickSignal.dispatch(this)
+    this.marked = mark
 }
 
 Box.prototype.remove = function () {

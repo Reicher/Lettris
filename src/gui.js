@@ -38,6 +38,11 @@ GUI.prototype.constructor = GUI
 
 GUI.prototype.handle_clear_click = function (box) {
     console.log('TODO: implement clear')
+    this.markedList.forEach(function(box) {
+	box.mark(false)
+    }, this);
+    this.markedList = []
+    this.word.text = ""
 }
 
 GUI.prototype.handle_accept_click = function (box) {
@@ -62,13 +67,14 @@ GUI.prototype.handle_accept_click = function (box) {
 }
 
 GUI.prototype.handle_box_click = function (box) {
-    // A little ugly to check x/y positions? but it works :D
-    var id = this.markedList.findIndex(b => (b.x == box.x &&
-					     b.y == box.y))
-    if( id == -1 )
+    if( box.marked )
 	this.markedList.push(box)
-    else
+    else{
+	// A little ugly to check x/y positions? but it works :D
+	var id = this.markedList.findIndex(b => (b.x == box.x &&
+						 b.y == box.y))
 	this.markedList.splice(id, 1)
+    }
 
     this.word.text = ""
     this.markedList.forEach(function(b) {
