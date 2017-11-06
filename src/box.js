@@ -1,9 +1,13 @@
-Box = function (game, pos, key, letter, points, boxClicked) {
-    Phaser.Sprite.call(this, game, pos, 0, 'sprites', key)
-    this.anchor.setTo(0.5)
-    this.y = -this.width/2
+Box = function (game, id, key, letter, points) {
+    Phaser.Sprite.call(this, game, 0, 0, 'sprites', key)
 
+    this.id = id
     this.marked = false
+
+    this.anchor.setTo(0.5)
+    this.x = game.rnd.integerInRange(this.width/2 + 1,
+				     game.width - this.width/2 - 1)
+    this.y = -this.width/2
 
     // Physics
     game.physics.p2.enable(this);
@@ -26,7 +30,7 @@ Box = function (game, pos, key, letter, points, boxClicked) {
     // Interaction
     this.inputEnabled = true;
     this.events.onInputDown.add(this.click, this)
-    this.clickSignal = boxClicked
+    this.clicked = new Phaser.Signal()
 }
 
 Box.prototype = Object.create(Phaser.Sprite.prototype);
@@ -35,7 +39,7 @@ Box.prototype.constructor = Box;
 Box.prototype.click = function () {
     this.mark( !this.marked )
 
-    this.clickSignal.dispatch(this)
+    this.clicked.dispatch(this)
 }
 
 Box.prototype.mark = function (mark) {

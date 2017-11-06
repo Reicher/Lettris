@@ -35,14 +35,8 @@ Lettris.Game.prototype = {
 		this.state.start('GameOver', true, false, this.gameData.score);
 	}, this);
 
-	// put out a new box
-	var widthHalf = 20; // TODO: fix placing...
-	var pos = this.game.rnd.integerInRange(
-	    widthHalf + 1, this.game.width - widthHalf - 1);
-
-	var box = this.bag.dropBox(pos)
-	console.log(this.gameData.karma)
-
+	var box = this.bag.dropBox(this.gameData.karma)
+	box.clicked.add(this.gui.box_clicked, this.gui)
 	this.boxes.add(box)
     },
 };

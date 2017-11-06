@@ -6,16 +6,13 @@ GUI = function (game, gameData) {
     this.gameData = gameData
     this.markedList = []
 
-    this.boxClicked = new Phaser.Signal()
-    this.boxClicked.add(this.handle_box_click, this)
-
     var reset  = this.create(10, 9, 'sprites', 'clear')
     reset.inputEnabled = true;
     reset.events.onInputDown.add(this.clear, this)
 
     var accept = this.create(75, 9, 'sprites', 'accept')
     accept.inputEnabled = true;
-    accept.events.onInputDown.add(this.handle_accept_click, this)
+    accept.events.onInputDown.add(this.accept, this)
 
     var panel  = this.create(0, 0, 'sprites', 'panel')
 
@@ -26,7 +23,6 @@ GUI = function (game, gameData) {
 				   style)
     this.scoreText.anchor.setTo(0.5)
     this.add(this.scoreText)
-
 
     this.word = game.add.text(game.world.centerX-30,
     			      35)
@@ -44,7 +40,7 @@ GUI.prototype.clear = function () {
     this.word.text = ""
 }
 
-GUI.prototype.handle_accept_click = function (box) {
+GUI.prototype.accept = function (box) {
 
     // Check if word is in dictionary
     if(this.word.text.length < 2 ||
@@ -65,14 +61,12 @@ GUI.prototype.handle_accept_click = function (box) {
     this.clear()
 }
 
-GUI.prototype.handle_box_click = function (box) {
+GUI.prototype.box_clicked = function (box) {
     if( box.marked )
 	this.markedList.push(box)
     else{
-	// A little ugly to check x/y positions? but it works :D
-	var id = this.markedList.findIndex(b => (b.x == box.x &&
-						 b.y == box.y))
-	this.markedList.splice(id, 1)
+	var index = this.markedList.findIndex(b => b.id == box.id)
+	this.markedList.splice(index, 1)
     }
 
     this.word.text = ""
