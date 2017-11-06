@@ -6,13 +6,8 @@ GUI = function (game, gameData) {
     this.gameData = gameData
     this.markedList = []
 
-    var reset  = this.create(10, 9, 'sprites', 'clear')
-    reset.inputEnabled = true;
-    reset.events.onInputDown.add(this.clear, this)
-
-    var accept = this.create(75, 9, 'sprites', 'accept')
-    accept.inputEnabled = true;
-    accept.events.onInputDown.add(this.accept, this)
+    this.add(game.add.button(10, 9, 'sprites', this.clear, this, 'clear', 'clear'))
+    this.add(game.add.button(75, 9, 'sprites', this.accept, this, 'accept', 'accept'))
 
     var panel  = this.create(0, 0, 'sprites', 'panel')
 

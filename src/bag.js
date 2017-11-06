@@ -25,10 +25,11 @@ Bag.prototype.dropBox = function (karma) {
     if( this.letters.length < 1 )
 	this.fill()
 
+    var letter = Phaser.ArrayUtils.removeRandomItem(this.letters)
     var box = new Box(this.game,
 		      this.id++,
 		      this.getTypeYouDeserve(karma),
-		      Phaser.ArrayUtils.removeRandomItem(this.letters),
+		      letter,
 		      this.json[letter].points)
 
     return box
