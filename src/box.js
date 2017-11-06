@@ -1,19 +1,17 @@
 Box = function (game, id, key, letter, points) {
     Phaser.Sprite.call(this, game, 0, 0, 'sprites', key)
-
-    this.id = id
-    this.marked = false
-
-    this.anchor.setTo(0.5)
     this.x = game.rnd.integerInRange(this.width/2 + 1,
 				     game.width - this.width/2 - 1)
     this.y = -this.width/2
+    this.anchor.setTo(0.5)
+
+    this.id = id
+    this.marked = false
+    this.points = points
 
     // Physics
     game.physics.p2.enable(this);
     this.body.collideWorldBounds = true
-
-    this.points = points
 
     // letter text
     var style = { font: "30px Arial", fill: "#000000" }

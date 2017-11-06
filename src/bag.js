@@ -7,11 +7,9 @@ Bag = function (game, lang) {
 }
 
 Bag.prototype.fill = function () {
-    for (var key in this.json) {
-	var times = this.json[key].tiles
-	for( i = 0; i < times; ++i)
+    for (var key in this.json)
+	for( i = 0; i < this.json[key].tiles; ++i)
 	    this.letters.push(key)
-    }
 }
 
 Bag.prototype.getTypeYouDeserve = function (karma) {
@@ -27,14 +25,11 @@ Bag.prototype.dropBox = function (karma) {
     if( this.letters.length < 1 )
 	this.fill()
 
-    var letter =  Phaser.ArrayUtils.removeRandomItem(this.letters)
-    var points = this.json[letter].points
-
     var box = new Box(this.game,
 		      this.id++,
 		      this.getTypeYouDeserve(karma),
-		      letter,
-		      points)
+		      Phaser.ArrayUtils.removeRandomItem(this.letters),
+		      this.json[letter].points)
 
     return box
 }
