@@ -22,6 +22,13 @@ GUI = function (game, gameData) {
     this.word = game.add.text(game.world.centerX-30,
     			      35)
     this.add(this.word)
+
+    // Hotkeys
+    var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+    space.onDown.add(this.accept, this);
+
+    var x = game.input.keyboard.addKey(Phaser.Keyboard.X)
+    x.onDown.add(this.clear, this);
 }
 
 GUI.prototype = Object.create(Phaser.Group.prototype)
