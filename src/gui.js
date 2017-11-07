@@ -35,7 +35,7 @@ GUI.prototype.clear = function () {
     this.word.text = ""
 }
 
-GUI.prototype.accept = function (box) {
+GUI.prototype.accept = function () {
 
     // Check if word is in dictionary
     if(this.word.text.length < 2 ||
