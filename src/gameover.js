@@ -29,7 +29,7 @@ Lettris.GameOver.prototype = {
 
 	this.game.time.events.add(Phaser.Timer.SECOND * 2,
 				  this.ready_to_leave,
-				  this);
+				  this)
     },
 
     ready_to_leave: function() {

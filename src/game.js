@@ -15,6 +15,7 @@ Lettris.Game.prototype = {
 
 	this.gameData = {score: 0,
 			 karma: 0,
+			 tiles_droped: 0,
 			 best_word : {score: 0, word: ""}}
 
 	this.gui = new GUI(game, this.gameData)
@@ -23,8 +24,7 @@ Lettris.Game.prototype = {
 	this.boxes = game.add.group();
 
 	// Start box-droping loop
-	game.time.events.loop(Phaser.Timer.SECOND * 0.5,
-			      this.spawn_box, this)
+	this.spawn_box()
     },
 
     spawn_box: function () {
@@ -36,7 +36,21 @@ Lettris.Game.prototype = {
 
 	var box = this.bag.dropBox(this.gameData.karma)
 	box.clicked.add(this.gui.box_clicked, this.gui)
-	this.gameData.karma = 0
 	this.boxes.add(box)
+
+	this.gameData.karma = 0
+	this.gameData.tiles_droped++
+
+	var spawnTime = this.spawn_time(this.gameData.tiles_droped)
+	this.game.time.events.add(spawnTime,
+				  this.spawn_box,
+				  this);
     },
+
+    spawn_time: function(tiles){
+	var initTime = 3
+	var spawnTime = initTime * Math.pow(0.9, Math.trunc(tiles/10))
+	console.log(spawnTime)
+	return spawnTime * Phaser.Timer.SECOND
+    }
 };
