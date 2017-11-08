@@ -56,7 +56,7 @@ GUI.prototype.accept = function () {
 	box.remove()
     }, this);
 
-    this.gameData.karma += (-7 + score)
+    this.gameData.karma += score - 4
     this.gameData.score += score
     this.scoreText.setText(this.gameData.score)
 

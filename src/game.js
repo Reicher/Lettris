@@ -13,7 +13,7 @@ Lettris.Game.prototype = {
 
 	game.world.setBounds(0, 0, game.width, game.height-80);
 
-	this.gameData = {score: 0, karma: -30} // Arvssynd
+	this.gameData = {score: 0, karma: 0}
 
 	this.gui = new GUI(game, this.gameData)
 	this.bag = new Bag(game, 'let-eng-std')
@@ -34,7 +34,7 @@ Lettris.Game.prototype = {
 
 	var box = this.bag.dropBox(this.gameData.karma)
 	box.clicked.add(this.gui.box_clicked, this.gui)
-	this.gameData.karma += box.key != 'box' ? 5 : 0
+	this.gameData.karma = 0
 	this.boxes.add(box)
     },
 };

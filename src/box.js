@@ -1,5 +1,27 @@
 Box = function (game, id, key, letter, points) {
+
+    this.base_tint = 0xffffff
+    switch(key){
+    case 'silver-box':
+	key = 'box'
+	points *= 2
+	this.base_tint = 0xbbbbbb
+	break
+    case 'gold-box':
+	key = 'box'
+	points *= 3
+	this.base_tint = 0xfffaaa
+	break;
+    case 'x2':
+	key = 'box'
+	letter = 'x2'
+	points = 0
+	break;
+    }
+
     Phaser.Sprite.call(this, game, 0, 0, 'sprites', key)
+    this.tint = this.base_tint
+
     this.x = game.rnd.integerInRange(this.width/2 + 1,
 				     game.width - this.width/2 - 1)
     this.y = -this.width/2
@@ -42,9 +64,9 @@ Box.prototype.click = function () {
 
 Box.prototype.mark = function (mark) {
     if( mark )
-	this.tint = 0xfff000
+	this.tint = 0x00FF00
     else
-	this.tint = 0xffffff
+	this.tint = this.base_tint
 
     this.marked = mark
 }
