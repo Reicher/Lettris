@@ -13,7 +13,9 @@ Lettris.Game.prototype = {
 
 	game.world.setBounds(0, 0, game.width, game.height-80);
 
-	this.gameData = {score: 0, karma: 0}
+	this.gameData = {score: 0,
+			 karma: 0,
+			 best_word : {score: 0, word: ""}}
 
 	this.gui = new GUI(game, this.gameData)
 	this.bag = new Bag(game, 'let-eng-std')
@@ -21,7 +23,7 @@ Lettris.Game.prototype = {
 	this.boxes = game.add.group();
 
 	// Start box-droping loop
-	game.time.events.loop(Phaser.Timer.SECOND * 2,
+	game.time.events.loop(Phaser.Timer.SECOND * 0.5,
 			      this.spawn_box, this)
     },
 
@@ -29,7 +31,7 @@ Lettris.Game.prototype = {
 	// check if any box is stuck above screen => game over
 	this.boxes.forEach(function(box) {
 	    if( box.y < 0)
-		this.state.start('GameOver', true, false, this.gameData.score);
+		this.state.start('GameOver', false, false, this.gameData);
 	}, this);
 
 	var box = this.bag.dropBox(this.gameData.karma)

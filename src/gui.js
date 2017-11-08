@@ -44,9 +44,11 @@ GUI.prototype.clear = function () {
 
 GUI.prototype.accept = function () {
 
+    var word = this.word.text.toLowerCase()
+
     // Check if word is in dictionary
     if(this.word.text.length < 2 ||
-       this.dictionary.indexOf(this.word.text.toLowerCase()) == -1)
+       this.dictionary.indexOf(word) == -1)
 	return
 
     // Remove all word letters
@@ -55,6 +57,11 @@ GUI.prototype.accept = function () {
 	score += box.points
 	box.remove()
     }, this);
+
+    if( score > this.gameData.best_word.score){
+	this.gameData.best_word.score = score
+	this.gameData.best_word.word = word
+    }
 
     this.gameData.karma += score - 4
     this.gameData.score += score
