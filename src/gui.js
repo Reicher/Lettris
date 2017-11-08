@@ -23,6 +23,10 @@ GUI = function (game, gameData) {
     			      35)
     this.add(this.word)
 
+    var ws_style = { font: "10px Arial", align: "center" };
+    this.wordScore = game.add.text(5, -5, "0", ws_style)
+    this.word.addChild(this.wordScore)
+
     // Hotkeys
     var space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
     space.onDown.add(this.accept, this);
@@ -80,7 +84,11 @@ GUI.prototype.box_clicked = function (box) {
     }
 
     this.word.text = ""
+    var points = 0
     this.markedList.forEach(function(b) {
 	this.word.text += b.text.text
+	points += b.points
     }, this)
+    this.wordScore.x = this.word.width
+    this.wordScore.text = points
 }
