@@ -16,6 +16,7 @@ Lettris.Game.prototype = {
 	this.gameData = {score: 0,
 			 karma: 0,
 			 tiles_droped: 0,
+			 tiles_cleared: 0,
 			 best_word : {score: 0, word: ""}}
 
 	this.gui = new GUI(game, this.gameData)
@@ -41,7 +42,7 @@ Lettris.Game.prototype = {
 	this.gameData.karma = 0
 	this.gameData.tiles_droped++
 
-	var spawnTime = this.spawn_time(this.gameData.tiles_droped)
+	var spawnTime = this.spawn_time(this.gameData.tiles_cleared)
 	this.game.time.events.add(spawnTime,
 				  this.spawn_box,
 				  this);

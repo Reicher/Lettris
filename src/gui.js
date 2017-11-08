@@ -55,6 +55,7 @@ GUI.prototype.accept = function () {
     var score = 0
     this.markedList.forEach(function(box) {
 	score += box.points
+	this.gameData.tiles_cleared++
 	box.remove()
     }, this);
 
@@ -63,7 +64,7 @@ GUI.prototype.accept = function () {
 	this.gameData.best_word.word = word
     }
 
-    this.gameData.karma += score - 4
+    this.gameData.karma += score - 6
     this.gameData.score += score
     this.scoreText.setText(this.gameData.score)
 
