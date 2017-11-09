@@ -34,7 +34,7 @@ Lettris.GameOver.prototype = {
 
     ready_to_leave: function() {
 	this.game.input.onDown.add(()=>{
-            this.state.start('Game')
+            this.state.start('MainMenu')
 	}, this)
     }
 };
