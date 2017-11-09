@@ -19,11 +19,12 @@ Bag.prototype.getTypeYouDeserve = function (karma) {
 	return 'gold-box'
     else if ( karma > 2 )
 	return 'silver-box'
-    else if ( karma <= 0 )
-	return this.game.rnd.pick( ['box', 'box', 'box', 'box',
-				    'big-box', 'wide-box'])
-    else
-	return 'box'
+    else if ( karma == 0 && this.game.rnd.integer()%5 == 0)
+	return this.game.rnd.pick(['big-box', 'wide-box', 'ball-box'])
+    else if (karma < 0 )
+	return this.game.rnd.pick(['big-box', 'wide-box', 'ball-box'])
+
+    return 'box'
 }
 
 Bag.prototype.dropBox = function (karma) {

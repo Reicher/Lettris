@@ -4,11 +4,9 @@ Box = function (game, id, key, letter, points) {
     switch(key){
     case 'silver-box':
 	points *= 2
-	this.base_tint = 0xbbbbbb
 	break
     case 'gold-box':
 	points *= 3
-	this.base_tint = 0xfffaaa
 	break;
     case 'x2':
 	key = 'box'
@@ -32,6 +30,8 @@ Box = function (game, id, key, letter, points) {
     // Physics
     game.physics.p2.enable(this);
     this.body.collideWorldBounds = true
+    if( key == 'ball-box' )
+	this.body.setCircle(this.width/2);
 
     // letter text
     var style = { font: "30px Arial", fill: "#000000" }

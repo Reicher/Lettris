@@ -68,7 +68,7 @@ GUI.prototype.accept = function () {
 	this.gameData.best_word.word = word
     }
 
-    this.gameData.karma += score - 5
+    this.gameData.karma += score - 6
     this.gameData.score += score
     this.scoreText.setText(this.gameData.score)
 
