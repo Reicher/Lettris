@@ -3,7 +3,7 @@ Lettris.Game = function (game) {
 
 Lettris.Game.prototype = {
     create: function (game) {
-	//game.add.sprite(0, 0, 'sprites', 'background');
+
 
 	// Physics stuff
 	game.physics.startSystem(Phaser.Physics.P2JS);
@@ -49,7 +49,7 @@ Lettris.Game.prototype = {
     },
 
     spawn_time: function(tiles){
-	var initTime = 0
+	var initTime = 3
 	var spawnTime = initTime * Math.pow(0.9, Math.trunc(tiles/10))
 	console.log(spawnTime)
 	return spawnTime * Phaser.Timer.SECOND
