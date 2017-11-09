@@ -5,22 +5,26 @@ Lettris.MainMenu.prototype = {
     create: function () {
 	this.game.add.sprite(0, 0, 'sprites', 'background');
 
-	// Borde nog va en fin bild
-	var headerStyle = { font: "40px Arial", fill: "#FF00F0"}
-	this.header = this.game.add.text(this.game.width/2,
-					 60,
-					 "LETTRIS",
-					 headerStyle)
-	this.header.anchor.setTo(0.5)
+	this.logo = this.game.add.sprite(this.game.width/2, 100, 'sprites', 'logo')
+	this.logo.anchor.setTo(0.5)
 
-	this.game.input.onDown.add(()=>{
-	    this.startGame()
-	}, this)
+	this.play = this.game.add.button(this.game.width/2, 230,
+					 'sprites', this.startGame,
+					 this, 'play', 'play')
+	this.play.anchor.setTo(0.5)
+
+	var style = { font: "10px Arial", fill: "#FF00F0"}
+	this.version = this.game.add.text(this.game.width-5,
+					  this.game.height-5,
+					  "0.1 BETA",
+					  style)
+	this.version.anchor.setTo(1, 1)
     },
 
     startGame: function () {
 	// start the Game state
-	this.header.destroy()
+	this.logo.destroy()
+	this.play.destroy()
 	this.state.start('Game', false);
     }
 };
