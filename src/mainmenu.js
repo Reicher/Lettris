@@ -10,7 +10,7 @@ Lettris.MainMenu.prototype = {
 
 	this.play = this.game.add.button(this.game.width/2, 230,
 					 'sprites', this.startGame,
-					 this, 'play', 'play')
+					 this, null, 'play')
 	this.play.anchor.setTo(0.5)
 
 	var style = { font: "10px Arial", fill: "#FF00F0"}

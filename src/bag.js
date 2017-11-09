@@ -15,9 +15,9 @@ Bag.prototype.fill = function () {
 Bag.prototype.getTypeYouDeserve = function (karma) {
     if ( karma >  99999 )
 	return 'x2'
-    else if ( karma >  3 )
+    else if ( karma >  4 )
 	return 'gold-box'
-    else if ( karma > 1 )
+    else if ( karma > 2 )
 	return 'silver-box'
     else if ( karma < 0 )
 	return this.game.rnd.pick( ['big-box', 'wide-box'])

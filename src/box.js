@@ -3,12 +3,10 @@ Box = function (game, id, key, letter, points) {
     this.base_tint = 0xffffff
     switch(key){
     case 'silver-box':
-	key = 'box'
 	points *= 2
 	this.base_tint = 0xbbbbbb
 	break
     case 'gold-box':
-	key = 'box'
 	points *= 3
 	this.base_tint = 0xfffaaa
 	break;
