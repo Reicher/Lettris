@@ -31,8 +31,10 @@ Lettris.Game.prototype = {
     spawn_box: function () {
 	// check if any box is stuck above screen => game over
 	this.boxes.forEach(function(box) {
-	    if( box.y < 0)
+	    if( box.y < 0){
 		this.state.start('GameOver', false, false, this.gameData);
+		return;
+	    }
 	}, this);
 
 	var box = this.bag.dropBox(this.gameData.karma)
@@ -49,7 +51,7 @@ Lettris.Game.prototype = {
     },
 
     spawn_time: function(tiles){
-	var initTime = 3
+	var initTime = 0
 	var spawnTime = initTime * Math.pow(0.9, Math.trunc(tiles/10))
 	console.log(spawnTime)
 	return spawnTime * Phaser.Timer.SECOND
