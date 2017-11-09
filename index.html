@@ -14,6 +14,7 @@
     <script src="src/gui.js"></script>
     <script src="src/game.js"></script>
     <script src="src/gameover.js"></script>
+    <script src="src/mainmenu.js"></script>
 </head>
 <body>
 
@@ -23,7 +24,7 @@
     game.state.add('Boot', Lettris.Boot);
     game.state.add('Preloader', Lettris.Preloader);
     <!-- game.state.add('Splash', Lettris.Splash); -->
-    <!-- game.state.add('MainMenu', Lettris.MainMenu); -->
+    game.state.add('MainMenu', Lettris.MainMenu);
     game.state.add('GameOver', Lettris.GameOver);
     game.state.add('Game', Lettris.Game);
     <!--game.state.add('Credits', Lettris.Credits);-->

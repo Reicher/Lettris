@@ -20,6 +20,6 @@ Lettris.Preloader.prototype = {
     },
     create: function () {
 	// start the MainMenu state
-	this.state.start('Game');
+	this.state.start('MainMenu');
     }
 };

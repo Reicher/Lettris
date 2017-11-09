@@ -2,10 +2,13 @@ Lettris.MainMenu = function (game) {
 
 };
 Lettris.MainMenu.prototype = {
-	create: function () {
-	},
-	startGame: function () {
-		// start the Game state
-		this.state.start('Game');
-	}
+    create: function () {
+	console.log("MainMenu!")
+	this.startGame()
+    },
+
+    startGame: function () {
+	// start the Game state
+	this.state.start('Game');
+    }
 };
