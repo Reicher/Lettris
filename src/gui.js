@@ -6,8 +6,8 @@ GUI = function (game, gameData) {
     this.gameData = gameData
     this.markedList = []
 
-    this.add(game.add.button(10, 9, 'sprites', this.clear, this, 'clear', 'clear'))
-    this.add(game.add.button(75, 9, 'sprites', this.accept, this, 'accept', 'accept'))
+    this.add(game.add.button(10, 9, 'sprites', this.clear, this, 'clear', 'clear', 'clear-pressed'))
+    this.add(game.add.button(75, 9, 'sprites', this.accept, this, 'accept', 'accept', 'accept-pressed'))
 
     var panel  = this.create(0, 0, 'sprites', 'panel')
 
