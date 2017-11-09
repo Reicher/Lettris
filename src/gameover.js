@@ -20,10 +20,26 @@ Lettris.GameOver.prototype = {
 	var otherStyle = { font: "20px Arial", fill: "#000000"}
 
 	this.game.add.text(this.game.width/2, 40, "Game Over", headerStyle).anchor.setTo(0.5)
-	this.game.add.text(this.game.width/2, 100, "Score: " + this.endScore, otherStyle).anchor.setTo(0.5)
-	this.game.add.text(this.game.width/2, 150, "Best word:", otherStyle).anchor.setTo(0.5)
+	this.game.add.text(this.game.width/2, 80, "Score: " + this.endScore, otherStyle).anchor.setTo(0.5)
 
-	this.game.add.text(this.game.width/2, 170,
+
+	var bestScore = localStorage.getItem('Lettris-best');
+	bestScore = !bestScore ? 0 : bestScore
+	this.game.add.text(this.game.width/2, 110, "Record: " + bestScore, otherStyle).anchor.setTo(0.5)
+
+	if (this.endScore > bestScore) {
+	    localStorage.setItem('Lettris-best', this.endScore);
+
+	    this.game.add.text(this.game.world.centerX,
+			       140,
+			       "New personal best!",
+			       otherStyle).anchor.set(0.5);
+	}
+
+
+	this.game.add.text(this.game.width/2, 200, "Best word:", otherStyle).anchor.setTo(0.5)
+
+	this.game.add.text(this.game.width/2, 220,
 			   this.bestWord + " (" + this.bestPoints + ")",
 			   otherStyle).anchor.setTo(0.5)
 
