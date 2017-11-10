@@ -1,5 +1,6 @@
 var Lettris = {};
 Lettris.Boot = function (game) {};
+
 Lettris.Boot.prototype = {
 	preload: function () {
 		// preload the loading indicator first before anything else

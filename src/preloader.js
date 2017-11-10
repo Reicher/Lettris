@@ -1,5 +1,5 @@
-Lettris.Preloader = function (game) {
-};
+Lettris.Preloader = function (game) {};
+
 Lettris.Preloader.prototype = {
     preload: function () {
 	// set background color and preload image
@@ -20,6 +20,6 @@ Lettris.Preloader.prototype = {
     },
     create: function () {
 	// start the MainMenu state
-	this.state.start('MainMenu');
+	this.state.start('Splash');
     }
 };
