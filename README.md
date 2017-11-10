@@ -5,14 +5,14 @@ https://rawgit.com/Reicher/Lettris/master/index.html
 ## TODO
 
 ### Game
-* Make Progressivly harder (faster?)
-* Balance karma
+* ~~Make Progressivly harder (faster?)~~
+* ~~Balance karma~~
 * ~~Fix "bigger blocks thrown from walls"-bug~~
 * Add x2-block-type
 * Make some kind of bomb-block (timer)?
 
 ### Game-GUI
-* Make proper responsive button out of clear and accept-buttons
+* ~~Make proper responsive button out of clear and accept-buttons~~
 * Find a better font for gui
 
 ### Menus
