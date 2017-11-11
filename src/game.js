@@ -20,7 +20,7 @@ Lettris.Game.prototype = {
 			 best_word : {score: 0, word: ""}}
 
 	this.gui = new GUI(game, this.gameData)
-	this.bag = new Bag(game, 'let-eng-std')
+	this.bag = new Bag(game)
 
 	this.boxes = game.add.group();
 

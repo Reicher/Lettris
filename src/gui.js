@@ -2,7 +2,7 @@ GUI = function (game, gameData) {
     Phaser.Group.call(this, game);
     this.y = game.height-80
 
-    this.dictionary = game.cache.getJSON('dic-eng-std')
+    this.dictionary = game.cache.getJSON('dic')
     this.gameData = gameData
     this.markedList = []
 

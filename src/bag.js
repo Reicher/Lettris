@@ -1,9 +1,10 @@
-Bag = function (game, lang) {
+Bag = function (game) {
     this.game = game
     this.letters = []
     this.id = 0
 
-    this.json = game.cache.getJSON(lang).letters
+    var file = game.cache.getJSON('let')
+    this.json = file.letters
 }
 
 Bag.prototype.fill = function () {

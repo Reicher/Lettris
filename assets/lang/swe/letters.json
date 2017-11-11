@@ -25,9 +25,9 @@
 	"v": { "points":  3, "tiles":  2 },
 	"x": { "points":  8, "tiles":  1 },
 	"y": { "points":  7, "tiles":  1 },
-	"z": { "points": 10, "tiles":  1 }
-	"å": { "points": 4, "tiles":  2 }
-	"ä": { "points": 3, "tiles":  2 }
+	"z": { "points": 10, "tiles":  1 },
+	"å": { "points": 4, "tiles":  2 },
+	"ä": { "points": 3, "tiles":  2 },
 	"ö": { "points": 4, "tiles":  2 }
     }
 }
