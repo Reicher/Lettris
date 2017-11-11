@@ -10,10 +10,6 @@ Lettris.LangMenu.prototype = {
 
 	this.addLangBox('English', 'eng')
 	var swe = this.addLangBox('Svenska', 'swe')
-
-	// TODO enable swedish by removing when dic is ready
-	swe.inputEnabled = false;
-	swe.tint = 0x777777
     },
     addLangBox: function(text, lang) {
 	var b = this.game.add.button(this.game.world.centerX,
