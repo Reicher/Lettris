@@ -45,6 +45,9 @@ Box = function (game, id, key, letter, points) {
     point_text.anchor.setTo(1)
     this.text.addChild(point_text)
 
+    // Sounds
+    this.select = this.game.add.audio('select', 0.3);
+
     // Interaction
     this.inputEnabled = true;
     this.events.onInputDown.add(this.click, this)
@@ -61,8 +64,10 @@ Box.prototype.click = function () {
 }
 
 Box.prototype.mark = function (mark) {
-    if( mark )
+    if( mark ){
 	this.tint = 0x00FF00
+	this.select.play()
+    }
     else
 	this.tint = this.base_tint
 

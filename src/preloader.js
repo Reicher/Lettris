@@ -13,6 +13,12 @@ Lettris.Preloader.prototype = {
 	this.game.load.atlasJSONArray('sprites',
  				      'assets/sprites.png',
  				      'assets/sprites.json')
+
+	this.load.audio('select', '/assets/audio/select_bip.wav')
+	this.load.audio('no', '/assets/audio/no_bip.wav')
+	this.load.audio('accept', '/assets/audio/accept_bip.wav')
+	// this.load.audio('crown', 'assets/audio/Crown.ogg')
+
     },
     create: function () {
 	// start the MainMenu state

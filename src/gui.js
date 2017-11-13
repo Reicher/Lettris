@@ -6,6 +6,8 @@ GUI = function (game, gameData) {
     this.gameData = gameData
     this.markedList = []
 
+    this.accept_sound = this.game.add.audio('accept', 0.5);
+
     this.add(game.add.button(10, 9, 'sprites', this.clear, this, 'clear', 'clear', 'clear-pressed'))
     this.add(game.add.button(75, 9, 'sprites', this.accept, this, 'accept', 'accept', 'accept-pressed'))
 
@@ -54,6 +56,8 @@ GUI.prototype.accept = function () {
     if(this.word.text.length < 2 ||
        this.dictionary.indexOf(word) == -1)
 	return
+
+    	this.accept_sound.play()
 
     // Remove all word letters
     var score = 0
