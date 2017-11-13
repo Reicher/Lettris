@@ -16,7 +16,7 @@ Lettris.MainMenu.prototype = {
 	var style = { font: "10px Arial", fill: "#FF00F0"}
 	this.version = this.game.add.text(this.game.width-5,
 					  this.game.height-5,
-					  "0.5 Beta",
+					  "0.6 Beta",
 					  style)
 	this.version.anchor.setTo(1, 1)
     },
