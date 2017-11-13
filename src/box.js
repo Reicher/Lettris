@@ -34,7 +34,7 @@ Box = function (game, id, key, letter, points) {
 	this.body.setCircle(this.width/2);
 
     // letter text
-    var style = { font: "30px Arial", fill: "#000000" }
+    var style = { font: "30px Verdana", fill: "#000000" }
     this.text = this.game.add.text(0, 0, letter.toUpperCase(), style)
     this.text.anchor.setTo(0.5)
     this.addChild(this.text)
