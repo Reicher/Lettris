@@ -2,14 +2,12 @@ Lettris.LangMenu = function (game) {};
 
 Lettris.LangMenu.prototype = {
     create: function () {
-	console.log('LangMenu!')
-
 	this.game.add.sprite(0, 0, 'sprites', 'background');
 
 	this.boxes = 0
 
 	this.addLangBox('English', 'eng')
-	var swe = this.addLangBox('Svenska', 'swe')
+	this.addLangBox('Svenska', 'swe')
     },
     addLangBox: function(text, lang) {
 	var b = this.game.add.button(this.game.world.centerX,
@@ -31,9 +29,14 @@ Lettris.LangMenu.prototype = {
 
 	this.boxes++
 
-	return b
     },
     startGame: function (b) {
-	this.state.start('Splash', true, false, b.lang);
+	var path = 'assets/lang/' + b.lang + '/'
+	var l = path + 'letters.json'
+	this.game.load.json('let', l)
+	this.game.load.json('dic', path + 'dictionary.json')
+
+	this.game.load.start()
+	this.state.start('Splash');
     }
 };

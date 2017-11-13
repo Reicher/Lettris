@@ -2,19 +2,6 @@ Lettris.MainMenu = function (game) {
 
 };
 Lettris.MainMenu.prototype = {
-    init: function(lang){
-	this.lang = lang
-    },
-    preload: function(){
-	if(this.lang == null)
-	    return
-
-	var path = 'assets/lang/' + this.lang + '/'
-	var l = path + 'letters.json'
-	console.log(l)
-	this.game.load.json('let', l)
-	this.game.load.json('dic', path + 'dictionary.json')
-    },
     create: function () {
 	this.game.add.sprite(0, 0, 'sprites', 'background');
 
