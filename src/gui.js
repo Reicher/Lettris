@@ -28,9 +28,9 @@ GUI = function (game, gameData) {
     			      35)
     this.add(this.word)
 
-    this.langText = game.add.text(game.world.centerX+50,
+    this.langText = game.add.text(game.world.centerX+51,
 				  14,
-				  "Language",
+				  this.game.language,
 				  style)
     this.langText.anchor.setTo(0, 0.5)
     this.add(this.langText)

@@ -22,13 +22,12 @@ Lettris.GameOver.prototype = {
 	this.game.add.text(this.game.width/2, 40, "Game Over", headerStyle).anchor.setTo(0.5)
 	this.game.add.text(this.game.width/2, 80, "Score: " + this.endScore, otherStyle).anchor.setTo(0.5)
 
-
-	var bestScore = localStorage.getItem('Lettris-best');
+	var bestScore = localStorage.getItem('Lettris-best-' + this.game.lang);
 	bestScore = !bestScore ? 0 : bestScore
 	this.game.add.text(this.game.width/2, 110, "Highscore: " + bestScore, otherStyle).anchor.setTo(0.5)
 
 	if (this.endScore > bestScore) {
-	    localStorage.setItem('Lettris-best', this.endScore);
+	    localStorage.setItem('Lettris-best-' + this.game.lang, this.endScore);
 
 	    this.game.add.text(this.game.world.centerX,
 			       140,

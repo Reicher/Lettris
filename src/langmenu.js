@@ -32,9 +32,11 @@ Lettris.LangMenu.prototype = {
     },
     startGame: function (b) {
 	var path = 'assets/lang/' + b.lang + '/'
-	var l = path + 'letters.json'
-	this.game.load.json('let', l)
+	this.game.load.json('let', path + 'letters.json')
 	this.game.load.json('dic', path + 'dictionary.json')
+
+	this.game.lang = b.lang
+	this.game.language = b.children[0].text
 
 	this.game.load.start()
 	this.state.start('Splash');
