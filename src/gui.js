@@ -6,7 +6,10 @@ GUI = function (game, gameData) {
     this.gameData = gameData
     this.markedList = []
 
+    // Sounds
     this.accept_sound = this.game.add.audio('accept', 0.5);
+    this.clear_sound = this.game.add.audio('clear');
+    this.select_sound = this.game.add.audio('select', 0.6);
 
     this.add(game.add.button(10, 9, 'sprites', this.clear, this, 'clear', 'clear', 'clear-pressed'))
     this.add(game.add.button(75, 9, 'sprites', this.accept, this, 'accept', 'accept', 'accept-pressed'))
@@ -46,6 +49,9 @@ GUI.prototype.clear = function () {
     }, this);
     this.markedList = []
     this.word.text = ""
+
+    if(!this.accept_sound.playing)
+	this.clear_sound.play()
 }
 
 GUI.prototype.accept = function () {
@@ -80,8 +86,10 @@ GUI.prototype.accept = function () {
 }
 
 GUI.prototype.box_clicked = function (box) {
-    if( box.marked )
+    if( box.marked ){
 	this.markedList.push(box)
+	this.select_sound.play()
+    }
     else{
 	var index = this.markedList.findIndex(b => b.id == box.id)
 	this.markedList.splice(index, 1)

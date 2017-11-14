@@ -35,7 +35,7 @@ Box = function (game, id, key, letter, points) {
 
     // letter text
     var style = { font: "30px Verdana", fill: "#000000" }
-    this.text = this.game.add.text(0, 0, letter.toUpperCase(), style)
+    this.text = this.game.add.text(0, 2, letter.toUpperCase(), style)
     this.text.anchor.setTo(0.5)
     this.addChild(this.text)
 
@@ -44,9 +44,6 @@ Box = function (game, id, key, letter, points) {
     var point_text = this.game.add.text(17, 21, this.points, style)
     point_text.anchor.setTo(1)
     this.text.addChild(point_text)
-
-    // Sounds
-    this.select = this.game.add.audio('select', 0.3);
 
     // Interaction
     this.inputEnabled = true;
@@ -64,10 +61,8 @@ Box.prototype.click = function () {
 }
 
 Box.prototype.mark = function (mark) {
-    if( mark ){
+    if( mark )
 	this.tint = 0x00FF00
-	this.select.play()
-    }
     else
 	this.tint = this.base_tint
 

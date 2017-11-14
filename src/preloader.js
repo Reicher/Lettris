@@ -15,7 +15,7 @@ Lettris.Preloader.prototype = {
  				      'assets/sprites.json')
 
 	this.load.audio('select', '/assets/audio/select_bip.wav')
-	this.load.audio('no', '/assets/audio/no_bip.wav')
+	this.load.audio('clear', '/assets/audio/no_bip.wav')
 	this.load.audio('accept', '/assets/audio/accept_bip.wav')
 	// this.load.audio('crown', 'assets/audio/Crown.ogg')
 
