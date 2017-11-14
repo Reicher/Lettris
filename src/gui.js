@@ -28,6 +28,14 @@ GUI = function (game, gameData) {
     			      35)
     this.add(this.word)
 
+    this.langText = game.add.text(game.world.centerX+50,
+				  14,
+				  "Language",
+				  style)
+    this.langText.anchor.setTo(0, 0.5)
+    this.add(this.langText)
+
+
     var ws_style = { font: "10px Arial", align: "center" };
     this.wordScore = game.add.text(5, -5, "0", ws_style)
     this.word.addChild(this.wordScore)
