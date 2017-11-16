@@ -28,6 +28,22 @@ Bag.prototype.getTypeYouDeserve = function (karma) {
     return 'box'
 }
 
+Bag.prototype.placeBox = function (x, y) {
+    if( this.letters.length < 1 )
+	this.fill()
+
+    var letter = Phaser.ArrayUtils.removeRandomItem(this.letters)
+    var box = new Box(this.game,
+		      this.id++,
+		      'box',
+		      letter,
+		      this.json[letter].points,
+		      x,
+		      y)
+
+    return box
+}
+
 Bag.prototype.dropBox = function (karma) {
     if( this.letters.length < 1 )
 	this.fill()

@@ -24,8 +24,20 @@ Lettris.Game.prototype = {
 
 	this.boxes = game.add.group();
 
+	this.fill_bottom(2)
+
 	// Start box-droping loop
 	this.spawn_box()
+    },
+
+    fill_bottom: function( layers ) {
+	for (row = 0; row < layers; row++) {
+	    for (col = 0; col < 6; col++) {
+		var box = this.bag.placeBox(20+(col*40), 300-(40*row))
+		box.clicked.add(this.gui.box_clicked, this.gui)
+		this.boxes.add(box)
+	    }
+	}
     },
 
     spawn_box: function () {
@@ -51,9 +63,8 @@ Lettris.Game.prototype = {
     },
 
     spawn_time: function(tiles){
-	var initTime = 3
+	var initTime = 3.5
 	var spawnTime = initTime * Math.pow(0.9, Math.trunc(tiles/10))
-	console.log(spawnTime)
 	return spawnTime * Phaser.Timer.SECOND
     }
 };

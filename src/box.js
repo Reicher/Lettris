@@ -1,4 +1,4 @@
-Box = function (game, id, key, letter, points) {
+Box = function (game, id, key, letter, points, x, y) {
 
     this.base_tint = 0xffffff
     switch(key){
@@ -18,9 +18,17 @@ Box = function (game, id, key, letter, points) {
     Phaser.Sprite.call(this, game, 0, 0, 'sprites', key)
     this.tint = this.base_tint
 
-    this.x = game.rnd.integerInRange(this.width/2 + 1,
-				     game.width - this.width/2 - 1)
-    this.y = -this.width/2
+    if( !x )
+	this.x = game.rnd.integerInRange(this.width/2 + 1,
+					 game.width - this.width/2 - 1)
+    else
+	this.x = x
+
+    if( !y )
+	this.y = -this.width/2
+    else
+	this.y = y
+
     this.anchor.setTo(0.5)
 
     this.id = id
