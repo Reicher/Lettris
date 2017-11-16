@@ -13,7 +13,7 @@ Lettris.LangMenu.prototype = {
 	var b = this.game.add.button(this.game.world.centerX,
 				     100 + (this.boxes * 100),
 				     'sprites',
-				     this.startGame,
+				     this.loadLang,
 				     this,
 				     'lang-box',
 				     'lang-box',
@@ -30,15 +30,19 @@ Lettris.LangMenu.prototype = {
 	this.boxes++
 
     },
-    startGame: function (b) {
+    loadLang: function (b) {
 	var path = 'assets/lang/' + b.lang + '/'
 	this.game.load.json('let', path + 'letters.json')
 	this.game.load.json('dic', path + 'dictionary.json')
 
 	this.game.lang = b.lang
 	this.game.language = b.children[0].text
+	b.children[0].text = "Loading"
 
 	this.game.load.start()
+	this.game.load.onLoadComplete.add(this.start, this);
+    },
+    start: function() {
 	this.state.start('Splash');
     }
 };
