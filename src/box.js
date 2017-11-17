@@ -1,39 +1,18 @@
 Box = function (game, id, key, letter, points, x, y) {
-
-    this.base_tint = 0xffffff
-    switch(key){
-    case 'silver-box':
-	points *= 2
-	break
-    case 'gold-box':
-	points *= 3
-	break;
-    case 'x2':
-	key = 'box'
-	letter = 'x2'
-	points = 0
-	break;
-    }
-
-    Phaser.Sprite.call(this, game, 0, 0, 'sprites', key)
-    this.tint = this.base_tint
-
-    if( !x )
-	this.x = game.rnd.integerInRange(this.width/2 + 1,
-					 game.width - this.width/2 - 1)
-    else
-	this.x = x
-
-    if( !y )
-	this.y = -this.width/2
-    else
-	this.y = y
-
-    this.anchor.setTo(0.5)
+    Phaser.Sprite.call(this, game, x, y, 'sprites', key)
 
     this.id = id
     this.marked = false
-    this.points = points
+    this.base_tint = 0xffffff
+    this.tint = this.base_tint
+    this.anchor.setTo(0.5)
+
+    // set random position if there is no position
+    if( !x )
+	this.x = game.rnd.integerInRange(this.width/2 + 1,
+					 game.width - this.width/2 - 1)
+    if( !y )
+	this.y = -this.width/2
 
     // Physics
     game.physics.p2.enable(this);
@@ -46,6 +25,14 @@ Box = function (game, id, key, letter, points, x, y) {
     this.text = this.game.add.text(0, 2, letter.toUpperCase(), style)
     this.text.anchor.setTo(0.5)
     this.addChild(this.text)
+
+    // Points
+    if (key== 'silver-box')
+	this.points = points * 2
+    else if(key == 'gold-box')
+	this.points = points * 3
+    else
+	this.points = points
 
     // points text
     var style = { font: "10px Arial", fill: "#000000" }
@@ -78,7 +65,6 @@ Box.prototype.mark = function (mark) {
 }
 
 Box.prototype.remove = function () {
-    // TODO: Add a cool sound, -BOP!-
     var shrink = this.game.add.tween(this.scale).to({x: 0, y: 0},
 						    400,
 						    Phaser.Easing.Quadratic.In,
