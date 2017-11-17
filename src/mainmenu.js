@@ -23,8 +23,6 @@ Lettris.MainMenu.prototype = {
 
     startGame: function () {
 	// start the Game state
-	this.logo.destroy()
-	this.play.destroy()
-	this.state.start('Game', false);
+	this.state.start('Game');
     }
 };
