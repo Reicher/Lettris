@@ -10,6 +10,8 @@ Lettris.Boot.prototype = {
 	// set scale options
 	this.input.maxPointers = 1;
 	this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+	this.scale.pageAlignHorizontally = true;
+	this.scale.pageAlignVertically = true;
 
 	this.game.add.plugin(PhaserInput.Plugin);
 
