@@ -22,32 +22,27 @@ Lettris.GameOver.prototype = {
 	this.game.add.text(this.game.width/2, 40, "Game Over", headerStyle).anchor.setTo(0.5)
 	this.game.add.text(this.game.width/2, 80, "Score: " + this.endScore, otherStyle).anchor.setTo(0.5)
 
-	var highscore_key = 'Test3-Lettris-best-' + this.game.lang + '-' + this.game.version
+	var highscore_key = 'Lettris-best-' + this.game.lang + '-' + 'Lettris-best-' + this.game.version
 
-	var highscore = JSON.parse(localStorage.getItem(highscore_key))
+	var bestScore = localStorage.getItem(highscore_key);
+	bestScore = !bestScore ? 0 : bestScore
+	this.game.add.text(this.game.width/2, 110, "Highscore: " + bestScore, otherStyle).anchor.setTo(0.5)
 
-	this.game.add.text(this.game.width/2,
-			   120,
-			   "Nick | Score",
+	if (this.endScore > bestScore) {
+	    localStorage.setItem(highscore_key, this.endScore);
+
+	    this.game.add.text(this.game.world.centerX,
+			       140,
+			       "New personal best!",
+			       otherStyle).anchor.set(0.5);
+	}
+
+
+	this.game.add.text(this.game.width/2, 200, "Best word:", otherStyle).anchor.setTo(0.5)
+
+	this.game.add.text(this.game.width/2, 220,
+			   this.bestWord + " (" + this.bestPoints + ")",
 			   otherStyle).anchor.setTo(0.5)
-
-	if(!highscore)
-	    highscore = [{nick: "apa", score: "1337"}]
-	else if (highscore.length < 3 || this.endScore > highscore[2].score)
-	    highscore.push({nick: "apa", score: "1337"})
-
-	localStorage.setItem(highscore_key, JSON.stringify(highscore));
-
-	for (var i = 0; i <  highscore.length; ++i)
-	    this.game.add.text(this.game.width/2,
-			       150 + (25*i),
-			       highscore[i].nick + ": " +  highscore[i].score,
-			       otherStyle).anchor.setTo(0.5)
-
-	this.game.add.text(this.game.width/2,
-			   240,
-			   "Best word:" + this.bestWord +
-			   " (" + this.bestPoints + ")", otherStyle).anchor.setTo(0.5)
 
 	this.game.time.events.add(Phaser.Timer.SECOND * 2,
 				  this.ready_to_leave,
