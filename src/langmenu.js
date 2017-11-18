@@ -21,7 +21,7 @@ Lettris.LangMenu.prototype = {
 	b.anchor.setTo(0.5)
 	b.lang = lang
 
-	var style = { font: "25px Arial",
+	var style = { font: "25px Verdana",
 		      align: "center" };
 	var label = this.game.add.text(0, 0, text, style)
 	label.anchor.setTo(0.5)
@@ -43,6 +43,6 @@ Lettris.LangMenu.prototype = {
 	this.game.load.onLoadComplete.add(this.start, this);
     },
     start: function() {
-	this.state.start('Splash');
+	this.state.start('MainMenu');
     }
 };
