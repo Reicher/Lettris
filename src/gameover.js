@@ -28,7 +28,6 @@ Lettris.GameOver.prototype = {
 
 	this.input = this.game.add.inputField(50, 100);
 	this.input.blockInput = false
-	this.input.zoom = true;
 	this.input.startFocus()
 	this.record_text = this.game.add.text(this.game.world.centerX,
 					      this.input.y - 25,
