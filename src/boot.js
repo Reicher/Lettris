@@ -13,6 +13,8 @@ Lettris.Boot.prototype = {
 	this.scale.pageAlignHorizontally = true;
 	this.scale.pageAlignVertically = true;
 
+	this.game.add.plugin(PhaserInput.Plugin);
+
 	this.game.version = "0.7 Beta"
 
 	// start the Preloader state
