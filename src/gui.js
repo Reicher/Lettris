@@ -104,11 +104,22 @@ GUI.prototype.box_clicked = function (box) {
     }
 
     this.word.text = ""
+    this.word.fontSize = "20pt"
     var points = 0
     this.markedList.forEach(function(b) {
 	this.word.text += b.text.text
 	points += b.points
     }, this)
+
+    // Keep even long words inside our box
+    var size = this.word.fontSize.replace(/[^0-9\.]/g, '')
+    while (this.word.width > 120){
+	size--;
+	this.word.fontSize = size + "pt"
+    }
+
+    console.log(this.word.width)
+
     this.wordScore.x = this.word.width
     this.wordScore.text = points
 }
