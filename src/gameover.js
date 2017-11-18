@@ -29,7 +29,7 @@ Lettris.GameOver.prototype = {
 	this.input = this.game.add.inputField(50, 100);
 	this.input.blockInput = false
 	this.input.startFocus()
-	PhaserInput.onKeyboardClose.addOnce(function() {
+	PhaserInput.onKeyboardOpen.addOnce(function() {
 	    this.game.scale.refresh()
 	});
 	this.record_text = this.game.add.text(this.game.world.centerX,
