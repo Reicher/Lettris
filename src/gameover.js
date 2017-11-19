@@ -3,55 +3,72 @@ Lettris.GameOver = function(game){
 };
 Lettris.GameOver.prototype = {
     init: function( gameData ) {
-	this.endScore = gameData.score
+	this.score = gameData.score
 	this.bestWord = gameData.best_word.word
-	this.bestPoints = gameData.best_word.score
+	this.bestWordScore = gameData.best_word.score
     },
 
     create: function(){
 	console.log("Game over man!")
 
-	var graphics = this.game.add.graphics(0, 0);
-	graphics.beginFill(0xFFFFFF, 0.7);
-	graphics.drawRoundedRect(20, 20, this.game.width-40, 250, 5)
-	graphics.endFill();
+	var panel = this.game.add.sprite(25, 25, 'sprites', 'big-panel');
+	panel.alpha = 0.9
 
-	var headerStyle = { font: "35px Arial", fill: "#000000"}
-	var otherStyle = { font: "17px Arial", fill: "#000000"}
+	this.highscore_key = 'Lettris-best-' +
+	    this.game.lang + '-' +
+	    'Lettris-best-' + this.game.version
 
-	this.game.add.text(this.game.width/2, 40, "Game Over", headerStyle).anchor.setTo(0.5)
-	this.game.add.text(this.game.width/2, 80, "Score: " + this.endScore, otherStyle).anchor.setTo(0.5)
+	this.highscore = localStorage.getItem(this.highscore_key);
 
-	var highscore_key = 'Lettris-best-' + this.game.lang + '-' + 'Lettris-best-' + this.game.version
+	if(!this.highscore) // first time player
+	    this.highscore = []
 
-	var bestScore = localStorage.getItem(highscore_key);
-	bestScore = !bestScore ? 0 : bestScore
-	this.game.add.text(this.game.width/2, 110, "Highscore: " + bestScore, otherStyle).anchor.setTo(0.5)
-
-	if (this.endScore > bestScore) {
-	    localStorage.setItem(highscore_key, this.endScore);
-
-	    this.game.add.text(this.game.world.centerX,
-			       140,
-			       "New personal best!",
-			       otherStyle).anchor.set(0.5);
-	}
-
-
-	this.game.add.text(this.game.width/2, 200, "Best word:", otherStyle).anchor.setTo(0.5)
-
-	this.game.add.text(this.game.width/2, 220,
-			   this.bestWord + " (" + this.bestPoints + ")",
-			   otherStyle).anchor.setTo(0.5)
-
-	this.game.time.events.add(Phaser.Timer.SECOND * 2,
-				  this.ready_to_leave,
-				  this)
+	if(this.highscore.length < 2 ||
+	   this.highscore[2] < this.score)
+	    this.input_highscore()
+	else
+	    this.create_panel()
     },
 
-    ready_to_leave: function() {
-	this.game.input.onDown.add(()=>{
-            this.state.start('MainMenu')
-	}, this)
-    }
+    input_highscore: function() {
+	var style = { font: "20px Verdana"}
+
+	var text = this.game.add.text(this.game.world.centerX,
+				      50,
+				      "New High Score!",
+				      style)
+	text.anchor.setTo(0.5)
+
+	// Controlls
+	for(var i = 0; i < 3; ++i){
+	    this.create_chooser(50+ (i*50), 100)
+	}
+
+	var ok = this.game.add.sprite(this.game.world.centerX, 280, 'sprites', 'button')
+	ok.anchor.setTo(0.5)
+	var ok_text = this.game.add.text(this.game.world.centerX,
+					 280,
+					 "Submit", style)
+	ok_text.anchor.setTo(0.5)
+
+	//this.create_panel()
+    },
+
+    create_chooser: function(x, y){
+	this.game.add.sprite(x, y, 'sprites', 'arrow')
+	this.game.add.sprite(x, y + 50, 'sprites', 'box')
+
+	var style = { font: "18px Verdana"}
+	var letter = this.game.add.text(x + 10,
+					y + 55,
+					"A")
+	var flip = this.game.add.sprite(x, y + 140, 'sprites', 'arrow')
+	flip.scale.setTo(1, -1)
+
+	return letter
+    },
+
+    create_panel: function() {
+
+    },
 };
