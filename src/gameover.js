@@ -40,35 +40,16 @@ Lettris.GameOver.prototype = {
 	text.anchor.setTo(0.5)
 
 	// Controlls
-	for(var i = 0; i < 3; ++i){
-	    this.create_chooser(50+ (i*50), 100)
-	}
+	var letter = []
+	letter[0] = new NickControl(this.game, this.game.world.centerX - 50, 215)
+	letter[1] = new NickControl(this.game, this.game.world.centerX, 215)
+	letter[2] = new NickControl(this.game, this.game.world.centerX + 50, 215)
 
-	var ok = this.game.add.sprite(this.game.world.centerX, 280, 'sprites', 'button')
-	ok.anchor.setTo(0.5)
-	var ok_text = this.game.add.text(this.game.world.centerX,
-					 280,
-					 "Submit", style)
-	ok_text.anchor.setTo(0.5)
-
-	//this.create_panel()
-    },
-
-    create_chooser: function(x, y){
-	this.game.add.sprite(x, y, 'sprites', 'arrow')
-	this.game.add.sprite(x, y + 50, 'sprites', 'box')
-
-	var style = { font: "18px Verdana"}
-	var letter = this.game.add.text(x + 10,
-					y + 55,
-					"A")
-	var flip = this.game.add.sprite(x, y + 140, 'sprites', 'arrow')
-	flip.scale.setTo(1, -1)
-
-	return letter
-    },
-
-    create_panel: function() {
-
+	var submit = this.game.add.button(this.game.world.centerX, 295, 'sprites', this.up, this, 'button', 'button', 'button-pressed')
+	submit.anchor.setTo(0.5)
+	var submit_text = this.game.add.text(this.game.world.centerX,
+					     295,
+					     "Submit", style)
+	submit_text.anchor.setTo(0.5)
     },
 };
