@@ -63,7 +63,7 @@ Lettris.Game.prototype = {
     },
 
     spawn_time: function(tiles){
-	var initTime = 0//3.5
+	var initTime = 3.5
 	var spawnTime = initTime * Math.pow(0.9, Math.trunc(tiles/10))
 	return spawnTime * Phaser.Timer.SECOND
     }
