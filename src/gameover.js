@@ -82,7 +82,7 @@ Lettris.GameOver.prototype = {
 	this.highscore.push({nick: nick, score: this.score, date: now})
 
 	this.highscore.sort(function (a, b) {
-	    return a.score > b.score;
+	    return a.score < b.score;
 	});
 	this.highscore.slice(0, 4);
 
@@ -94,16 +94,16 @@ Lettris.GameOver.prototype = {
 
 	this.show_highscore()
     },
-        show_highscore: function () {
+    show_highscore: function () {
 	var style = { font: "15px Verdana"}
 	this.game.add.text(this.game.world.centerX,
 			   270,
 			   "High score (" + this.game.language + ")",
 			   style).anchor.setTo(0.5)
 	var header = this.game.add.text(this.game.world.centerX,
-				      290,
+					290,
 				      "Nick    |    Score    |    Date",
-				      style)
+					style)
 	header.anchor.setTo(0.5)
 
 	let underline = this.game.add.graphics(header.left, header.bottom -3);
@@ -116,5 +116,13 @@ Lettris.GameOver.prototype = {
 	    this.game.add.text(this.game.world.centerX, 300 + (i * 20), this.highscore[i].score, style).anchor.setTo(0.5, 0)
 	    this.game.add.text(header.right, 300 + (i * 20), this.highscore[i].date, style).anchor.setTo(1, 0)
 	}
+	this.game.time.events.add(Phaser.Timer.SECOND * 2,
+				  this.ready_to_leave,
+				  this)
+    },
+    ready_to_leave: function() {
+	this.game.input.onDown.add(()=>{
+            this.state.start('MainMenu')
+	}, this)
     },
 };
