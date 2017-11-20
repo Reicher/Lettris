@@ -48,10 +48,19 @@ Lettris.GameOver.prototype = {
 	if(this.highscore.length < 2 ||
 	   this.highscore[2] < this.score)
 	    this.input_highscore()
-	else
-	    this.create_panel()
+
+	this.show_highscore()
+
     },
 
+    show_highscore: function () {
+	// var best_word_text = this.game.add.text(this.game.world.centerX+50,
+	// 			      100,
+	// 			      this.bestWord,
+	// 			      style)
+	// best_word_text.anchor.setTo(0.5)
+
+    },
     input_highscore: function() {
 	// Controlls
 	this.letter = []
@@ -60,15 +69,33 @@ Lettris.GameOver.prototype = {
 	this.letter[2] = new NickControl(this.game, this.game.world.centerX + 50, 215)
 
 	var style = { font: "20px Verdana"}
-	var submit = this.game.add.button(this.game.world.centerX, 295, 'sprites', this.addHighscore, this, 'button', 'button', 'button-pressed')
-	submit.anchor.setTo(0.5)
-	var submit_text = this.game.add.text(this.game.world.centerX,
-					     295,
-					     "Submit", style)
+	this.submit = this.game.add.button(this.game.world.centerX,
+					   295,
+					   'sprites',
+					   this.addHighscore,
+					   this,
+					   'button',
+					   'button' )
+	this.submit.anchor.setTo(0.5)
+
+	var submit_text = this.game.add.text(0, 0, "Submit", style)
 	submit_text.anchor.setTo(0.5)
+	this.submit.addChild(submit_text);
     },
     addHighscore: function(){
 	var nick = this.letter[0].letter + this.letter[1].letter + this.letter[2].letter
-	console.log(nick)
+	this.highscore.push({nick: nick, score: this.score})
+
+	this.highscore.sort(function (a, b) {
+	    return a.score > b.score;
+	});
+	this.highscore.slice(0, 3);
+
+	this.submit.destroy()
+	this.letter.forEach(function(letter) {
+	    letter.destroy();
+	});
+
+	this.show_highscore()
     },
 };
