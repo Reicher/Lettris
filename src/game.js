@@ -44,7 +44,7 @@ Lettris.Game.prototype = {
 	// check if any box is stuck above screen => game over
 	this.boxes.forEach(function(box) {
 	    if( box.y < 0){
-		this.state.start('GameOver', false, false, this.gameData);
+		this.state.start('GameOver', true, false, this.gameData);
 		return;
 	    }
 	}, this);
