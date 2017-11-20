@@ -27,16 +27,12 @@ NickControl = function (game, x, y) {
 NickControl.prototype = Object.create(Phaser.Group.prototype)
 NickControl.prototype.constructor = NickControl
 
-
 NickControl.prototype.up = function (box) {
-    console.log("Up")
     this.letter_index++
     this.resetText(box)
 }
 
 NickControl.prototype.down = function (box) {
-    console.log("Down")
-
     this.letter_index--
     this.resetText(box)
 }
