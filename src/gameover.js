@@ -4,8 +4,8 @@ Lettris.GameOver = function(game){
 Lettris.GameOver.prototype = {
     init: function( gameData ) {
 	this.score = gameData.score
-	// this.bestWord = gameData.best_word.word
-	this.bestWord = "penis"
+	this.bestWord = gameData.best_word.word
+	//this.bestWord = "penis"
 	this.bestWordScore = gameData.best_word.score
     },
 
@@ -16,26 +16,31 @@ Lettris.GameOver.prototype = {
 	var panel = this.game.add.sprite(25, 25, 'sprites', 'big-panel');
 	panel.alpha = 0.9
 
-	var logo = this.game.add.sprite(this.game.world.centerX, 70, 'sprites', 'game-over')
+	var logo = this.game.add.sprite(this.game.world.centerX, 60, 'sprites', 'game-over')
 	logo.anchor.setTo(0.5)
 
 	var style = { font: "20px Verdana"}
 
-	var rotbox = this.game.add.sprite(this.game.world.centerX-40, 170, 'sprites', 'big-box')
+	var rotbox = this.game.add.sprite(this.game.world.centerX, 130, 'sprites', 'big-box')
 	rotbox.anchor.setTo(0.5)
+	rotbox.scale.setTo(0.75)
 	this.game.add.tween(rotbox).to( { angle:  + 360 }, 1500, Phaser.Easing.Default, true, 0, -1)
-	var score_text = this.game.add.text(this.game.world.centerX-40,
-				      170,
+	var score_text = this.game.add.text(this.game.world.centerX,
+				      130,
 				      this.score,
 				      style)
 	score_text.anchor.setTo(0.5)
 
-	// Best Word
-	// var best_word_text = this.game.add.text(this.game.world.centerX+50,
-	// 			      170,
-	// 			      this.bestWord,
-	// 			      style)
-	// best_word_text.anchor.setTo(0.5)
+	var best_word_header = this.game.add.text(this.game.world.centerX,
+						185,
+						"Best word:",
+						style)
+	best_word_header.anchor.setTo(0.5)
+	var best_word_text = this.game.add.text(this.game.world.centerX,
+						205,
+						this.bestWord,
+						style)
+	best_word_text.anchor.setTo(0.5)
 
 
 	this.highscore_key = 'Lettris-best-' +
@@ -47,7 +52,7 @@ Lettris.GameOver.prototype = {
 	if(!this.highscore) // first time player
 	    this.highscore = []
 
-	if(this.highscore.length < 4 ||
+	if(this.highscore.length < 5 ||
 	   this.highscore[2] < this.score)
 	    this.input_highscore()
 	else
@@ -57,19 +62,20 @@ Lettris.GameOver.prototype = {
     input_highscore: function() {
 	// Controlls
 	this.letter = []
-	this.letter[0] = new NickControl(this.game, this.game.world.centerX - 50, 270)
-	this.letter[1] = new NickControl(this.game, this.game.world.centerX, 270)
-	this.letter[2] = new NickControl(this.game, this.game.world.centerX + 50, 270)
+	this.letter[0] = new NickControl(this.game, this.game.world.centerX - 50, 285)
+	this.letter[1] = new NickControl(this.game, this.game.world.centerX, 285)
+	this.letter[2] = new NickControl(this.game, this.game.world.centerX + 50, 285)
 
 	var style = { font: "20px Verdana"}
 	this.submit = this.game.add.button(this.game.world.centerX,
-					   360,
+					   365,
 					   'sprites',
 					   this.addHighscore,
 					   this,
 					   'button',
 					   'button' )
 	this.submit.anchor.setTo(0.5)
+	this.submit.scale.setTo(0.75)
 
 	var submit_text = this.game.add.text(0, 0, "Submit", style)
 	submit_text.anchor.setTo(0.5)
@@ -84,7 +90,7 @@ Lettris.GameOver.prototype = {
 	this.highscore.sort(function (a, b) {
 	    return a.score < b.score;
 	});
-	this.highscore.slice(0, 4);
+	this.highscore.slice(0, 5);
 
 	this.submit.destroy()
 	this.letter.forEach(function(letter) {
@@ -97,12 +103,12 @@ Lettris.GameOver.prototype = {
     show_highscore: function () {
 	var style = { font: "15px Verdana"}
 	this.game.add.text(this.game.world.centerX,
-			   270,
+			   250,
 			   "High score (" + this.game.language + ")",
 			   style).anchor.setTo(0.5)
 	var header = this.game.add.text(this.game.world.centerX,
-					290,
-				      "Nick    |    Score    |    Date",
+					270,
+				      "Nick  |  Score  |  Date",
 					style)
 	header.anchor.setTo(0.5)
 
@@ -112,9 +118,9 @@ Lettris.GameOver.prototype = {
 	underline.lineTo(header.width, 0);
 
 	for( var i = 0; i < this.highscore.length; ++i){
-	    this.game.add.text(header.left, 300 + (i * 20), this.highscore[i].nick, style)
-	    this.game.add.text(this.game.world.centerX, 300 + (i * 20), this.highscore[i].score, style).anchor.setTo(0.5, 0)
-	    this.game.add.text(header.right, 300 + (i * 20), this.highscore[i].date, style).anchor.setTo(1, 0)
+	    this.game.add.text(header.left, 280 + (i * 20), this.highscore[i].nick, style)
+	    this.game.add.text(this.game.world.centerX, 280 + (i * 20), this.highscore[i].score, style).anchor.setTo(0.5, 0)
+	    this.game.add.text(header.right, 280 + (i * 20), this.highscore[i].date, style).anchor.setTo(1, 0)
 	}
 	this.game.time.events.add(Phaser.Timer.SECOND * 2,
 				  this.ready_to_leave,
