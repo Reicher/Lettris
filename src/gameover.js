@@ -19,7 +19,7 @@ Lettris.GameOver.prototype = {
 	var logo = this.game.add.sprite(this.game.world.centerX, 60, 'sprites', 'game-over')
 	logo.anchor.setTo(0.5)
 
-	var style = { font: "20px Verdana"}
+	var style = { font: "17px Verdana"}
 
 	var rotbox = this.game.add.sprite(this.game.world.centerX, 130, 'sprites', 'big-box')
 	rotbox.anchor.setTo(0.5)
@@ -32,16 +32,25 @@ Lettris.GameOver.prototype = {
 	score_text.anchor.setTo(0.5)
 
 	var best_word_header = this.game.add.text(this.game.world.centerX,
-						185,
+						175,
 						"Best word:",
 						style)
 	best_word_header.anchor.setTo(0.5)
-	var best_word_text = this.game.add.text(this.game.world.centerX,
-						205,
-						this.bestWord,
-						style)
-	best_word_text.anchor.setTo(0.5)
 
+	this.boxes = this.game.add.group();
+	for(var i = 0; i < this.bestWord.length; ++i){
+	    var info = this.bestWord[i]
+	    var box = new Box(this.game,
+			      i,
+			      info.key,
+			      info.letter,
+			      info.points,
+			      this.game.world.centerX + 20 -
+			      (this.bestWord.length/2 * 40) + i*40,
+			      200)
+	    box.body.static = true;
+	    this.boxes.add(box)
+	}
 
 	this.highscore_key = 'Lettris-best-' +
 	    this.game.lang + '-' +

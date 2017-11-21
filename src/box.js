@@ -6,6 +6,7 @@ Box = function (game, id, key, letter, points, x, y) {
     this.base_tint = 0xffffff
     this.tint = this.base_tint
     this.anchor.setTo(0.5)
+    this.key = key
 
     // set random position if there is no position
     if( !x )

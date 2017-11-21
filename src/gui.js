@@ -75,15 +75,19 @@ GUI.prototype.accept = function () {
 
     // Remove all word letters
     var score = 0
+    var info = []
     this.markedList.forEach(function(box) {
 	score += box.points
 	this.gameData.tiles_cleared++
+	info.push({letter: box.text.text,
+		  key: box.key,
+		  points: box.points})
 	box.remove()
     }, this);
 
     if( score > this.gameData.best_word.score){
 	this.gameData.best_word.score = score
-	this.gameData.best_word.word = word
+	this.gameData.best_word.word = info
     }
 
     this.gameData.karma += score - 6
