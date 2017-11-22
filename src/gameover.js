@@ -63,7 +63,7 @@ Lettris.GameOver.prototype = {
 	    this.highscore = []
 
 	if(this.highscore.length < 5 ||
-	   this.highscore[2] < this.score)
+	   this.highscore[0] < this.score)
 	    this.input_highscore()
 	else
 	    this.show_highscore()
