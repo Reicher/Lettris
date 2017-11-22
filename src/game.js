@@ -65,11 +65,10 @@ Lettris.Game.prototype = {
     },
 
     spawn_time: function(tiles){
-	var initTime = 3.5
-	var spawnTime = initTime * Math.pow(0.9, Math.trunc(tiles/10))
-	return spawnTime * Phaser.Timer.SECOND
+	this.speed = 3.5 * Math.pow(0.9, Math.trunc(tiles/10))
+	return this.speed * Phaser.Timer.SECOND
     },
     update: function(){
-	this.stars.tilePosition.y += 1;
+	this.stars.tilePosition.y += 2.5 / this.speed;
     }
 };
