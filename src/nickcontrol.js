@@ -7,11 +7,11 @@ NickControl = function (game, x, y) {
     this.letter_index = 0
     this.letter = this.alph[this.letter_index]
 
-    var up = game.add.button(0, -38, 'sprites', this.up, this, 'arrow', 'arrow', 'arrow')
+    var up = game.add.button(0, -38, 'sprites', this.up, this, 'arrow', 'arrow', 'arrow-pressed')
     up.anchor.setTo(0.5)
     this.add(up)
 
-    var down = game.add.button(0, 38, 'sprites', this.down, this, 'arrow', 'arrow', 'arrow')
+    var down = game.add.button(0, 38, 'sprites', this.down, this, 'arrow', 'arrow', 'arrow-pressed')
     down.scale.setTo(1, -1)
     down.anchor.setTo(0.5)
     this.add(down)
