@@ -14,15 +14,13 @@ Bag.prototype.fill = function () {
 }
 
 Bag.prototype.getTypeYouDeserve = function (karma) {
-    if ( karma >  99999 )
+    if ( karma >  999 )
 	return 'x2'
     else if ( karma >  4 )
 	return 'gold-box'
     else if ( karma > 2 )
 	return 'silver-box'
-    else if ( karma == 0 && this.game.rnd.integer()%5 == 0)
-	return this.game.rnd.pick(['big-box', 'wide-box', 'ball-box'])
-    else if (karma < 0 )
+    else if(this.game.rnd.integer()%5 == 0)
 	return this.game.rnd.pick(['big-box', 'wide-box', 'ball-box'])
 
     return 'box'
