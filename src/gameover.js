@@ -19,7 +19,7 @@ Lettris.GameOver.prototype = {
 	var logo = this.game.add.sprite(this.game.world.centerX, 60, 'sprites', 'game-over')
 	logo.anchor.setTo(0.5)
 
-	var style = { font: "17px Verdana"}
+	var style = { font: "15px Verdana"}
 
 	var rotbox = this.game.add.sprite(this.game.world.centerX, 130, 'sprites', 'big-box')
 	rotbox.anchor.setTo(0.5)
@@ -49,6 +49,7 @@ Lettris.GameOver.prototype = {
 			      (this.bestWord.length/2 * 40) + i*40,
 			      200)
 	    box.body.static = true;
+	    box.scale.setTo(0.75)
 	    this.boxes.add(box)
 	}
 
