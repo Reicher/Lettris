@@ -3,8 +3,6 @@ Box = function (game, id, key, letter, points, x, y) {
 
     this.id = id
     this.marked = false
-    this.base_tint = 0xffffff
-    this.tint = this.base_tint
     this.anchor.setTo(0.5)
     this.key = key
     this.points = points
@@ -49,9 +47,9 @@ Box.prototype.click = function () {
 
 Box.prototype.mark = function (mark) {
     if( mark )
-	this.tint = 0x00FF00
+	this.tint = 0x00FF00 // Greenish
     else
-	this.tint = this.base_tint
+	this.tint = 0xFFFFFF // White
 
     this.marked = mark
 }
