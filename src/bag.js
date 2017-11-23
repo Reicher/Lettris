@@ -13,18 +13,6 @@ Bag.prototype.fill = function () {
 	    this.letters.push(key)
 }
 
-Bag.prototype.getTypeYouDeserve = function (karma) {
-    if ( karma >  1 )
-	return 'x2'
-    else if ( karma >  99 )
-	return 'gold-box'
-    else if ( karma > 99 )
-	return 'silver-box'
-    else if(this.game.rnd.integer()%5 == 0)
-	return this.game.rnd.pick(['big-box', 'wide-box', 'ball-box'])
-
-    return 'box'
-}
 
 Bag.prototype.placeBox = function (x, y) {
     if( this.letters.length < 1 )
@@ -47,23 +35,17 @@ Bag.prototype.dropBox = function (karma) {
 	this.fill()
 
     var box_type =  this.getTypeYouDeserve(karma)
-    var letter = ""
+    var letter = Phaser.ArrayUtils.removeRandomItem(this.letters)
+    var points = this.json[letter].points
 
-    if(box_type == 'x2'){
-	letter = "x2"
-	box_type = 'box'
-	points = 0
-    }
-    else{
-	letter = Phaser.ArrayUtils.removeRandomItem(this.letters)
-	points = this.json[letter].points
-    }
+    if ( karma > 99 )
+	return 'x2'
+    else if ( karma >  0 )
+	var new GoldBox(this.game, this.id++, letter, points)
+    else if ( karma > 0 )
+    	return 	new SilverBox(this.game, this.id++, letter, points)
+    // else if(this.game.rnd.integer()%5 == 0)
+    // 	return this.game.rnd.pick(['big-box', 'wide-box', 'ball-box'])
 
-    var box = new Box(this.game,
-		      this.id++,
-		      box_type,
-		      letter,
-		      points)
-
-    return box
+    return new SilverBox(this.game, this.id++, 'box', letter, points)
 }

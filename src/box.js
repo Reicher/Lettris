@@ -27,14 +27,6 @@ Box = function (game, id, key, letter, points, x, y) {
     this.text.anchor.setTo(0.5)
     this.addChild(this.text)
 
-    // Points
-    if (key== 'silver-box')
-	this.points = points * 2
-    else if(key == 'gold-box')
-	this.points = points * 3
-    else
-	this.points = points
-
     // points text
     var style = { font: "10px Arial", fill: "#000000" }
     var point_text = this.game.add.text(17, 21, this.points, style)
