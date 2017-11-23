@@ -7,6 +7,7 @@ Box = function (game, id, key, letter, points, x, y) {
     this.tint = this.base_tint
     this.anchor.setTo(0.5)
     this.key = key
+    this.points = points
 
     // set random position if there is no position
     if( !x )
@@ -29,9 +30,9 @@ Box = function (game, id, key, letter, points, x, y) {
 
     // points text
     var style = { font: "10px Arial", fill: "#000000" }
-    var point_text = this.game.add.text(17, 21, this.points, style)
-    point_text.anchor.setTo(1)
-    this.text.addChild(point_text)
+    this.point_text = this.game.add.text(17, 21, points, style)
+    this.point_text.anchor.setTo(1)
+    this.text.addChild(this.point_text)
 
     // Interaction
     this.inputEnabled = true;

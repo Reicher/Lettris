@@ -90,7 +90,7 @@ GUI.prototype.accept = function () {
 	this.gameData.best_word.word = info
     }
 
-    this.gameData.karma += score - 6
+    this.gameData.karma += score
     this.gameData.score += score
     this.scoreText.setText(this.gameData.score)
 
