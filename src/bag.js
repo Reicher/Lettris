@@ -14,11 +14,11 @@ Bag.prototype.fill = function () {
 }
 
 Bag.prototype.getTypeYouDeserve = function (karma) {
-    if ( karma >  999 )
+    if ( karma >  1 )
 	return 'x2'
-    else if ( karma >  4 )
+    else if ( karma >  99 )
 	return 'gold-box'
-    else if ( karma > 2 )
+    else if ( karma > 99 )
 	return 'silver-box'
     else if(this.game.rnd.integer()%5 == 0)
 	return this.game.rnd.pick(['big-box', 'wide-box', 'ball-box'])
@@ -47,13 +47,23 @@ Bag.prototype.dropBox = function (karma) {
 	this.fill()
 
     var box_type =  this.getTypeYouDeserve(karma)
+    var letter = ""
 
-    var letter = Phaser.ArrayUtils.removeRandomItem(this.letters)
+    if(box_type == 'x2'){
+	letter = "x2"
+	box_type = 'box'
+	points = 0
+    }
+    else{
+	letter = Phaser.ArrayUtils.removeRandomItem(this.letters)
+	points = this.json[letter].points
+    }
+
     var box = new Box(this.game,
 		      this.id++,
 		      box_type,
 		      letter,
-		      this.json[letter].points)
+		      points)
 
     return box
 }
