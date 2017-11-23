@@ -19,8 +19,6 @@ Box = function (game, id, key, letter, points, x, y) {
     // Physics
     game.physics.p2.enable(this);
     this.body.collideWorldBounds = true
-    if( key == 'ball-box' )
-	this.body.setCircle(this.width/2);
 
     // letter text
     var style = { font: "30px Verdana", fill: "#000000" }
