@@ -3,6 +3,9 @@ Lettris.Game = function (game) {
 
 Lettris.Game.prototype = {
     create: function (game) {
+
+	game.stage.disableVisibilityChange = true;
+
 	this.stars = this.game.add.tileSprite(0, 0,
 					      240, 400,
 					      'sprites', 'background');
