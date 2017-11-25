@@ -42,12 +42,12 @@ Bag.prototype.dropBox = function (karma) {
     	return 	new SilverBox(this.game, this.id++, tile)
 
     // Bad Boxes
-    var dice = this.game.rnd.integer()%9
+    var dice = this.game.rnd.integer()%1
     if(dice == 0)
-	return new BigBox(this.game, this.id++, tile)
-    else if (dice == 1)
-	return new WideBox(this.game, this.id++, tile)
-    else if (dice == 2)
+    // 	return new BigBox(this.game, this.id++, tile)
+    // else if (dice == 1)
+    // 	return new WideBox(this.game, this.id++, tile)
+    // else if (dice == 2)
 	return new BallBox(this.game, this.id++, tile)
 
     // Standard Box
