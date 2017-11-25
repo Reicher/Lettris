@@ -10,7 +10,8 @@ Bag = function (game) {
 Bag.prototype.fill = function () {
     for (var key in this.json)
 	for( i = 0; i < this.json[key].tiles; ++i)
-	    this.tiles.push({letter: key, points: this.json[key].points})
+	    this.tiles.push({letter: key.toUpperCase(),
+			     points: this.json[key].points})
 }
 
 
@@ -29,12 +30,12 @@ Bag.prototype.dropBox = function (karma) {
     var tile = Phaser.ArrayUtils.removeRandomItem(this.tiles)
 
     // Good Boxes
-    if ( karma > 9 )
-	return new X2Box(this.game, this.id++)
-    else if ( karma > 8 )
-	return new GoldBox(this.game, this.id++, tile)
-    else if ( karma > 7 )
-    	return 	new SilverBox(this.game, this.id++, tile)
+    if ( karma > 3 )
+	return new MultiBox(this.game, this.id++, 2)
+    // else if ( karma > 8 )
+    // 	return new GoldBox(this.game, this.id++, tile)
+    // else if ( karma > 7 )
+    // 	return 	new SilverBox(this.game, this.id++, tile)
 
     // Bad Boxes
     if(this.game.rnd.integer()%8 == 0)

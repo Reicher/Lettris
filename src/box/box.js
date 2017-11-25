@@ -6,6 +6,7 @@ Box = function (game, id, key, letter, points, x, y) {
     this.anchor.setTo(0.5)
     this.key = key
     this.points = points
+    this.multi = 1
 
     // set random position if there is no position
     if( !x )
@@ -15,12 +16,12 @@ Box = function (game, id, key, letter, points, x, y) {
 	this.y = -this.width/2
 
     // Physics
-    game.physics.p2.enable(this);
+    game.physics.p2.enable(this)
     this.body.collideWorldBounds = true
 
     // letter text
     var style = { font: "30px Verdana", fill: "#000000" }
-    this.text = this.game.add.text(0, 2, letter.toUpperCase(), style)
+    this.text = this.game.add.text(0, 2, letter, style)
     this.text.anchor.setTo(0.5)
     this.addChild(this.text)
 
