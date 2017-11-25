@@ -29,7 +29,7 @@ Bag.prototype.placeBox = function (x, y) {
 Bag.prototype.dropBox = function (karma) {
 
     // Super Nice boxes
-    if ( karma > 10 )
+    if ( karma > -1 )
 	return new MultiBox(this.game, this.id++, 3)
     else if ( karma > 8 )
 	return new MultiBox(this.game, this.id++, 2)

@@ -4,12 +4,9 @@ MultiBox = function (game, id, multi, x, y) {
     this.text.fontSize = "20px"
     this.multi = multi
 
-    //this.body.clearShapes();
-
-    //	You can specify the addition of a new polygon to a body in 3 different ways:
-    // contra.body.addPolygon( {} ,    10, 191  ,  26, 158  ,  25, 186  ,  13, 204  );
-    // contra.body.addPolygon( {} , [   10, 191  ,  26, 158  ,  25, 186  ,  13, 204  ]);
-    // contra.body.addPolygon( {} , [   [10, 191]  ,  [26, 158]  ,  [25, 186]  ,  [13, 204]  ]);
+    // Create a new prism shape, specified from bottom right, counter-clockwise (?!)
+    this.body.clearShapes();
+    this.body.addPolygon( {} , [ [38, 19]  ,  [19, 0],  [0, 19]  ,  [19, 38] ]);
 }
 
 MultiBox.prototype = Object.create(Box.prototype);
