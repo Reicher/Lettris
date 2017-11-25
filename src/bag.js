@@ -1,6 +1,6 @@
 Bag = function (game) {
     this.game = game
-    this.letters = []
+    this.tiles = []
     this.id = 0
 
     var file = game.cache.getJSON('let')
@@ -10,50 +10,40 @@ Bag = function (game) {
 Bag.prototype.fill = function () {
     for (var key in this.json)
 	for( i = 0; i < this.json[key].tiles; ++i)
-	    this.letters.push(key)
+	    this.tiles.push({letter: key.toUpperCase(),
+			     points: this.json[key].points})
 }
 
-Bag.prototype.getTypeYouDeserve = function (karma) {
-    if ( karma >  999 )
-	return 'x2'
-    else if ( karma >  4 )
-	return 'gold-box'
-    else if ( karma > 2 )
-	return 'silver-box'
-    else if(this.game.rnd.integer()%5 == 0)
-	return this.game.rnd.pick(['big-box', 'wide-box', 'ball-box'])
-
-    return 'box'
-}
 
 Bag.prototype.placeBox = function (x, y) {
-    if( this.letters.length < 1 )
+    if( this.tiles.length < 1 )
 	this.fill()
 
-    var letter = Phaser.ArrayUtils.removeRandomItem(this.letters)
-    var box = new Box(this.game,
-		      this.id++,
-		      'box',
-		      letter,
-		      this.json[letter].points,
-		      x,
-		      y)
-
-    return box
+    var tile = Phaser.ArrayUtils.removeRandomItem(this.tiles)
+    return new StandardBox(this.game, this.id++, tile, x, y)
 }
 
 Bag.prototype.dropBox = function (karma) {
-    if( this.letters.length < 1 )
+    if( this.tiles.length < 1 )
 	this.fill()
 
-    var box_type =  this.getTypeYouDeserve(karma)
+    var tile = Phaser.ArrayUtils.removeRandomItem(this.tiles)
 
-    var letter = Phaser.ArrayUtils.removeRandomItem(this.letters)
-    var box = new Box(this.game,
-		      this.id++,
-		      box_type,
-		      letter,
-		      this.json[letter].points)
+    // Good Boxes
+    if ( karma > 3 )
+	return new MultiBox(this.game, this.id++, 2)
+    // else if ( karma > 8 )
+    // 	return new GoldBox(this.game, this.id++, tile)
+    // else if ( karma > 7 )
+    // 	return 	new SilverBox(this.game, this.id++, tile)
 
-    return box
+    // Bad Boxes
+    if(this.game.rnd.integer()%8 == 0)
+	return new BigBox(this.game, this.id++, tile)
+    else if (this.game.rnd.integer()%8 == 1)
+	return new WideBox(this.game, this.id++, tile)
+    else if (this.game.rnd.integer()%8 == 2)
+	return new BallBox(this.game, this.id++, tile)
+
+    return new StandardBox(this.game, this.id++, tile)
 }

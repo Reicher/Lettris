@@ -3,10 +3,10 @@ Box = function (game, id, key, letter, points, x, y) {
 
     this.id = id
     this.marked = false
-    this.base_tint = 0xffffff
-    this.tint = this.base_tint
     this.anchor.setTo(0.5)
     this.key = key
+    this.points = points
+    this.multi = 1
 
     // set random position if there is no position
     if( !x )
@@ -16,30 +16,20 @@ Box = function (game, id, key, letter, points, x, y) {
 	this.y = -this.width/2
 
     // Physics
-    game.physics.p2.enable(this);
+    game.physics.p2.enable(this)
     this.body.collideWorldBounds = true
-    if( key == 'ball-box' )
-	this.body.setCircle(this.width/2);
 
     // letter text
     var style = { font: "30px Verdana", fill: "#000000" }
-    this.text = this.game.add.text(0, 2, letter.toUpperCase(), style)
+    this.text = this.game.add.text(0, 2, letter, style)
     this.text.anchor.setTo(0.5)
     this.addChild(this.text)
 
-    // Points
-    if (key== 'silver-box')
-	this.points = points * 2
-    else if(key == 'gold-box')
-	this.points = points * 3
-    else
-	this.points = points
-
     // points text
     var style = { font: "10px Arial", fill: "#000000" }
-    var point_text = this.game.add.text(17, 21, this.points, style)
-    point_text.anchor.setTo(1)
-    this.text.addChild(point_text)
+    this.point_text = this.game.add.text(17, 21, points, style)
+    this.point_text.anchor.setTo(1)
+    this.text.addChild(this.point_text)
 
     // Interaction
     this.inputEnabled = true;
@@ -58,9 +48,9 @@ Box.prototype.click = function () {
 
 Box.prototype.mark = function (mark) {
     if( mark )
-	this.tint = 0x00FF00
+	this.tint = 0x00FF00 // Greenish
     else
-	this.tint = this.base_tint
+	this.tint = 0xFFFFFF // White
 
     this.marked = mark
 }
