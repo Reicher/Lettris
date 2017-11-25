@@ -14,36 +14,42 @@ Bag.prototype.fill = function () {
 			     points: this.json[key].points})
 }
 
-
-Bag.prototype.placeBox = function (x, y) {
+Bag.prototype.getTile = function () {
     if( this.tiles.length < 1 )
 	this.fill()
 
-    var tile = Phaser.ArrayUtils.removeRandomItem(this.tiles)
+    return Phaser.ArrayUtils.removeRandomItem(this.tiles)
+}
+
+Bag.prototype.placeBox = function (x, y) {
+    var tile = this.getTile()
     return new StandardBox(this.game, this.id++, tile, x, y)
 }
 
 Bag.prototype.dropBox = function (karma) {
-    if( this.tiles.length < 1 )
-	this.fill()
 
-    var tile = Phaser.ArrayUtils.removeRandomItem(this.tiles)
-
-    // Good Boxes
-    if ( karma > 3 )
+    // Super Nice boxes
+    if ( karma > 11 )
+	return new MultiBox(this.game, this.id++, 3)
+    else if ( karma > 9 )
 	return new MultiBox(this.game, this.id++, 2)
-    // else if ( karma > 8 )
-    // 	return new GoldBox(this.game, this.id++, tile)
-    // else if ( karma > 7 )
-    // 	return 	new SilverBox(this.game, this.id++, tile)
+
+    // Nice boxes
+    var tile = this.getTile()
+    if ( karma > 7 )
+    	return new GoldBox(this.game, this.id++, tile)
+    else if ( karma > 6 )
+    	return 	new SilverBox(this.game, this.id++, tile)
 
     // Bad Boxes
-    if(this.game.rnd.integer()%8 == 0)
+    var dice = this.game.rnd.integer()%9
+    if(dice == 0)
 	return new BigBox(this.game, this.id++, tile)
-    else if (this.game.rnd.integer()%8 == 1)
+    else if (dice == 1)
 	return new WideBox(this.game, this.id++, tile)
-    else if (this.game.rnd.integer()%8 == 2)
+    else if (dice == 2)
 	return new BallBox(this.game, this.id++, tile)
 
+    // Standard Box
     return new StandardBox(this.game, this.id++, tile)
 }
