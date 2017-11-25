@@ -29,16 +29,16 @@ Bag.prototype.placeBox = function (x, y) {
 Bag.prototype.dropBox = function (karma) {
 
     // Super Nice boxes
-    if ( karma > 11 )
+    if ( karma > 10 )
 	return new MultiBox(this.game, this.id++, 3)
-    else if ( karma > 9 )
+    else if ( karma > 8 )
 	return new MultiBox(this.game, this.id++, 2)
 
     // Nice boxes
     var tile = this.getTile()
-    if ( karma > 7 )
+    if ( karma > 6 )
     	return new GoldBox(this.game, this.id++, tile)
-    else if ( karma > 6 )
+    else if ( karma > 5 )
     	return 	new SilverBox(this.game, this.id++, tile)
 
     // Bad Boxes
