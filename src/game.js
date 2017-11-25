@@ -58,7 +58,13 @@ Lettris.Game.prototype = {
 	box.clicked.add(this.gui.box_clicked, this.gui)
 	this.boxes.add(box)
 
-	this.gameData.karma = 0
+	if(this.gameData.karma > 10)
+	    this.gameData.karma = 10
+	if(this.gameData.karma > 0)
+	    this.gameData.karma /= 1.5
+
+	console.log("Karma: " + this.gameData.karma)
+
 	this.gameData.tiles_droped++
 
 	var spawnTime = this.spawn_time(this.gameData.tiles_cleared)

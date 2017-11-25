@@ -87,6 +87,9 @@ GUI.prototype.accept = function () {
 		   multi : box.multi})
 	box.remove()
     }, this);
+
+    // Karma is given without multipliers
+    this.gameData.karma += score
     score *= multi
 
     if( score > this.gameData.best_word.score){
@@ -94,7 +97,6 @@ GUI.prototype.accept = function () {
 	this.gameData.best_word.word = info
     }
 
-    this.gameData.karma += score
     this.gameData.score += score
     this.scoreText.setText(this.gameData.score)
 
@@ -127,12 +129,8 @@ GUI.prototype.box_clicked = function (box) {
 
     // Keep even long words inside our box
     var size = this.word.fontSize.replace(/[^0-9\.]/g, '')
-    while (this.word.width > 120){
-	size--;
-	this.word.fontSize = size + "pt"
-    }
-
-    console.log(this.word.width)
+    while (this.word.width > 120)
+	this.word.fontSize = --size + "pt"
 
     this.wordScore.x = this.word.width
 

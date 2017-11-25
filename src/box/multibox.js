@@ -7,6 +7,8 @@ MultiBox = function (game, id, multi, x, y) {
     // Create a new prism shape, specified from bottom right, counter-clockwise (?!)
     this.body.clearShapes();
     this.body.addPolygon( {} , [ [38, 19]  ,  [19, 0],  [0, 19]  ,  [19, 38] ]);
+
+    this.anchor.setTo(0.5) // anchor gets fucked up after clear shape
 }
 
 MultiBox.prototype = Object.create(Box.prototype);

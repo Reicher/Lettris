@@ -31,27 +31,7 @@ Lettris.GameOver.prototype = {
 				      style)
 	score_text.anchor.setTo(0.5)
 
-	var best_word_header = this.game.add.text(this.game.world.centerX,
-						175,
-						"Best word:",
-						style)
-	best_word_header.anchor.setTo(0.5)
-
-	this.boxes = this.game.add.group();
-	for(var i = 0; i < this.bestWord.length; ++i){
-	    var info = this.bestWord[i]
-	    var box = new Box(this.game,
-			      i,
-			      info.key,
-			      info.letter,
-			      info.points,
-			      this.game.world.centerX + 20 -
-			      (this.bestWord.length/2 * 40) + i*40,
-			      200)
-	    box.body.static = true;
-	    box.scale.setTo(0.75)
-	    this.boxes.add(box)
-	}
+	this.show_best_word()
 
 	this.highscore_key = 'Lettris-best-' +
 	    this.game.lang + '-' +
@@ -68,6 +48,31 @@ Lettris.GameOver.prototype = {
 	else
 	    this.show_highscore()
 
+    },
+    show_best_word: function() {
+	var style = { font: "15px Verdana"}
+	var best_word_header = this.game.add.text(this.game.world.centerX,
+						175,
+						"Best word:",
+						style)
+	best_word_header.anchor.setTo(0.5)
+
+	var boxes = this.game.add.group();
+	for(var i = 0; i < this.bestWord.length; ++i){
+	    var info = this.bestWord[i]
+	    var x = this.game.world.centerX + 20 -
+		(this.bestWord.length/2 * 40) + i*40
+	    var y = 200
+
+	    if(info.multi > 1)
+		var box = new MultiBox(this.game, i, info.multi, x, y)
+	    else
+		var box = new Box(this.game, i, info.key,
+				  info.letter, info.points, x, y)
+	    box.body.static = true;
+	    box.scale.setTo(0.75)
+	    boxes.add(box)
+	}
     },
     input_highscore: function() {
 	// Controlls
