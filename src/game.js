@@ -24,10 +24,10 @@ Lettris.Game.prototype = {
 			 tiles_cleared: 0,
 			 best_word : {score: 0, word: ""}}
 
-	this.gui = new GUI(game, this.gameData)
-	this.bag = new Bag(game)
-
 	this.boxes = game.add.group();
+
+	this.gui = new GUI(game, this.gameData)
+	this.bag = new Bag(game, this.boxes)
 
 	this.fill_bottom(2)
 
@@ -40,7 +40,6 @@ Lettris.Game.prototype = {
 	    for (col = 0; col < 6; col++) {
 		var box = this.bag.placeBox(20+(col*40), 300-(40*row))
 		box.clicked.add(this.gui.box_clicked, this.gui)
-		this.boxes.add(box)
 	    }
 	}
     },
@@ -56,7 +55,6 @@ Lettris.Game.prototype = {
 
 	var box = this.bag.dropBox(this.gameData.karma)
 	box.clicked.add(this.gui.box_clicked, this.gui)
-	this.boxes.add(box)
 
 	if(this.gameData.karma > 10)
 	    this.gameData.karma = 10

@@ -1,7 +1,8 @@
-Bag = function (game) {
+Bag = function (game, boxes) {
     this.game = game
     this.tiles = []
     this.id = 0
+    this.boxes = boxes
 
     var file = game.cache.getJSON('let')
     this.json = file.letters
@@ -23,10 +24,12 @@ Bag.prototype.getTile = function () {
 
 Bag.prototype.placeBox = function (x, y) {
     var tile = this.getTile()
-    return new StandardBox(this.game, this.id++, tile, x, y)
+    var box = new StandardBox(this.game, this.id++, tile, x, y)
+    this.boxes.add(box)
+    return box
 }
 
-Bag.prototype.dropBox = function (karma) {
+Bag.prototype.getBox = function (karma) {
 
     // Super Nice boxes
     if ( karma > 12 )
@@ -39,19 +42,26 @@ Bag.prototype.dropBox = function (karma) {
     if ( karma > 7 )
     	return new GoldBox(this.game, this.id++, tile)
     else if ( karma > 5 )
-    	return 	new SilverBox(this.game, this.id++, tile)
-
-    return new BombBox(this.game, this.id++, tile)
+    	return new SilverBox(this.game, this.id++, tile)
 
     // Bad Boxes
-    var dice = this.game.rnd.integer()%1
-    if(dice == 0)
-    	return new BigBox(this.game, this.id++, tile)
-    else if (dice == 1)
-    	return new WideBox(this.game, this.id++, tile)
+    var dice = this.game.rnd.integer()%2
+    if ( dice == 1)
+	return new BombBox(this.game, this.id++, tile, this.boxes)
     else if (dice == 2)
+    	return new BigBox(this.game, this.id++, tile)
+    else if (dice == 3)
+    	return new WideBox(this.game, this.id++, tile)
+    else if (dice == 4)
 	return new BallBox(this.game, this.id++, tile)
+    else  // Standard Box
+	return  new StandardBox(this.game, this.id++, tile)
+}
 
-    // Standard Box
-    return new StandardBox(this.game, this.id++, tile)
+Bag.prototype.dropBox = function (karma) {
+
+    var box = this.getBox(karma)
+
+    this.boxes.add(box)
+    return box
 }
