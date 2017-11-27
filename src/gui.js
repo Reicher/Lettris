@@ -1,6 +1,6 @@
 GUI = function (game, gameData) {
     Phaser.Group.call(this, game);
-    this.y = game.height-80
+    this.y = game.height-160
 
     this.dictionary = game.cache.getJSON('dic')
     this.gameData = gameData
@@ -11,33 +11,34 @@ GUI = function (game, gameData) {
     this.clear_sound = this.game.add.audio('clear');
     this.select_sound = this.game.add.audio('select', 0.6);
 
-    this.add(game.add.button(10, 9, 'sprites', this.clear, this, 'clear', 'clear', 'clear-pressed'))
-    this.add(game.add.button(75, 9, 'sprites', this.accept, this, 'accept', 'accept', 'accept-pressed'))
+    this.add(game.add.button(20, 18, 'sprites', this.clear, this, 'clear', 'clear', 'clear-pressed'))
+    this.add(game.add.button(150, 18, 'sprites', this.accept, this, 'accept', 'accept', 'accept-pressed'))
 
     var panel  = this.create(0, 0, 'sprites', 'panel')
 
-    var style = { font: "15px Arial", align: "center" };
+    var style = { font: "25px Arial", align: "center" };
     this.scoreText = game.add.text(game.world.centerX,
-				   14,
+				   25,
 				   "0",
 				   style)
     this.scoreText.anchor.setTo(0.5)
     this.add(this.scoreText)
 
-    this.word = game.add.text(game.world.centerX-30,
-    			      35)
+    var word_style = { font: "40px Verdana", align: "center" };
+    this.word = game.add.text(game.world.centerX-60,
+    			      70, "", word_style)
     this.add(this.word)
 
-    this.langText = game.add.text(game.world.centerX+51,
-				  14,
+    this.langText = game.add.text(game.world.centerX+100,
+				  25,
 				  this.game.language,
 				  style)
     this.langText.anchor.setTo(0, 0.5)
     this.add(this.langText)
 
 
-    var ws_style = { font: "10px Arial", align: "center" };
-    this.wordScore = game.add.text(5, -5, "0", ws_style)
+    var ws_style = { font: "20px Verdana", align: "center" };
+    this.wordScore = game.add.text(5, -5, "", ws_style)
     this.word.addChild(this.wordScore)
 
     // Hotkeys
@@ -114,7 +115,7 @@ GUI.prototype.box_clicked = function (box) {
     }
 
     this.word.text = ""
-    this.word.fontSize = "20pt"
+    this.word.fontSize = "40pt"
     var points = 0
     var multi = 1
     this.markedList.forEach(function(b) {
@@ -129,7 +130,7 @@ GUI.prototype.box_clicked = function (box) {
 
     // Keep even long words inside our box
     var size = this.word.fontSize.replace(/[^0-9\.]/g, '')
-    while (this.word.width > 120)
+    while (this.word.width > 240)
 	this.word.fontSize = --size + "pt"
 
     this.wordScore.x = this.word.width

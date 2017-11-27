@@ -11,7 +11,7 @@ Lettris.Preloader.prototype = {
 	this.load.setPreloadSprite(this.preloadBar);
 
 	this.game.load.atlasJSONArray('sprites',
- 				      'assets/sprites.png',
+ 				      'assets/spritesheet.png',
  				      'assets/sprites.json')
 
 	this.load.audio('select', '/assets/audio/select_bip.wav')
