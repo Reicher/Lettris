@@ -5,7 +5,6 @@ Lettris.GameOver.prototype = {
     init: function( gameData ) {
 	this.score = gameData.score
 	this.bestWord = gameData.best_word.word
-	//this.bestWord = "penis"
 	this.bestWordScore = gameData.best_word.score
     },
 
@@ -43,7 +42,7 @@ Lettris.GameOver.prototype = {
 	    this.highscore = []
 
 	if(this.highscore.length < 5 ||
-	   this.highscore[this.highscore.length-1] < this.score)
+	   this.highscore[this.highscore.length-1].score < this.score)
 	    this.input_highscore()
 	else
 	    this.show_highscore()
@@ -135,7 +134,7 @@ Lettris.GameOver.prototype = {
 	for( var i = 0; i < this.highscore.length; ++i){
 	    this.game.add.text(header.left, 560 + (i * 40), this.highscore[i].nick, style)
 	    this.game.add.text(this.game.world.centerX, 560 + (i * 40), this.highscore[i].score, style).anchor.setTo(0.5, 0)
-	    this.game.add.text(header.right, 5600 + (i * 40), this.highscore[i].date, style).anchor.setTo(1, 0)
+	    this.game.add.text(header.right, 560 + (i * 40), this.highscore[i].date, style).anchor.setTo(1, 0)
 	}
 	this.game.time.events.add(Phaser.Timer.SECOND * 2,
 				  this.ready_to_leave,
