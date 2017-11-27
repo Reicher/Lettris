@@ -45,7 +45,7 @@ Bag.prototype.getBox = function (karma) {
     	return new SilverBox(this.game, this.id++, tile)
 
     // Bad Boxes
-    var dice = this.game.rnd.integer()%12
+    var dice = this.game.rnd.integer()%8
     if ( dice == 1)
 	return new BombBox(this.game, this.id++, tile, this.boxes)
     else if (dice == 2)

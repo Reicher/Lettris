@@ -20,15 +20,18 @@ Box = function (game, id, key, letter, points, x, y) {
     this.body.collideWorldBounds = true
 
     // letter text
-    var style = { font: "30px Verdana", fill: "#000000" }
+    var style = { font: "50px Verdana", fill: "#000000" }
     this.text = this.game.add.text(0, 2, letter, style)
     this.text.anchor.setTo(0.5)
     this.addChild(this.text)
 
     // points text
-    var style = { font: "10px Arial", fill: "#000000" }
-    this.point_text = this.game.add.text(17, 21, points, style)
-    this.point_text.anchor.setTo(1)
+    var style = { font: "20px Arial", fill: "#000000" }
+    this.point_text = this.game.add.text(this.text.right+15,
+					 this.text.bottom+7,
+					 points,
+					 style)
+    this.point_text.anchor.setTo(1, 1)
     this.text.addChild(this.point_text)
 
     // Interaction

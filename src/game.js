@@ -36,12 +36,12 @@ Lettris.Game.prototype = {
     },
 
     fill_bottom: function( layers ) {
-	var boxSize = 40
+	var boxSize = 80 // ugly
 	var max_col = Math.floor(this.game.width / boxSize)
 	for (row = 0; row < layers; row++) {
 	    for (col = 0; col < max_col; col++) {
 		var box = this.bag.placeBox(boxSize/2+(col*boxSize),
-					    620-(boxSize*row))
+					    600-(boxSize*row))
 		box.clicked.add(this.gui.box_clicked, this.gui)
 	    }
 	}
