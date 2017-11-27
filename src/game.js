@@ -75,7 +75,7 @@ Lettris.Game.prototype = {
     },
 
     spawn_time: function(tiles){
-	this.speed = 3.5 * Math.pow(0.9, Math.trunc(tiles/10))
+	this.speed = 0.9 * Math.pow(0.9, Math.trunc(tiles/10))
 	return this.speed * Phaser.Timer.SECOND
     },
     update: function(){
