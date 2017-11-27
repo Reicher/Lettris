@@ -1,6 +1,6 @@
 GUI = function (game, gameData) {
     Phaser.Group.call(this, game);
-    this.y = game.height-80
+    this.y = game.height-160
 
     this.dictionary = game.cache.getJSON('dic')
     this.gameData = gameData
@@ -11,8 +11,8 @@ GUI = function (game, gameData) {
     this.clear_sound = this.game.add.audio('clear');
     this.select_sound = this.game.add.audio('select', 0.6);
 
-    this.add(game.add.button(10, 9, 'sprites', this.clear, this, 'clear', 'clear', 'clear-pressed'))
-    this.add(game.add.button(75, 9, 'sprites', this.accept, this, 'accept', 'accept', 'accept-pressed'))
+    this.add(game.add.button(20, 18, 'sprites', this.clear, this, 'clear', 'clear', 'clear-pressed'))
+    this.add(game.add.button(150, 18, 'sprites', this.accept, this, 'accept', 'accept', 'accept-pressed'))
 
     var panel  = this.create(0, 0, 'sprites', 'panel')
 

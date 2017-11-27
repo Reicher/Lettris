@@ -7,7 +7,7 @@ Lettris.Game.prototype = {
 	game.stage.disableVisibilityChange = true;
 
 	this.stars = this.game.add.tileSprite(0, 0,
-					      240, 400,
+					      game.width, game.height,
 					      'sprites', 'background');
 
 	// Physics stuff
@@ -16,7 +16,7 @@ Lettris.Game.prototype = {
 	game.physics.p2.gravity.y = 300;
 	game.physics.p2.restitution = 0.05
 
-	game.world.setBounds(0, 0, game.width, game.height-80);
+	game.world.setBounds(0, 0, game.width, game.height-160);
 
 	this.gameData = {score: 0,
 			 karma: 0,
@@ -36,9 +36,12 @@ Lettris.Game.prototype = {
     },
 
     fill_bottom: function( layers ) {
+	var boxSize = 40
+	var max_col = Math.floor(this.game.width / boxSize)
 	for (row = 0; row < layers; row++) {
-	    for (col = 0; col < 6; col++) {
-		var box = this.bag.placeBox(20+(col*40), 300-(40*row))
+	    for (col = 0; col < max_col; col++) {
+		var box = this.bag.placeBox(boxSize/2+(col*boxSize),
+					    620-(boxSize*row))
 		box.clicked.add(this.gui.box_clicked, this.gui)
 	    }
 	}
