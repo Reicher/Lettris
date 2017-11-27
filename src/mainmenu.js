@@ -23,13 +23,13 @@ Lettris.MainMenu.prototype = {
 
     addMenuButton: function (text, next_state) {
 	var button = this.game.add.button(this.game.width/2,
-					  232 + (this.boxes * 60),
+					  300 + (this.boxes * 120),
 					  'sprites', this.startState,
 					  this, null,
 					  'button', 'button-pressed')
 	button.anchor.setTo(0.5)
 	button.state = next_state
-	var style = { font: "23px Verdana", align: "center" };
+	var style = { font: "33px Verdana", align: "center" };
 	var label = this.game.add.text(0, 0, text, style)
 	label.anchor.setTo(0.5)
 	button.addChild(label)
