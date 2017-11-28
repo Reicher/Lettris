@@ -73,7 +73,11 @@ Lettris.Game.prototype = {
     },
 
     spawn_time: function(tiles){
-	this.speed = 3.6 * Math.pow(0.9, Math.trunc(tiles/10))
+	var min_speed = 0.8
+	var start_speed = 4.0
+	this.speed = min_speed +
+	    ((start_speed - min_speed) *
+	     Math.pow(1, Math.trunc(tiles/10)))
 	return this.speed * Phaser.Timer.SECOND
     },
     update: function(){
