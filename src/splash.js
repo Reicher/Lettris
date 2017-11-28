@@ -1,9 +1,6 @@
 Lettris.Splash = function (game) {};
 
 Lettris.Splash.prototype = {
-    init: function (lang) {
-	this.lang = lang
-    },
     create: function () {
 	console.log("Splash!")
 
@@ -49,6 +46,6 @@ Lettris.Splash.prototype = {
     },
     startMenu: function () {
 	// start the Game state
-	this.state.start('MainMenu', true, false, this.lang);
+	this.state.start('MainMenu');
     }
 };
