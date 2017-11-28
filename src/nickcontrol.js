@@ -18,7 +18,7 @@ NickControl = function (game, x, y) {
 
     this.create(0, 0, 'sprites', 'box').anchor.setTo(0.5)
 
-    var style = { font: "25px Verdana", align: "center" };
+    var style = { font: "40px Verdana", align: "center" };
     this.letter_text = game.add.text(0, 4, this.letter, style)
     this.letter_text.anchor.setTo(0.5)
     this.add(this.letter_text)

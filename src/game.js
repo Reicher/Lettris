@@ -50,7 +50,7 @@ Lettris.Game.prototype = {
     spawn_box: function () {
 	// check if any box is stuck above screen => game over
 	this.boxes.forEach(function(box) {
-	    if( box.y < 0){
+	    if( box.y < -box.width/2){
 		this.state.start('GameOver', true, false, this.gameData);
 		return;
 	    }
