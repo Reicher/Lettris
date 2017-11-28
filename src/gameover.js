@@ -41,8 +41,9 @@ Lettris.GameOver.prototype = {
 	if(!this.highscore) // first time player
 	    this.highscore = []
 
-	if(this.highscore.length < 5 ||
-	   this.highscore[this.highscore.length-1].score < this.score)
+	if(this.highscore.length < 5)
+	    this.input_highscore()
+	else if( this.highscore[this.highscore.length-1].score < this.score )
 	    this.input_highscore()
 	else
 	    this.show_highscore()
@@ -90,6 +91,11 @@ Lettris.GameOver.prototype = {
 					   'button' )
 	this.submit.anchor.setTo(0.5)
 	this.submit.scale.setTo(0.75)
+	this.submit.inputEnabled = false
+
+	this.game.time.events.add(Phaser.Timer.SECOND * 2,
+				  function() { this.submit.inputEnabled = true },
+				  this)
 
 	var submit_text = this.game.add.text(0, 0, "Submit", style)
 	submit_text.anchor.setTo(0.5)
@@ -104,7 +110,7 @@ Lettris.GameOver.prototype = {
 	this.highscore.sort(function (a, b) {
 	    return a.score < b.score;
 	});
-	this.highscore.slice(0, 5);
+	this.highscore = this.highscore.slice(0, 5);
 
 	this.submit.destroy()
 	this.letter.forEach(function(letter) {
