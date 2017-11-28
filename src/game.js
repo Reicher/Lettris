@@ -64,8 +64,6 @@ Lettris.Game.prototype = {
 	if(this.gameData.karma > 0)
 	    this.gameData.karma /= 1.5
 
-	console.log("Karma: " + this.gameData.karma)
-
 	this.gameData.tiles_droped++
 
 	var spawnTime = this.spawn_time(this.gameData.tiles_cleared)

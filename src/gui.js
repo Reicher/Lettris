@@ -75,12 +75,8 @@ GUI.prototype.accept = function () {
     	this.accept_sound.play()
 
     // Remove all word letters
-    var score = 0
-    var multi = 1
     var info = []
     this.markedList.forEach(function(box) {
-	score += box.points
-	multi *= box.multi
 	this.gameData.tiles_cleared++
 	info.push({letter: box.text.text,
 		   key: box.key,
@@ -90,15 +86,14 @@ GUI.prototype.accept = function () {
     }, this);
 
     // Karma is given without multipliers
-    this.gameData.karma += score
-    score *= multi
+    this.gameData.karma += this.points / this.multi
 
-    if( score > this.gameData.best_word.score){
-	this.gameData.best_word.score = score
+    if( this.points > this.gameData.best_word.score){
+	this.gameData.best_word.score = this.points
 	this.gameData.best_word.word = info
     }
 
-    this.gameData.score += score
+    this.gameData.score += this.points
     this.scoreText.setText(this.gameData.score)
 
     this.clear()
@@ -114,19 +109,22 @@ GUI.prototype.box_clicked = function (box) {
 	this.markedList.splice(index, 1)
     }
 
+    this.points = 0
+    this.multi = 0
     this.word.text = ""
     this.word.fontSize = "40pt"
-    var points = 0
-    var multi = 1
     this.markedList.forEach(function(b) {
 	if(b.multi > 1)
-	    multi *= b.multi
+	    this.multi += (b.multi)
 	else
 	    this.word.text += b.text.text
 
-	points += b.points
+	this.points += b.points
     }, this)
-    points *= multi
+    this.multi = this.multi == 0 ? 1 : this.multi
+    this.points *= this.multi
+
+    console.log(this.multi)
 
     // Keep even long words inside our box
     var size = this.word.fontSize.replace(/[^0-9\.]/g, '')
@@ -136,7 +134,7 @@ GUI.prototype.box_clicked = function (box) {
     this.wordScore.x = this.word.width
 
     this.wordScore.text = ""
-    if(multi > 1)
-	this.wordScore.text += "x" + multi + "="
-    this.wordScore.text += points
+    if(this.multi > 1)
+	this.wordScore.text += "x" + this.multi + "="
+    this.wordScore.text += this.points
 }
