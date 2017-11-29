@@ -13,7 +13,7 @@ Lettris.MainMenu.prototype = {
 	this.addMenuButton("Language", 'LangMenu')
 
 
-	var style = { font: "20px Arial", fill: "#FF00F0"}
+	var style = { font: "20px Arial", fill: "#F0FFF0"}
 	this.version = this.game.add.text(this.game.width-5,
 					  this.game.height-5,
 					  this.game.version,
@@ -29,7 +29,7 @@ Lettris.MainMenu.prototype = {
 					  'button', 'button-pressed')
 	button.anchor.setTo(0.5)
 	button.state = next_state
-	var style = { font: "33px Verdana", align: "center" };
+	var style = { font: "33px Verdana", align: "center"};
 	var label = this.game.add.text(0, 0, text, style)
 	label.anchor.setTo(0.5)
 	button.addChild(label)
