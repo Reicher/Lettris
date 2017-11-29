@@ -5,7 +5,7 @@ Lettris.MainMenu.prototype = {
     create: function () {
 	this.game.add.sprite(0, 0, 'sprites', 'background');
 
-	this.logo = this.game.add.sprite(this.game.width/2, 100, 'sprites', 'logo')
+	this.logo = this.game.add.sprite(this.game.width/2, 140, 'sprites', 'logo')
 	this.logo.anchor.setTo(0.5)
 
 	this.boxes = 0
@@ -23,7 +23,7 @@ Lettris.MainMenu.prototype = {
 
     addMenuButton: function (text, next_state) {
 	var button = this.game.add.button(this.game.width/2,
-					  300 + (this.boxes * 120),
+					  320 + (this.boxes * 120),
 					  'sprites', this.startState,
 					  this, null,
 					  'button', 'button-pressed')
