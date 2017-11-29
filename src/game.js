@@ -7,7 +7,7 @@ Lettris.Game.prototype = {
 	game.stage.disableVisibilityChange = true;
 
 	this.stars = this.game.add.tileSprite(0, 0,
-					      240, 400,
+					      game.width, game.height,
 					      'sprites', 'background');
 
 	// Physics stuff
@@ -16,7 +16,7 @@ Lettris.Game.prototype = {
 	game.physics.p2.gravity.y = 300;
 	game.physics.p2.restitution = 0.05
 
-	game.world.setBounds(0, 0, game.width, game.height-80);
+	game.world.setBounds(0, 0, game.width, game.height-160);
 
 	this.gameData = {score: 0,
 			 karma: 0,
@@ -36,9 +36,12 @@ Lettris.Game.prototype = {
     },
 
     fill_bottom: function( layers ) {
+	var boxSize = 80 // ugly
+	var max_col = Math.floor(this.game.width / boxSize)
 	for (row = 0; row < layers; row++) {
-	    for (col = 0; col < 6; col++) {
-		var box = this.bag.placeBox(20+(col*40), 300-(40*row))
+	    for (col = 0; col < max_col; col++) {
+		var box = this.bag.placeBox(boxSize/2+(col*boxSize),
+					    600-(boxSize*row))
 		box.clicked.add(this.gui.box_clicked, this.gui)
 	    }
 	}
@@ -47,7 +50,7 @@ Lettris.Game.prototype = {
     spawn_box: function () {
 	// check if any box is stuck above screen => game over
 	this.boxes.forEach(function(box) {
-	    if( box.y < 0){
+	    if( box.y < -box.width/2){
 		this.state.start('GameOver', true, false, this.gameData);
 		return;
 	    }
@@ -61,8 +64,6 @@ Lettris.Game.prototype = {
 	if(this.gameData.karma > 0)
 	    this.gameData.karma /= 1.5
 
-	console.log("Karma: " + this.gameData.karma)
-
 	this.gameData.tiles_droped++
 
 	var spawnTime = this.spawn_time(this.gameData.tiles_cleared)
@@ -72,7 +73,11 @@ Lettris.Game.prototype = {
     },
 
     spawn_time: function(tiles){
-	this.speed = 3.5 * Math.pow(0.9, Math.trunc(tiles/10))
+	var min_speed = 0.8
+	var start_speed = 4.0
+	this.speed = min_speed +
+	    ((start_speed - min_speed) *
+	     Math.pow(1, Math.trunc(tiles/10)))
 	return this.speed * Phaser.Timer.SECOND
     },
     update: function(){

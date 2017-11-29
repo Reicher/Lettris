@@ -11,17 +11,17 @@ Lettris.LangMenu.prototype = {
     },
     addLangBox: function(text, lang) {
 	var b = this.game.add.button(this.game.world.centerX,
-				     100 + (this.boxes * 100),
+				     150 + (this.boxes * 150),
 				     'sprites',
 				     this.loadLang,
 				     this,
-				     'lang-box',
-				     'lang-box',
-				     'lang-box')
+				     'button',
+				     'button',
+				     'button-pressed')
 	b.anchor.setTo(0.5)
 	b.lang = lang
 
-	var style = { font: "25px Verdana",
+	var style = { font: "35px Verdana",
 		      align: "center" };
 	var label = this.game.add.text(0, 0, text, style)
 	label.anchor.setTo(0.5)
