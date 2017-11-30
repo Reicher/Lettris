@@ -3,7 +3,7 @@ BombBox = function (game, id, tile, boxes, x, y) {
     this.point_text.destroy()
     this.boxes = boxes
 
-    var frames = Phaser.Animation.generateFrameNames('bomb-box', 1, 3)
+    var frames = Phaser.Animation.generateFrameNames('bomb-box', 1, 2)
     this.animations.add('pulse', frames, 5, true);
 
     this.animations.play('pulse');
