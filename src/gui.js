@@ -81,15 +81,16 @@ GUI.prototype.accept = function () {
 	info.push({letter: box.text.text,
 		   key: box.key,
 		   points: box.points,
-		   multi : box.multi})
+		   multi : box.multi,
+		   base_points : box.base_points})
 	box.remove()
     }, this);
 
     // Karma is given without multipliers
     this.gameData.karma += this.points / this.multi
 
-    if( this.points > this.gameData.best_word.score){
-	this.gameData.best_word.score = this.points
+    if( this.base_points > this.gameData.best_word.score){
+	this.gameData.best_word.score = this.base_points
 	this.gameData.best_word.word = info
     }
 
@@ -109,6 +110,7 @@ GUI.prototype.box_clicked = function (box) {
 	this.markedList.splice(index, 1)
     }
 
+    this.base_points = 0
     this.points = 0
     this.multi = 0
     this.word.text = ""
@@ -122,6 +124,7 @@ GUI.prototype.box_clicked = function (box) {
 	this.points += b.points
     }, this)
     this.multi = this.multi == 0 ? 1 : this.multi
+    this.base_points = this.points
     this.points *= this.multi
 
     console.log(this.multi)

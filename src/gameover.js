@@ -18,7 +18,7 @@ Lettris.GameOver.prototype = {
 	var logo = this.game.add.sprite(this.game.world.centerX, 120, 'sprites', 'game-over')
 	logo.anchor.setTo(0.5)
 
-	var style = { font: "25px Verdana"}
+	var style = { font: "25px Verdana", }
 
 	var rotbox = this.game.add.sprite(this.game.world.centerX, 260, 'sprites', 'big-box')
 	rotbox.anchor.setTo(0.5)
@@ -50,29 +50,23 @@ Lettris.GameOver.prototype = {
 
     },
     show_best_word: function() {
-	var style = { font: "25px Verdana"}
+	var style = { font: "35px Verdana", fill: "#FFA90B"}
 	var best_word_header = this.game.add.text(this.game.world.centerX,
-						350,
+						370,
 						"Best word:",
 						style)
 	best_word_header.anchor.setTo(0.5)
-
-	var boxes = this.game.add.group();
+	var text = ""
 	for(var i = 0; i < this.bestWord.length; ++i){
-	    var info = this.bestWord[i]
-	    var x = this.game.world.centerX + 40 -
-		(this.bestWord.length/2 * 80) + i * 80
-	    var y = 400
-
-	    if(info.multi > 1)
-		var box = new MultiBox(this.game, i, info.multi, x, y)
-	    else
-		var box = new Box(this.game, i, info.key,
-				  info.letter, info.points, x, y)
-	    box.body.static = true;
-	    box.scale.setTo(0.75)
-	    boxes.add(box)
+	    text += this.bestWord[i].letter
 	}
+	var x = this.game.world.centerX
+	var y = 400
+	var best_word = this.game.add.text(this.game.world.centerX,
+						440,
+						text,
+						style)
+	best_word.anchor.setTo(0.5)
     },
     input_highscore: function() {
 	// Controlls
@@ -81,7 +75,7 @@ Lettris.GameOver.prototype = {
 	this.letter[1] = new NickControl(this.game, this.game.world.centerX, 570)
 	this.letter[2] = new NickControl(this.game, this.game.world.centerX + 100, 570)
 
-	var style = { font: "35px Verdana"}
+	var style = { font: "35px Verdana", fill: "#FFA90B"}
 	this.submit = this.game.add.button(this.game.world.centerX,
 					   730,
 					   'sprites',
@@ -121,19 +115,19 @@ Lettris.GameOver.prototype = {
 	this.show_highscore()
     },
     show_highscore: function () {
-	var style = { font: "30px Verdana"}
+	var style = { font: "30px Verdana", fill: "#FFA90B"}
 	this.game.add.text(this.game.world.centerX,
 			   500,
 			   "High score (" + this.game.language + ")",
 			   style).anchor.setTo(0.5)
 	var header = this.game.add.text(this.game.world.centerX,
-					540,
+					520,
 				      "Nick  |  Score  |  Date",
 					style)
 	header.anchor.setTo(0.5)
 
 	let underline = this.game.add.graphics(header.left, header.bottom -3);
-	underline.lineStyle(2, 0x000000);
+	underline.lineStyle(2, 0x995908);
 	underline.moveTo(0, 0);
 	underline.lineTo(header.width, 0);
 

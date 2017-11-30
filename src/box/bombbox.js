@@ -1,5 +1,5 @@
 BombBox = function (game, id, tile, boxes, x, y) {
-    Box.call(this, game, id, 'bomb-box1', tile.letter, 0, x, y)
+    Box.call(this, game, id, 'bomb-box1', tile.letter, 0, 1, 1, x, y)
     this.point_text.destroy()
     this.boxes = boxes
 

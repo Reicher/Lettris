@@ -1,5 +1,5 @@
 MultiBox = function (game, id, multi, x, y) {
-    Box.call(this, game, id, 'multi-box', "x" + multi, 0, x, y)
+    Box.call(this, game, id, 'multi-box', "x" + multi, 0, 0, multi, x, y)
     this.point_text.destroy()
     this.text.fontSize = "30px"
     this.multi = multi

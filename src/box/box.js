@@ -1,12 +1,13 @@
-Box = function (game, id, key, letter, points, x, y) {
+Box = function (game, id, key, letter, points, local_multi, multi, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'sprites', key)
 
     this.id = id
     this.marked = false
     this.anchor.setTo(0.5)
     this.key = key
-    this.points = points
-    this.multi = 1
+    this.base_points = points
+    this.points = points * local_multi
+    this.multi = multi
 
     // set random position if there is no position
     if( !x )
@@ -32,7 +33,7 @@ Box = function (game, id, key, letter, points, x, y) {
     var style = { font: "20px Arial", fill: "#000000" }
     this.point_text = this.game.add.text(this.text.right+15,
 					 this.text.bottom+7,
-					 points,
+					 this.points,
 					 style)
     this.point_text.fontWeight = 'bold';
     this.point_text.anchor.setTo(1, 1)
