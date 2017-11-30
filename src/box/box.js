@@ -22,6 +22,9 @@ Box = function (game, id, key, letter, points, x, y) {
     // letter text
     var style = { font: "50px Verdana", fill: "#000000" }
     this.text = this.game.add.text(0, 2, letter, style)
+    this.text.fontWeight = 'bold';
+    this.text.stroke = '#FFFFFF';
+    this.text.strokeThickness = 3;
     this.text.anchor.setTo(0.5)
     this.addChild(this.text)
 
@@ -31,6 +34,7 @@ Box = function (game, id, key, letter, points, x, y) {
 					 this.text.bottom+7,
 					 points,
 					 style)
+    this.point_text.fontWeight = 'bold';
     this.point_text.anchor.setTo(1, 1)
     this.text.addChild(this.point_text)
 
