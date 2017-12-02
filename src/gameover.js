@@ -63,7 +63,7 @@ Lettris.GameOver.prototype = {
 	var x = this.game.world.centerX
 	var y = 400
 	var best_word = this.game.add.text(this.game.world.centerX,
-						440,
+						430,
 						text,
 						style)
 	best_word.anchor.setTo(0.5)
@@ -117,7 +117,7 @@ Lettris.GameOver.prototype = {
     show_highscore: function () {
 	var style = { font: "30px Verdana", fill: "#FFA90B"}
 	this.game.add.text(this.game.world.centerX,
-			   500,
+			   490,
 			   "High score (" + this.game.language + ")",
 			   style).anchor.setTo(0.5)
 	var header = this.game.add.text(this.game.world.centerX,
@@ -132,9 +132,10 @@ Lettris.GameOver.prototype = {
 	underline.lineTo(header.width, 0);
 
 	for( var i = 0; i < this.highscore.length; ++i){
-	    this.game.add.text(header.left, 560 + (i * 40), this.highscore[i].nick, style)
-	    this.game.add.text(this.game.world.centerX, 560 + (i * 40), this.highscore[i].score, style).anchor.setTo(0.5, 0)
-	    this.game.add.text(header.right, 560 + (i * 40), this.highscore[i].date, style).anchor.setTo(1, 0)
+	    var y = 550 + (i * 40)
+	    this.game.add.text(header.left, y, this.highscore[i].nick, style)
+	    this.game.add.text(this.game.world.centerX, y, this.highscore[i].score, style).anchor.setTo(0.5, 0)
+	    this.game.add.text(header.right, y, this.highscore[i].date, style).anchor.setTo(1, 0)
 	}
 	this.game.time.events.add(Phaser.Timer.SECOND * 2,
 				  this.ready_to_leave,
