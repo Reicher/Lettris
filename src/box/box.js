@@ -21,21 +21,23 @@ Box = function (game, id, key, letter, points, local_multi, multi, x, y) {
     this.body.collideWorldBounds = true
 
     // letter text
-    var style = { font: "50px Verdana", fill: "#000000" }
+    var style = { font: "50px Verdana", fill: "#EEEEEE" }
     this.text = this.game.add.text(0, 2, letter, style)
     this.text.fontWeight = 'bold';
-    this.text.stroke = '#FFFFFF';
+    this.text.stroke = '#000000';
     this.text.strokeThickness = 3;
     this.text.anchor.setTo(0.5)
     this.addChild(this.text)
 
     // points text
-    var style = { font: "20px Arial", fill: "#000000" }
+    var style = { font: "20px Arial", fill: "#EEEEEE" }
     this.point_text = this.game.add.text(this.text.right+15,
 					 this.text.bottom+7,
 					 this.points,
 					 style)
     this.point_text.fontWeight = 'bold';
+    this.point_text.stroke = '#000000';
+    this.point_text.strokeThickness = 3;
     this.point_text.anchor.setTo(1, 1)
     this.text.addChild(this.point_text)
 
