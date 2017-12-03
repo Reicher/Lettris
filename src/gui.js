@@ -127,8 +127,6 @@ GUI.prototype.box_clicked = function (box) {
     this.base_points = this.points
     this.points *= this.multi
 
-    console.log(this.multi)
-
     // Keep even long words inside our box
     var size = this.word.fontSize.replace(/[^0-9\.]/g, '')
     while (this.word.width > 240)
