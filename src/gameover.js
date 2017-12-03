@@ -87,7 +87,6 @@ Lettris.GameOver.prototype = {
 	this.letter[1] = new NickControl(this.game, this.game.world.centerX, 570)
 	this.letter[2] = new NickControl(this.game, this.game.world.centerX + 100, 570)
 
-	var style = { font: "35px Verdana", fill: "#FFA90B"}
 	this.submit = this.game.add.button(this.game.world.centerX,
 					   760,
 					   'sprites',
@@ -99,10 +98,11 @@ Lettris.GameOver.prototype = {
 	this.submit.scale.setTo(0.75)
 	this.submit.inputEnabled = false
 
-	this.game.time.events.add(Phaser.Timer.SECOND * 2,
+	this.game.time.events.add(Phaser.Timer.SECOND * 1,
 				  function() { this.submit.inputEnabled = true },
 				  this)
 
+	var style = { font: "35px Verdana"}
 	var submit_text = this.game.add.text(0, 0, "Submit", style)
 	submit_text.anchor.setTo(0.5)
 	this.submit.addChild(submit_text);
