@@ -8,11 +8,11 @@ Lettris.MainMenu.prototype = {
 	this.logo = this.game.add.sprite(this.game.width/2, 140, 'sprites', 'logo')
 	this.logo.anchor.setTo(0.5)
 
-	this.addLight(61, 48)
-	this.addLight(403, 48)
-	this.addLight(61, 215)
-	this.addLight(403, 215)
-	this.addLight(314, 56)
+	this.addLight(this.logo, -179, -92)
+	this.addLight(this.logo, 163, -92)
+	this.addLight(this.logo, -179, 75)
+	this.addLight(this.logo, 163, 75)
+	this.addLight(this.logo, 74, -84)
 
 	this.boxes = 0
 	this.addMenuButton("Play", 'Game')
@@ -47,8 +47,10 @@ Lettris.MainMenu.prototype = {
 					  style)
 	this.version.anchor.setTo(1, 1)
     },
-    addLight: function(x, y) {
+    addLight: function(parent, x, y) {
 	var light = this.game.add.sprite(x, y, 'sprites', 'lamp-off')
+	parent.addChild(light)
+
 	var speed = this.game.rnd.integerInRange(3, 6)
 	light.animations.add('blink', ['lamp-off', 'lamp-on'], speed, true);
 	light.animations.play('blink');

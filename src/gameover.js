@@ -15,6 +15,10 @@ Lettris.GameOver.prototype = {
 	var panel = this.game.add.sprite(50, 50, 'sprites', 'big-panel');
 	panel.alpha = 0.9
 
+	this.addLight(panel, 4, 3)
+	this.addLight(panel, 360, 3)
+	this.addLight(panel, 4, 698)
+	this.addLight(panel, 360, 698)
 	var logo = this.game.add.sprite(this.game.world.centerX, 120, 'sprites', 'game-over')
 	logo.anchor.setTo(0.5)
 
@@ -49,6 +53,14 @@ Lettris.GameOver.prototype = {
 	    this.show_highscore()
 
     },
+    addLight: function(parent, x, y) {
+	var light = this.game.add.sprite(x, y, 'sprites', 'lamp-off')
+	parent.addChild(light)
+
+	var speed = this.game.rnd.integerInRange(3, 6)
+	light.animations.add('blink', ['lamp-off', 'lamp-on'], speed, true);
+	light.animations.play('blink');
+    },
     show_best_word: function() {
 	var style = { font: "35px Verdana", fill: "#FFA90B"}
 	var best_word_header = this.game.add.text(this.game.world.centerX,
@@ -77,7 +89,7 @@ Lettris.GameOver.prototype = {
 
 	var style = { font: "35px Verdana", fill: "#FFA90B"}
 	this.submit = this.game.add.button(this.game.world.centerX,
-					   730,
+					   760,
 					   'sprites',
 					   this.addHighscore,
 					   this,
