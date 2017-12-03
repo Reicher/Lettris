@@ -18,6 +18,27 @@ Lettris.MainMenu.prototype = {
 	this.addMenuButton("Play", 'Game')
 	this.addMenuButton("Language", 'LangMenu')
 
+	var news_text = ["New Graphics!",
+			 "In development!",
+			 "Microtransactions!",
+			 "Protecting the eagles",
+			 "ano 2017",
+			 "Action game of the year"
+			]
+	var cool_style = { font: "45px Verdana", fill: "#FFA90B"}
+	var news = this.game.add.text(this.game.world.centerX,
+				      330,
+				      this.game.rnd.pick(news_text),
+				      cool_style)
+	news.anchor.setTo(0.5, 0.5)
+	news.angle = -10
+	this.game.add.tween(news.scale).to( { x: 0.8, y: 0.8 },
+					    400, "Linear",
+					    true, 0, -1, true);
+	this.game.add.tween(news).to( { angle: 10 },
+					    500, "Linear",
+					    true, 0, -1, true);
+
 
 	var style = { font: "20px Arial", fill: "#F0FFF0"}
 	this.version = this.game.add.text(this.game.width-5,
@@ -34,7 +55,7 @@ Lettris.MainMenu.prototype = {
     },
     addMenuButton: function (text, next_state) {
 	var button = this.game.add.button(this.game.width/2,
-					  320 + (this.boxes * 120),
+					  450 + (this.boxes * 140),
 					  'sprites', this.startState,
 					  this, null,
 					  'button', 'button-pressed')
