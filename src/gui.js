@@ -47,6 +47,9 @@ GUI = function (game, gameData) {
 
     var x = game.input.keyboard.addKey(Phaser.Keyboard.X)
     x.onDown.add(this.clear, this);
+
+    // Signals
+    this.word_accepted = new Phaser.Signal()
 }
 
 GUI.prototype = Object.create(Phaser.Group.prototype)
@@ -98,6 +101,8 @@ GUI.prototype.accept = function () {
     this.scoreText.setText(this.gameData.score)
 
     this.clear()
+
+    this.word_accepted.dispatch()
 }
 
 GUI.prototype.box_clicked = function (box) {
