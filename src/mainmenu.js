@@ -23,9 +23,10 @@ Lettris.MainMenu.prototype = {
 			 "Microtransactions!",
 			 "Protecting the eagles",
 			 "ano 2017",
-			 "Action game of the year"
-			]
-	var cool_style = { font: "45px Verdana", fill: "#FFA90B"}
+			 "Action game of the year",
+			 "Maximum Pleasure",
+			 "Made with Love"]
+	var cool_style = { font: "40px Verdana", fill: "#FFA90B"}
 	var news = this.game.add.text(this.game.world.centerX,
 				      330,
 				      this.game.rnd.pick(news_text),
