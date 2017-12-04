@@ -29,7 +29,5 @@ StandardBox.prototype.remove = function () {
     emitter.gravity = 200;
 
     emitter.start(true, lifetime, null, particles);
-
-    //  And 2 seconds later we'll destroy the emitter
     this.game.time.events.add(lifetime, function () { emitter.destroy(); }, this);
 }
