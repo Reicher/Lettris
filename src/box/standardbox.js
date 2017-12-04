@@ -3,9 +3,6 @@ StandardBox = function (game, id, tile, x, y) {
 
     var frames = Phaser.Animation.generateFrameNames('box-break', 1, 3)
     this.animations.add('break', frames, 10);
-
-    this.emitter = this.game.add.emitter(this.x, this.y, 20);
-    this.emitter.makeParticles(['sprites'], ['board1', 'board2', 'screw1']);
 }
 
 StandardBox.prototype = Object.create(Box.prototype);
@@ -22,5 +19,17 @@ StandardBox.prototype.remove = function () {
     }, this);
 
     // Particles!
-    this.emitter.start(false, 5000, 10);
+    var lifetime = 5000
+    var particles = 10
+    var emitter = this.game.add.emitter(this.x - this.width/2 , this.y - this.height/2, particles);
+    emitter.width = this.width
+    emitter.height = this.height
+
+    emitter.makeParticles(['sprites'], ['board1', 'board2', 'screw1']);
+    emitter.gravity = 200;
+
+    emitter.start(true, lifetime, null, particles);
+
+    //  And 2 seconds later we'll destroy the emitter
+    this.game.time.events.add(lifetime, function () { emitter.destroy(); }, this);
 }
