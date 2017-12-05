@@ -82,6 +82,13 @@ Box.prototype.spitParticles = function (sprites){
 }
 
 Box.prototype.remove = function () {
+
+    // This should be standard later
+    if(this.num_frames != null){
+	this.coolRemove(this.frame_name, this.num_frames, this.stuff)
+	return
+    }
+
     var shrink = this.game.add.tween(this.scale).to({x: 0, y: 0},
 						    400,
 						    Phaser.Easing.Quadratic.In,
@@ -89,4 +96,27 @@ Box.prototype.remove = function () {
     shrink.onComplete.addOnce(function() {
 	this.destroy()
     }, this);
+}
+
+Box.prototype.setCoolRemove = function (frame_name, num_frames, stuff) {
+    this.frame_name = frame_name
+    this.num_frames = num_frames
+    this.stuff = stuff
+}
+
+Box.prototype.coolRemove = function () {
+
+    this.text.destroy()
+    this.point_text.destroy()
+
+    // Animation
+    var frames = Phaser.Animation.generateFrameNames(this.frame_name, 1, this.num_frames)
+    this.animations.add('break', frames, 10);
+    this.animations.play('break')
+    this.animations.currentAnim.onComplete.addOnce(function () {
+    	this.destroy()
+    }, this);
+
+    // Particles!!
+    Box.prototype.spitParticles.call(this, this.stuff);
 }
