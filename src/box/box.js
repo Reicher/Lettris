@@ -65,6 +65,22 @@ Box.prototype.mark = function (mark) {
     this.marked = mark
 }
 
+Box.prototype.spitParticles = function (sprites){
+
+    // Particles!
+    var lifetime = 5000
+    var particles = 10
+    var emitter = this.game.add.emitter(this.x - this.width/2 , this.y - this.height/2, particles);
+    emitter.width = this.width
+    emitter.height = this.height
+
+    emitter.makeParticles(['sprites'], sprites);
+    emitter.gravity = 200;
+
+    emitter.start(true, lifetime, null, particles);
+    this.game.time.events.add(lifetime, function () { emitter.destroy(); }, this);
+}
+
 Box.prototype.remove = function () {
     var shrink = this.game.add.tween(this.scale).to({x: 0, y: 0},
 						    400,
