@@ -5,8 +5,9 @@ BombBox = function (game, id, tile, boxes, x, y) {
 
     var frames = Phaser.Animation.generateFrameNames('bomb-box', 1, 2)
     this.animations.add('pulse', frames, 5, true);
-
     this.animations.play('pulse');
+
+    Box.prototype.setCoolRemove.call(this, "bomb-box-break", 3, ['screw1'])
 }
 
 BombBox.prototype = Object.create(Box.prototype);
@@ -16,13 +17,7 @@ BombBox.prototype.remove = function (boom = true) {
     if(boom)
 	this.BOOM()
 
-    var expand = this.game.add.tween(this.scale).to({x: 1.2, y: 1.2},
-						    200,
-						    Phaser.Easing.Quadratic.In,
-						    true);
-    expand.onComplete.addOnce(function() {
-	this.destroy()
-    }, this);
+    Box.prototype.remove.call(this, false)
 }
 
 BombBox.prototype.BOOM = function (){
@@ -33,7 +28,7 @@ BombBox.prototype.BOOM = function (){
 
         var angle = this.position.angle(box);
 	var dist = this.position.distance(box);
-	var force = 10000 / Math.pow(dist, 2)
+	var force = 15000 / Math.pow(dist, 2)
 
 	if( dist < 100){
 	    box.mark(true)
