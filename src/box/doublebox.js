@@ -1,8 +1,7 @@
-MultiBox = function (game, id, multi, x, y) {
-    Box.call(this, game, id, 'multi-box', "x" + multi, 0, 0, multi, x, y)
+DoubleBox = function (game, id, x, y) {
+    Box.call(this, game, id, 'multi-box', "x2", 0, 0, 2, x, y)
     this.point_text.destroy()
     this.text.fontSize = "30px"
-    this.multi = multi
 
     // Create a new prism shape, specified from bottom right, counter-clockwise (?!)
     this.body.clearShapes();
@@ -11,5 +10,5 @@ MultiBox = function (game, id, multi, x, y) {
     this.anchor.setTo(0.5) // anchor gets fucked up after clear shape
 }
 
-MultiBox.prototype = Object.create(Box.prototype);
-MultiBox.prototype.constructor = MultiBox;
+DoubleBox.prototype = Object.create(Box.prototype);
+DoubleBox.prototype.constructor = DoubleBox;
