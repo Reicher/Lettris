@@ -19,17 +19,20 @@ Lettris.GameOver.prototype = {
 	this.addLight(panel, 360, 3)
 	this.addLight(panel, 4, 698)
 	this.addLight(panel, 360, 698)
-	var logo = this.game.add.sprite(this.game.world.centerX, 120, 'sprites', 'game-over')
+	var logo = this.game.add.sprite(this.game.world.centerX, 60, 'sprites', 'game-over')
 	logo.anchor.setTo(0.5)
 
-	var style = { font: "25px Verdana", }
+	var style = { font: "35px Verdana", }
 
-	var rotbox = this.game.add.sprite(this.game.world.centerX, 260, 'sprites', 'big-box')
-	rotbox.anchor.setTo(0.5)
-	rotbox.scale.setTo(0.75)
-	this.game.add.tween(rotbox).to( { angle:  + 360 }, 1500, Phaser.Easing.Default, true, 0, -1)
+	var tent_back = this.game.add.sprite(this.game.world.centerX,
+					     240,
+					     'sprites',
+					     'point-tent')
+	tent_back.anchor.setTo(0.5)
+
+
 	var score_text = this.game.add.text(this.game.world.centerX,
-				      260,
+				      290,
 				      this.score,
 				      style)
 	score_text.anchor.setTo(0.5)
@@ -49,8 +52,15 @@ Lettris.GameOver.prototype = {
 	    this.input_highscore()
 	else if( this.highscore[this.highscore.length-1].score < this.score )
 	    this.input_highscore()
-	else
+	else{
 	    this.show_highscore()
+	    this.game.time.events.add(Phaser.Timer.SECOND * 2,
+				      this.ready_to_leave,
+				      this)
+	}
+
+    },
+    fireWorks: function() {
 
     },
     addLight: function(parent, x, y) {
@@ -62,9 +72,9 @@ Lettris.GameOver.prototype = {
 	light.animations.play('blink');
     },
     show_best_word: function() {
-	var style = { font: "35px Verdana", fill: "#FFA90B"}
+	var style = { font: "30px Verdana", fill: "#FFA90B"}
 	var best_word_header = this.game.add.text(this.game.world.centerX,
-						370,
+						380,
 						"Best word:",
 						style)
 	best_word_header.anchor.setTo(0.5)
@@ -73,7 +83,7 @@ Lettris.GameOver.prototype = {
 	    text += this.bestWord[i].letter
 	}
 	var x = this.game.world.centerX
-	var y = 400
+	var y = 410
 	var best_word = this.game.add.text(this.game.world.centerX,
 						430,
 						text,
@@ -83,9 +93,9 @@ Lettris.GameOver.prototype = {
     input_highscore: function() {
 	// Controlls
 	this.letter = []
-	this.letter[0] = new NickControl(this.game, this.game.world.centerX - 100, 570)
-	this.letter[1] = new NickControl(this.game, this.game.world.centerX, 570)
-	this.letter[2] = new NickControl(this.game, this.game.world.centerX + 100, 570)
+	this.letter[0] = new NickControl(this.game, this.game.world.centerX - 100, 590)
+	this.letter[1] = new NickControl(this.game, this.game.world.centerX, 590)
+	this.letter[2] = new NickControl(this.game, this.game.world.centerX + 100, 590)
 
 	this.submit = this.game.add.button(this.game.world.centerX,
 					   760,
@@ -149,9 +159,6 @@ Lettris.GameOver.prototype = {
 	    this.game.add.text(this.game.world.centerX, y, this.highscore[i].score, style).anchor.setTo(0.5, 0)
 	    this.game.add.text(header.right, y, this.highscore[i].date, style).anchor.setTo(1, 0)
 	}
-	this.game.time.events.add(Phaser.Timer.SECOND * 2,
-				  this.ready_to_leave,
-				  this)
     },
     ready_to_leave: function() {
 	this.game.input.onDown.add(()=>{
