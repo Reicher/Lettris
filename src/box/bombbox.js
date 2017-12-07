@@ -17,10 +17,11 @@ BombBox.prototype.remove = function (boom = true) {
     if(boom)
 	this.BOOM()
 
-    Box.prototype.remove.call(this, false)
+    Box.prototype.remove.call(this)
 }
 
 BombBox.prototype.BOOM = function (){
+
     for(var i=0;i<this.boxes.children.length;i++){
 	var box = this.boxes.children[i]
 	if(this.id == box.id)
@@ -30,13 +31,11 @@ BombBox.prototype.BOOM = function (){
 	var dist = this.position.distance(box);
 	var force = 15000 / Math.pow(dist, 2)
 
-	if( dist < 100){
-	    box.mark(true)
+	if( dist < 120)
 	    box.remove(false)
-	}
 
-	box.body.applyImpulseLocal([Math.cos(angle)*force*box.body.mass,
-				    Math.sin(angle)*force*box.body.mass],
+	box.body.applyImpulseLocal([Math.cos(angle) * force * box.body.mass,
+				    Math.sin(angle) * force * box.body.mass],
 				   box.x,
 				   box.y)
 
