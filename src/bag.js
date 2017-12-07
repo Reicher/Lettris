@@ -32,9 +32,9 @@ Bag.prototype.placeBox = function (x, y) {
 Bag.prototype.getBox = function (karma) {
 
     // Super Nice boxes
-    if ( karma > 5 )
+    if ( karma > 13 )
 	return new TripleBox(this.game, this.id++)
-    else if ( karma > 2 )
+    else if ( karma > 17 )
 	return new DoubleBox(this.game, this.id++)
 
     // Nice boxes
