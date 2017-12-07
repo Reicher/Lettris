@@ -59,24 +59,12 @@ Lettris.GameOver.prototype = {
 				      this)
 	}
 
-	this.fireworks()
-    },
-    fireworks: function() {
-	var rocket1 = this.game.add.sprite(this.game.world.centerX-150,
-					   240,
-					   'sprites',
-					   'firework1')
-	rocket1.anchor.setTo(0.5)
-
-	// var frames = Phaser.Animation.generateFrameNames("firework", 1, 3)
-	// rocket1.animations.add('fly', frames, 10);
-	// rocket1.animations.play('fly')
-
-	this.game.add.tween(rocket1).from({x: this.game.world.centerX,
-					   y: this.game.height + 100},
-					  2000,
-					  Phaser.Easing.Quadratic.In,
-					  true)
+	var rocket1 = new Rocket(this.game,
+				 {x: this.game.world.centerX, y: 900},
+				 {x: 100, y: 100})
+	var rocket2 = new Rocket(this.game,
+				 {x: this.game.world.centerX, y: 900},
+				 {x: 400, y: 75})
     },
     addLight: function(parent, x, y) {
 	var light = this.game.add.sprite(x, y, 'sprites', 'lamp-off')
