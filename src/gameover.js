@@ -59,9 +59,24 @@ Lettris.GameOver.prototype = {
 				      this)
 	}
 
+	this.fireworks()
     },
-    fireWorks: function() {
+    fireworks: function() {
+	var rocket1 = this.game.add.sprite(this.game.world.centerX-150,
+					   240,
+					   'sprites',
+					   'firework1')
+	rocket1.anchor.setTo(0.5)
 
+	// var frames = Phaser.Animation.generateFrameNames("firework", 1, 3)
+	// rocket1.animations.add('fly', frames, 10);
+	// rocket1.animations.play('fly')
+
+	this.game.add.tween(rocket1).from({x: this.game.world.centerX,
+					   y: this.game.height + 100},
+					  2000,
+					  Phaser.Easing.Quadratic.In,
+					  true)
     },
     addLight: function(parent, x, y) {
 	var light = this.game.add.sprite(x, y, 'sprites', 'lamp-off')
@@ -144,7 +159,7 @@ Lettris.GameOver.prototype = {
 			   style).anchor.setTo(0.5)
 	var header = this.game.add.text(this.game.world.centerX,
 					520,
-				      "Nick  |  Score  |  Date",
+					"Nick  |  Score  |  Date",
 					style)
 	header.anchor.setTo(0.5)
 
