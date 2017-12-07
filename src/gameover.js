@@ -30,12 +30,20 @@ Lettris.GameOver.prototype = {
 					     'point-tent')
 	tent_back.anchor.setTo(0.5)
 
-
 	var score_text = this.game.add.text(this.game.world.centerX,
-				      290,
-				      this.score,
-				      style)
+					    290,
+					    this.score,
+					    style)
 	score_text.anchor.setTo(0.5)
+
+	var curtain = this.game.add.sprite(this.game.world.centerX,
+					   240,
+					   'sprites',
+					   'point-reveal1')
+	curtain.anchor.setTo(0.5, 0)
+	var curtain_frames = Phaser.Animation.generateFrameNames("point-reveal", 1, 10)
+	curtain.animations.add('reveal', curtain_frames, 10, false)
+	curtain.animations.play('reveal')
 
 	this.show_best_word()
 
