@@ -100,13 +100,13 @@ Lettris.Game.prototype = {
 
     spawn_time: function(tiles){
 	var min_speed = 0.8
-	var start_speed = 2.0
+	var start_speed = 4.0
 	this.speed = min_speed +
 	    ((start_speed - min_speed) *
-	     Math.pow(0.9, Math.trunc(tiles/10)))
+	     Math.pow(0.9, Math.trunc(tiles/15)))
 	return this.speed * Phaser.Timer.SECOND
     },
     update: function(){
-	this.back.tilePosition.y += 2.5 / this.speed;
+	this.back.tilePosition.y += 3.5 / this.speed;
     }
 };

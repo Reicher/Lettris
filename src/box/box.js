@@ -10,11 +10,13 @@ Box = function (game, id, key, letter, points, local_multi, multi, x, y) {
     this.multi = multi
 
     // set random position if there is no position
-    if( !x )
-	this.x = game.rnd.integerInRange(this.width/2 + 1,
-					 game.width - this.width/2 - 1)
-    if( !y )
-	this.y = -this.width/2
+    while(!x || !y){
+	x = game.rnd.integerInRange(this.width/2 + 1,
+				    game.width - this.width/2 - 1)
+	y = -this.width/2
+    }
+    this.x = x
+    this.y = y
 
     // Physics
     game.physics.p2.enable(this)
