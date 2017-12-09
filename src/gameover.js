@@ -86,20 +86,17 @@ Lettris.GameOver.prototype = {
 	var style = { font: "30px Verdana", fill: "#FFA90B"}
 	var best_word_header = this.game.add.text(this.game.world.centerX,
 						380,
-						"Best word:",
+						"Best word",
 						style)
 	best_word_header.anchor.setTo(0.5)
 	var text = ""
 	for(var i = 0; i < this.bestWord.length; ++i){
 	    text += this.bestWord[i].letter
 	}
-	var x = this.game.world.centerX
-	var y = 410
-	var best_word = this.game.add.text(this.game.world.centerX,
-						430,
-						text,
-						style)
-	best_word.anchor.setTo(0.5)
+	var panel = new MiniPanel(this.game,
+				  text,
+				  this.game.world.centerX,
+				  420)
     },
     input_highscore: function() {
 	// Controlls
@@ -146,6 +143,7 @@ Lettris.GameOver.prototype = {
 	localStorage.setItem(this.highscore_key, JSON.stringify(this.highscore));
 
 	this.show_highscore()
+	this.ready_to_leave()
     },
     show_highscore: function () {
 	var style = { font: "30px Verdana", fill: "#FFA90B"}
