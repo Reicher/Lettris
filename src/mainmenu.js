@@ -15,9 +15,9 @@ Lettris.MainMenu.prototype = {
 	this.addLight(this.logo, 74, -84)
 
 	this.boxes = 0
-	this.addMenuButton("Play", 'Game')
-	this.addMenuButton("Credits (Soon)", 'Credits').inputEnabled = false
-	this.addMenuButton("Language", 'LangMenu')
+	this.addMenuButton("PLAY", 'Game')
+	this.addMenuButton("CREDITS", 'Credits').inputEnabled = false
+	this.addMenuButton("LANGUAGE", 'LangMenu')
 
 	var style = { font: "20px Arial", fill: "#F0FFF0"}
 	this.version = this.game.add.text(this.game.width-5,
@@ -42,8 +42,11 @@ Lettris.MainMenu.prototype = {
 					  'button', 'button-pressed')
 	button.anchor.setTo(0.5)
 	button.state = next_state
-	var style = { font: "33px Verdana", align: "center"};
+	var style = { font: "33px Verdana", fill: "#EEEEEE", align: "center"};
 	var label = this.game.add.text(0, 0, text, style)
+	label.fontWeight = 'bold';
+	label.stroke = '#000000';
+	label.strokeThickness = 2;
 	label.anchor.setTo(0.5)
 	button.addChild(label)
 
