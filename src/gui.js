@@ -35,7 +35,7 @@ GUI = function (game, gameData) {
     			      70, "", word_style)
     this.add(this.word)
 
-    this.langText = game.add.text(game.world.centerX+100,
+    this.langText = game.add.text(game.world.centerX+80,
 				  25,
 				  this.game.language,
 				  style)
