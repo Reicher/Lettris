@@ -59,16 +59,29 @@ Box.prototype.click = function () {
 }
 
 Box.prototype.mark = function (mark) {
-    if( mark )
-	this.tint = 0x00FF00 // Greenish
-    else
+    if( mark ){
+	this.tint = 0xe3e268
+
+	var border = 10
+	var emitter = this.game.add.emitter(this.x+border,
+					    this.y+border,
+					    10);
+	emitter.width = this.width - (border*2)
+	emitter.height = this.height - (border*2)
+	emitter.makeParticles(['sprites'], 'confetti-yellow');
+	emitter.maxParticleSpeed.setTo(1, 1);
+	emitter.start(false, 300, 10, -1);
+	this.select_emitter = emitter;
+    }
+    else{
 	this.tint = 0xFFFFFF // White
+	this.select_emitter.destroy()
+    }
 
     this.marked = mark
 }
 
 Box.prototype.spitParticles = function (sprites){
-
     // Particles!
     var lifetime = 5000
     var particles = 10
@@ -121,4 +134,12 @@ Box.prototype.coolRemove = function () {
 
     // Particles!!
     Box.prototype.spitParticles.call(this, this.stuff);
+}
+
+Box.prototype.update = function() {
+    var border = 10
+    if(this.marked){
+	this.select_emitter.x = this.x+border
+	this.select_emitter.y = this.y+border
+    }
 }
