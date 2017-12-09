@@ -10,27 +10,14 @@ Lettris.LangMenu.prototype = {
 	this.addLangBox('SVENSKA', 'swe')
     },
     addLangBox: function(text, lang) {
-	var b = this.game.add.button(this.game.world.centerX,
-				     150 + (this.boxes * 150),
-				     'sprites',
-				     this.loadLang,
-				     this,
-				     'button',
-				     'button',
-				     'button-pressed')
-	b.anchor.setTo(0.5)
-	b.lang = lang
 
-	var style = { font: "35px Verdana",
-		      fill: "#EEEEEE",
-		      align: "center" };
-	var label = this.game.add.text(0, 0, text, style)
-	label.fontWeight = 'bold';
-	label.stroke = '#000000';
-	label.strokeThickness = 2;
-	label.anchor.setTo(0.5)
-	b.addChild(label)
-
+	var b = new TextButton(this.game,
+			       text, this.game.world.centerX,
+			       150 + (this.boxes * 150),
+			       this.loadLang,
+			       this)
+	b.button.lang = lang
+	b.button.text = text
 	this.boxes++
 
     },
@@ -40,8 +27,8 @@ Lettris.LangMenu.prototype = {
 	this.game.load.json('dic', path + 'dictionary.json')
 
 	this.game.lang = b.lang
-	this.game.language = b.children[0].text
-	b.children[0].text = "Loading"
+	this.game.language = b.text
+	b.text = "Loading"
 
 	this.game.load.start()
 	this.game.load.onLoadComplete.add(this.start, this);
