@@ -15,6 +15,12 @@ GUI = function (game, gameData) {
     this.add(game.add.button(150, 18, 'sprites', this.accept, this, 'accept', 'accept', 'accept-pressed'))
 
     var panel  = this.create(0, 0, 'sprites', 'panel')
+    this.addLight(panel, 3, 3)
+    this.addLight(panel, this.game.world.width-17, 3)
+    this.addLight(panel, this.game.world.width-17, 140)
+    this.addLight(panel, 3, 140)
+    this.addLight(panel, 130, 140)
+    this.addLight(panel, 130, 3)
 
     var style = { font: "25px Arial", align: "center" };
     this.scoreText = game.add.text(game.world.centerX,
@@ -55,6 +61,15 @@ GUI = function (game, gameData) {
 GUI.prototype = Object.create(Phaser.Group.prototype)
 GUI.prototype.constructor = GUI
 
+GUI.prototype.addLight = function(parent, x, y) {
+    var light = this.game.add.sprite(x, y, 'sprites', 'lamp-off')
+    parent.addChild(light)
+
+    var speed = this.game.rnd.integerInRange(1, 3)
+	light.animations.add('blink', ['lamp-off', 'lamp-on'], speed, true);
+    light.animations.play('blink');
+}
+
 GUI.prototype.clear = function () {
     this.markedList.forEach(function(box) {
 	box.mark(false)
@@ -64,6 +79,35 @@ GUI.prototype.clear = function () {
 
     if(!this.accept_sound.playing)
 	this.clear_sound.play()
+}
+
+GUI.prototype.removeTutorial = function() {
+    this.game.add.tween(this.tutorial).to({alpha: 0},
+					  3000,
+					  Phaser.Easing.Quadratic.In,
+					  true);
+}
+
+GUI.prototype.showTutorial = function() {
+    this.tutorial = this.game.add.group();
+    this.tutorial.x = 80
+    this.tutorial.y = 50
+    var back = this.tutorial.create(0, 0, 'sprites', 'tutorial-panel');
+    back.alpha = 0.8
+
+    var style = { font: "26px Verdana", wordWrap: true, wordWrapWidth: back.width-50 };
+    var expl = this.game.add.text(30,
+				  140,
+				  "Create words by marking letter tiles in order, complete by pressing the big green button. Clear current word with the red button.",
+				  style)
+    this.tutorial.add(expl)
+
+    this.addLight(this.tutorial, 3, 3)
+    this.addLight(this.tutorial, this.tutorial.width-20, 3)
+    this.addLight(this.tutorial, 3, 113)
+    this.addLight(this.tutorial, this.tutorial.width-20, 113)
+    this.addLight(this.tutorial, 3, 339)
+    this.addLight(this.tutorial, this.tutorial.width-20, 339)
 }
 
 GUI.prototype.accept = function () {

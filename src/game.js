@@ -10,8 +10,6 @@ Lettris.Game.prototype = {
 					     game.width, game.height,
 					     'sprites', 'background');
 
-	this.showTutorial()
-
 	// Physics stuff
 	game.physics.startSystem(Phaser.Physics.P2JS);
 	game.physics.p2.setBoundsToWorld(true, true, false, true)
@@ -26,41 +24,19 @@ Lettris.Game.prototype = {
 			 tiles_cleared: 0,
 			 best_word : {score: 0, word: ""}}
 
-	this.boxes = game.add.group();
-
 	this.gui = new GUI(game, this.gameData)
+	this.gui.showTutorial()
+
+	this.boxes = game.add.group();
 	this.bag = new Bag(game, this.boxes)
 
 	this.fill_bottom(1)
 
-	this.gui.word_accepted.addOnce(this.removeTutorial, this)
+	this.gui.word_accepted.addOnce(this.gui.removeTutorial, this.gui)
 
 	// Start box-droping loop
 	this.spawn_box()
     },
-
-    removeTutorial: function() {
-	this.game.add.tween(this.tutorial).to({alpha: 0},
-					      3000,
-					      Phaser.Easing.Quadratic.In,
-					      true);
-    },
-
-    showTutorial: function() {
-	this.tutorial = this.game.add.group();
-	this.tutorial.x = 80
-	this.tutorial.y = 50
-	var back = this.tutorial.create(0, 0, 'sprites', 'tutorial-panel');
-	back.alpha = 0.8
-
-	var style = { font: "26px Verdana", wordWrap: true, wordWrapWidth: back.width-50 };
-	var expl = this.game.add.text(30,
-				      140,
-				      "Create words by marking letter tiles in order, complete by pressing the big green button. Clear current word with the red button.",
-				      style)
-	this.tutorial.add(expl)
-    },
-
     fill_bottom: function( layers ) {
 	var boxSize = 80 // ugly
 	var max_col = Math.floor(this.game.width / boxSize)
