@@ -43,7 +43,6 @@ Lettris.GameOver.prototype = {
 	curtain.anchor.setTo(0.5, 0)
 	var curtain_frames = Phaser.Animation.generateFrameNames("point-reveal", 1, 10)
 	curtain.animations.add('reveal', curtain_frames, 10, false)
-	curtain.animations.play('reveal')
 
 	this.show_best_word()
 
@@ -67,12 +66,15 @@ Lettris.GameOver.prototype = {
 				      this)
 	}
 
-	var rocket1 = new Rocket(this.game,
-				 {x: this.game.world.centerX, y: 900},
-				 {x: 100, y: 100})
-	var rocket2 = new Rocket(this.game,
-				 {x: this.game.world.centerX, y: 900},
-				 {x: 400, y: 75})
+	this.game.time.events.add(Phaser.Timer.SECOND * 1.5, function() {
+	    curtain.animations.play('reveal')
+	    new Rocket(this.game,
+		       {x: this.game.world.centerX, y: 900},
+		       {x: 100, y: 100})
+	    new Rocket(this.game,
+		       {x: this.game.world.centerX, y: 900},
+		       {x: 400, y: 75})},
+				  this)
     },
     addLight: function(parent, x, y) {
 	var light = this.game.add.sprite(x, y, 'sprites', 'lamp-off')
