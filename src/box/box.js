@@ -68,7 +68,7 @@ Box.prototype.mark = function (mark) {
 					    10);
 	emitter.width = this.width - (border*2)
 	emitter.height = this.height - (border*2)
-	emitter.makeParticles(['sprites'], 'confetti-yellow');
+	emitter.makeParticles(['sprites'], ['spark1', 'spark2', 'spark3', 'confetti-yellow']);
 	emitter.maxParticleSpeed.setTo(1, 1);
 	emitter.start(false, 300, 10, -1);
 	this.select_emitter = emitter;
