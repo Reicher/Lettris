@@ -16,7 +16,7 @@ Lettris.MainMenu.prototype = {
 
 	this.boxes = 0
 	this.addMenuButton("PLAY", 'Game')
-	this.addMenuButton("CREDITS", 'Credits').inputEnabled = false
+	this.addMenuButton("CREDITS", 'Credits').enable(false)
 	this.addMenuButton("LANGUAGE", 'LangMenu')
 
 	var style = { font: "20px Arial", fill: "#F0FFF0"}
@@ -35,24 +35,17 @@ Lettris.MainMenu.prototype = {
 	light.animations.play('blink');
     },
     addMenuButton: function (text, next_state) {
-	var button = this.game.add.button(this.game.width/2,
-					  400 + (this.boxes * 120),
-					  'sprites', this.startState,
-					  this, null,
-					  'button', 'button-pressed')
-	button.anchor.setTo(0.5)
-	button.state = next_state
-	var style = { font: "33px Verdana", fill: "#EEEEEE", align: "center"};
-	var label = this.game.add.text(0, 0, text, style)
-	label.fontWeight = 'bold';
-	label.stroke = '#000000';
-	label.strokeThickness = 2;
-	label.anchor.setTo(0.5)
-	button.addChild(label)
+
+	var choice = new TextButton(this.game,
+				    text, this.game.world.centerX,
+				    400 + (this.boxes * 120),
+				    this.startState,
+				    this)
+	choice.button.state = next_state
 
 	this.boxes++
 
-	return button
+	return choice
     },
 
     startState: function (button) {
