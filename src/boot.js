@@ -13,7 +13,7 @@ Lettris.Boot.prototype = {
 	this.scale.pageAlignHorizontally = true;
 	this.scale.pageAlignVertically = true;
 
-	this.game.version = "0.19 TEST2 Open Beta"
+	this.game.version = "0.19 Open Beta"
 
 	// start the Preloader state
 	this.state.start('Preloader');
