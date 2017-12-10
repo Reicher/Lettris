@@ -10,6 +10,7 @@ TextButton = function (game, text, x, y, func, ctx) {
 				   'button',
 				   'button-pressed')
     btn.anchor.setTo(0.5)
+    btn.onInputUp.addOnce(this.remove, btn)
     this.button = btn
     this.add(btn)
 
@@ -26,7 +27,7 @@ TextButton = function (game, text, x, y, func, ctx) {
 TextButton.prototype = Object.create(Phaser.Group.prototype)
 TextButton.prototype.constructor = TextButton
 
-TextButton.prototype.enable = function(enable) {
+TextButton.prototype.enable = function(enable = true) {
     if(!enable){
 	this.button.tint = 0x999999
 	this.button.inputEnabled = false

@@ -36,13 +36,13 @@ Lettris.GameOver.prototype = {
 					    style)
 	score_text.anchor.setTo(0.5)
 
-	var curtain = this.game.add.sprite(this.game.world.centerX,
-					   240,
-					   'sprites',
-					   'point-reveal1')
-	curtain.anchor.setTo(0.5, 0)
+	this.curtain = this.game.add.sprite(this.game.world.centerX,
+					     240,
+					     'sprites',
+					     'point-reveal1')
+	this.curtain.anchor.setTo(0.5, 0)
 	var curtain_frames = Phaser.Animation.generateFrameNames("point-reveal", 1, 10)
-	curtain.animations.add('reveal', curtain_frames, 10, false)
+	this.curtain.animations.add('reveal', curtain_frames, 10, false)
 
 	this.show_best_word()
 
@@ -55,19 +55,18 @@ Lettris.GameOver.prototype = {
 	if(!this.highscore) // first time player
 	    this.highscore = []
 
-	if(this.highscore.length < 5)
-	    this.input_highscore()
-	else if( this.highscore[this.highscore.length-1].score < this.score )
-	    this.input_highscore()
-	else{
-	    this.show_highscore()
-	    this.game.time.events.add(Phaser.Timer.SECOND * 2,
-				      this.ready_to_leave,
+	if(this.highscore.length < 4 ||
+	   this.highscore[this.highscore.length-1].score < this.score)
+	    this.game.time.events.add(Phaser.Timer.SECOND * 1,
+				      this.input_highscore,
 				      this)
-	}
+	else
+	    this.game.time.events.add(Phaser.Timer.SECOND * 1,
+				      this.show_highscore,
+				      this)
 
 	this.game.time.events.add(Phaser.Timer.SECOND * 1.5, function() {
-	    curtain.animations.play('reveal')
+	    this.curtain.animations.play('reveal')
 	    new Rocket(this.game,
 		       {x: this.game.world.centerX, y: 900},
 		       {x: 100, y: 100})
@@ -107,25 +106,14 @@ Lettris.GameOver.prototype = {
 	this.letter[1] = new NickControl(this.game, this.game.world.centerX, 590)
 	this.letter[2] = new NickControl(this.game, this.game.world.centerX + 100, 590)
 
-	this.submit = this.game.add.button(this.game.world.centerX,
-					   760,
-					   'sprites',
-					   this.addHighscore,
-					   this,
-					   'button',
-					   'button' )
-	this.submit.anchor.setTo(0.5)
-	this.submit.scale.setTo(0.75)
-	this.submit.inputEnabled = false
+	this.submit = new TextButton(this.game, "Submit",
+				    this.game.world.centerX, 760,
+				    this.addHighscore, this)
+	this.submit.enable(false)
 
 	this.game.time.events.add(Phaser.Timer.SECOND * 1,
-				  function() { this.submit.inputEnabled = true },
+				  function() {this.submit.enable(true)},
 				  this)
-
-	var style = { font: "35px Verdana"}
-	var submit_text = this.game.add.text(0, 0, "Submit", style)
-	submit_text.anchor.setTo(0.5)
-	this.submit.addChild(submit_text);
     },
     addHighscore: function(){
 	var nick = this.letter[0].letter + this.letter[1].letter + this.letter[2].letter
@@ -136,7 +124,7 @@ Lettris.GameOver.prototype = {
 	this.highscore.sort(function (a, b) {
 	    return a.score < b.score;
 	});
-	this.highscore = this.highscore.slice(0, 5);
+	this.highscore = this.highscore.slice(0, 4);
 
 	this.submit.destroy()
 	this.letter.forEach(function(letter) {
@@ -145,7 +133,6 @@ Lettris.GameOver.prototype = {
 	localStorage.setItem(this.highscore_key, JSON.stringify(this.highscore));
 
 	this.show_highscore()
-	this.ready_to_leave()
     },
     show_highscore: function () {
 	var style = { font: "30px Verdana", fill: "#FFA90B"}
@@ -170,10 +157,12 @@ Lettris.GameOver.prototype = {
 	    this.game.add.text(this.game.world.centerX, y, this.highscore[i].score, style).anchor.setTo(0.5, 0)
 	    this.game.add.text(header.right, y, this.highscore[i].date, style).anchor.setTo(1, 0)
 	}
+
+	this.submit = new TextButton(this.game, "Main Menu",
+				     this.game.world.centerX, 760,
+				     this.leave, this)
     },
-    ready_to_leave: function() {
-	this.game.input.onDown.add(()=>{
-            this.state.start('MainMenu')
-	}, this)
+    leave: function() {
+        this.state.start('MainMenu')
     },
 };
