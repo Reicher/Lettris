@@ -25,19 +25,19 @@ Lettris.GameOver.prototype = {
 	var style = { font: "35px Verdana", }
 
 	var tent_back = this.game.add.sprite(this.game.world.centerX,
-					     240,
+					     220,
 					     'sprites',
 					     'point-tent')
 	tent_back.anchor.setTo(0.5)
 
 	var score_text = this.game.add.text(this.game.world.centerX,
-					    290,
+					    270,
 					    this.score,
 					    style)
 	score_text.anchor.setTo(0.5)
 
 	this.curtain = this.game.add.sprite(this.game.world.centerX,
-					     240,
+					     210,
 					     'sprites',
 					     'point-reveal1')
 	this.curtain.anchor.setTo(0.5, 0)
@@ -84,12 +84,12 @@ Lettris.GameOver.prototype = {
 	light.animations.play('blink');
     },
     show_best_word: function() {
-	var style = { font: "30px Verdana", fill: "#FFA90B"}
-	var best_word_header = this.game.add.text(this.game.world.centerX,
-						380,
-						"Best word",
-						style)
-	best_word_header.anchor.setTo(0.5)
+	var bestWordSign = this.game.add.sprite(this.game.world.centerX,
+						360,
+						'sprites',
+						'best-word-sign')
+	bestWordSign.anchor.setTo(0.5)
+
 	var text = ""
 	for(var i = 0; i < this.bestWord.length; ++i){
 	    text += this.bestWord[i].letter
