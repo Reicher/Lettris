@@ -3,7 +3,7 @@ Lettris.Preloader = function (game) {};
 Lettris.Preloader.prototype = {
     preload: function () {
 	// set background color and preload image
-	this.stage.backgroundColor = '#ff0000';
+	this.stage.backgroundColor = '#000000';
 
 	this.preloadBar = this.add.sprite(this.game.width / 2,
 					  this.game.height / 2,
@@ -21,6 +21,6 @@ Lettris.Preloader.prototype = {
     },
     create: function () {
 	// start the MainMenu state
-	this.state.start('LangMenu');
+	this.state.start('Splash');
     }
 };
