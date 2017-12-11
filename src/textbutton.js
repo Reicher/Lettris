@@ -14,7 +14,7 @@ TextButton = function (game, text, x, y, func, ctx) {
     this.button = btn
     this.add(btn)
 
-    var style = { font: "33px Verdana", fill: "#EEEEEE", align: "center"};
+    var style = { font: "30px Verdana", fill: "#EEEEEE", align: "center"};
     var text = this.game.add.text(x, y, text, style)
     text.anchor.setTo(0.5)
     text.fontWeight = 'bold';

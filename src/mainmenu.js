@@ -16,7 +16,7 @@ Lettris.MainMenu.prototype = {
 
 	this.boxes = 0
 	this.addMenuButton("PLAY", 'Game')
-	this.addMenuButton("CREDITS", 'Credits').enable(false)
+	this.addMenuButton("CREDITS", 'Credits')
 	this.addMenuButton("LANGUAGE", 'LangMenu')
 
 	var style = { font: "20px Arial", fill: "#F0FFF0"}
