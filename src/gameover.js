@@ -57,13 +57,14 @@ Lettris.GameOver.prototype = {
 
 	if(this.highscore.length < 4 ||
 	   this.highscore[this.highscore.length-1].score < this.score)
-	    this.game.time.events.add(Phaser.Timer.SECOND * 1,
-				      this.input_highscore,
+	    this.input_highscore()
+	else{
+	    this.show_highscore()
+	    this.backButton.enable(false)
+	    this.game.time.events.add(Phaser.Timer.SECOND * 1.5,
+				      function() {this.backButton.enable(true)},
 				      this)
-	else
-	    this.game.time.events.add(Phaser.Timer.SECOND * 1,
-				      this.show_highscore,
-				      this)
+	}
 
 	this.game.time.events.add(Phaser.Timer.SECOND * 1.5, function() {
 	    this.curtain.animations.play('reveal')
@@ -111,9 +112,11 @@ Lettris.GameOver.prototype = {
 				    this.addHighscore, this)
 	this.submit.enable(false)
 
-	this.game.time.events.add(Phaser.Timer.SECOND * 1,
+	this.game.time.events.add(Phaser.Timer.SECOND * 1.5,
 				  function() {this.submit.enable(true)},
 				  this)
+
+
     },
     addHighscore: function(){
 	var nick = this.letter[0].letter + this.letter[1].letter + this.letter[2].letter
@@ -158,9 +161,9 @@ Lettris.GameOver.prototype = {
 	    this.game.add.text(header.right, y, this.highscore[i].date, style).anchor.setTo(1, 0)
 	}
 
-	this.submit = new TextButton(this.game, "Main Menu",
-				     this.game.world.centerX, 760,
-				     this.leave, this)
+	this.backButton = new TextButton(this.game, "Main Menu",
+					 this.game.world.centerX, 760,
+					 this.leave, this)
     },
     leave: function() {
         this.state.start('MainMenu')
