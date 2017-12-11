@@ -10,7 +10,6 @@ TextButton = function (game, text, x, y, func, ctx) {
 				   'button',
 				   'button-pressed')
     btn.anchor.setTo(0.5)
-    btn.onInputUp.addOnce(this.remove, btn)
     this.button = btn
     this.add(btn)
 

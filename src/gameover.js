@@ -122,7 +122,9 @@ Lettris.GameOver.prototype = {
 	var nick = this.letter[0].letter + this.letter[1].letter + this.letter[2].letter
 	var date = new Date();
 	var now = date.getDate() + '/' + (date.getMonth()+1)
-	this.highscore.push({nick: nick, score: this.score, date: now})
+	var max_id = Math.max.apply(Math, this.highscore.map(function(entry){return entry.id;}))
+	var id = isNaN(max_id) || !isFinite(max_id) ? 0 : max_id+1
+	this.highscore.push({nick: nick, score: this.score, date: now, id: id})
 
 	this.highscore.sort(function (a, b) {
 	    return a.score < b.score;
@@ -135,14 +137,15 @@ Lettris.GameOver.prototype = {
 	});
 	localStorage.setItem(this.highscore_key, JSON.stringify(this.highscore));
 
-	this.show_highscore()
+	this.show_highscore(id)
     },
-    show_highscore: function () {
+    show_highscore: function (id) {
 	var style = { font: "30px Verdana", fill: "#FFA90B"}
 	this.game.add.text(this.game.world.centerX,
 			   490,
 			   "High score (" + this.game.language + ")",
 			   style).anchor.setTo(0.5)
+
 	var header = this.game.add.text(this.game.world.centerX,
 					520,
 					"Nick  |  Score  |  Date",
@@ -155,6 +158,11 @@ Lettris.GameOver.prototype = {
 	underline.lineTo(header.width, 0);
 
 	for( var i = 0; i < this.highscore.length; ++i){
+	    if(this.highscore[i].id == id) // if current highscore
+		style = { font: "30px Verdana", fill: "#ffd700"}
+	    else
+		style = { font: "30px Verdana", fill: "#FFA90B"}
+
 	    var y = 550 + (i * 40)
 	    this.game.add.text(header.left, y, this.highscore[i].nick, style)
 	    this.game.add.text(this.game.world.centerX, y, this.highscore[i].score, style).anchor.setTo(0.5, 0)
