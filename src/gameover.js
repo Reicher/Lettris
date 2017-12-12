@@ -142,7 +142,7 @@ Lettris.GameOver.prototype = {
 	this.show_highscore(id)
     },
     show_highscore: function (id) {
-	var style = { font: "30px Verdana", fill: "#FFA90B"}
+	var style = { font: "25px Verdana", fill: "#FFA90B"}
 	this.game.add.text(this.game.world.centerX,
 			   490,
 			   "High score (" + this.game.language + ")",
@@ -161,9 +161,9 @@ Lettris.GameOver.prototype = {
 
 	for( var i = 0; i < this.highscore.length; ++i){
 	    if(this.highscore[i].id == id) // if current highscore
-		style = { font: "30px Verdana", fill: "#ffd700"}
+		style = { font: "25px Verdana", fill: "#ffd700"}
 	    else
-		style = { font: "30px Verdana", fill: "#FFA90B"}
+		style = { font: "25px Verdana", fill: "#FFA90B"}
 
 	    var y = 550 + (i * 40)
 	    this.game.add.text(header.left, y, this.highscore[i].nick, style)
