@@ -1,8 +1,6 @@
 MiniPanel = function (game, text, x, y) {
     Phaser.Group.call(this, game);
 
-    text = "VA FAN"
-
     var style = { font: "25px Arial", align: "center", fill: "#EEEEEE"};
     this.label = game.add.text(x, y+3, text, style)
     this.label.anchor.setTo(0.5)

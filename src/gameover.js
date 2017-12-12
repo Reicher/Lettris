@@ -87,11 +87,15 @@ Lettris.GameOver.prototype = {
 	light.animations.play('blink');
     },
     show_best_word: function() {
-	var bestWordSign = this.game.add.sprite(this.game.world.centerX,
-						360,
-						'sprites',
-						'best-word-sign')
-	bestWordSign.anchor.setTo(0.5)
+	var style = { font: "30px Arial", fill: "#EEEEEE" }
+	var header = this.game.add.text(this.game.world.centerX,
+					370,
+					"Best Word",
+					style)
+	header.anchor.setTo(0.5)
+	header.fontWeight = 'bold';
+	header.stroke = '#000000';
+	header.strokeThickness = 3;
 
 	var text = ""
 	for(var i = 0; i < this.bestWord.length; ++i){
