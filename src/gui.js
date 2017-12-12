@@ -117,10 +117,11 @@ GUI.prototype.accept = function () {
        this.dictionary.indexOf(word) == -1)
 	return
 
-    	this.accept_sound.play()
+    this.accept_sound.play()
 
     // Remove all word letters
     var info = []
+    var full_word = ""
     this.markedList.forEach(function(box) {
 	this.gameData.tiles_cleared++
 	info.push({letter: box.text.text,
@@ -129,7 +130,16 @@ GUI.prototype.accept = function () {
 		   multi : box.multi,
 		   base_points : box.base_points})
 	box.remove()
+	full_word += box.text.text
     }, this);
+
+    // Psychological EXPERIMENT
+    var local_key = "Stats-" + this.game.language
+    this.stats = JSON.parse(localStorage.getItem(local_key));
+    if(!this.stats)
+	this.stats = []
+    this.stats.push(full_word)
+    localStorage.setItem(local_key, JSON.stringify(this.stats));
 
     // Karma is given without multipliers
     this.gameData.karma += this.points / this.multi
