@@ -93,7 +93,7 @@ GUI.prototype.showTutorial = function() {
     this.tutorial.y = 50
     var back = this.tutorial.create(0, 0, 'sprites', 'tutorial-panel');
 
-    var style = { font: "26px Verdana", wordWrap: true, wordWrapWidth: back.width-50 };
+    var style = { font: "20px Verdana", wordWrap: true, wordWrapWidth: back.width-50 };
     var expl = this.game.add.text(30,
 				  140,
 				  "Create words by marking letter tiles in order, complete by pressing the big green button. Clear current word with the red button.",

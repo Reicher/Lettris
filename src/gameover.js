@@ -22,19 +22,21 @@ Lettris.GameOver.prototype = {
 	var logo = this.game.add.sprite(this.game.world.centerX, 60, 'sprites', 'game-over')
 	logo.anchor.setTo(0.5)
 
-	var style = { font: "35px Verdana", }
-
 	var tent_back = this.game.add.sprite(this.game.world.centerX,
 					     220,
 					     'sprites',
 					     'point-tent')
 	tent_back.anchor.setTo(0.5)
 
+	var style = { font: "40px Arial", fill: "#EEEEEE" }
 	var score_text = this.game.add.text(this.game.world.centerX,
 					    270,
 					    this.score,
 					    style)
 	score_text.anchor.setTo(0.5)
+	score_text.fontWeight = 'bold';
+	score_text.stroke = '#000000';
+	score_text.strokeThickness = 3;
 
 	this.curtain = this.game.add.sprite(this.game.world.centerX,
 					     210,
