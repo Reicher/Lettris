@@ -11,8 +11,8 @@ GUI = function (game, gameData) {
     this.clear_sound = this.game.add.audio('clear');
     this.select_sound = this.game.add.audio('select', 0.6);
 
-    this.add(game.add.button(20, 18, 'sprites', this.clear, this, 'clear', 'clear', 'clear-pressed'))
-    this.add(game.add.button(150, 18, 'sprites', this.accept, this, 'accept', 'accept', 'accept-pressed'))
+    this.add(game.add.button(25, 63, 'sprites', this.clear, this, 'clear', 'clear', 'clear-pressed'))
+    this.add(game.add.button(145, 63, 'sprites', this.accept, this, 'accept', 'accept', 'accept-pressed'))
 
     var panel  = this.create(0, 0, 'sprites', 'panel')
     this.addLight(panel, 3, 3)
@@ -24,7 +24,7 @@ GUI = function (game, gameData) {
 
     var style = { font: "25px Arial", align: "center" };
     this.scoreText = game.add.text(game.world.centerX,
-				   25,
+				   45,
 				   "0",
 				   style)
     this.scoreText.anchor.setTo(0.5)
@@ -36,7 +36,7 @@ GUI = function (game, gameData) {
     this.add(this.word)
 
     this.langText = game.add.text(game.world.centerX+80,
-				  25,
+				  45,
 				  this.game.language,
 				  style)
     this.langText.anchor.setTo(0, 0.5)
