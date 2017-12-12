@@ -92,7 +92,6 @@ GUI.prototype.showTutorial = function() {
     this.tutorial.x = 80
     this.tutorial.y = 50
     var back = this.tutorial.create(0, 0, 'sprites', 'tutorial-panel');
-    back.alpha = 0.8
 
     var style = { font: "26px Verdana", wordWrap: true, wordWrapWidth: back.width-50 };
     var expl = this.game.add.text(30,
