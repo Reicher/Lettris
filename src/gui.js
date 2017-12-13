@@ -5,6 +5,7 @@ GUI = function (game, gameData) {
     this.dictionary = game.cache.getJSON('dic')
     this.gameData = gameData
     this.markedList = []
+    this.level = 1
 
     // Sounds
     this.accept_sound = this.game.add.audio('accept', 0.5);
@@ -39,8 +40,16 @@ GUI = function (game, gameData) {
     this.addLight(panel, this.game.world.width-19, 140)
 
     var style = { font: "25px Arial", align: "center" };
+    this.levelText = game.add.text(90,
+				   45,
+				   "Level " + this.level,
+				   style)
+    this.levelText.anchor.setTo(0.5)
+    this.add(this.levelText)
+
     this.scoreText = game.add.text(game.world.centerX,
-				   45,				   "0",
+				   45,
+				   "0",
 				   style)
     this.scoreText.anchor.setTo(0.5)
     this.add(this.scoreText)
@@ -50,11 +59,11 @@ GUI = function (game, gameData) {
     			      70, "", word_style)
     this.add(this.word)
 
-    this.langText = game.add.text(game.world.centerX+80,
+    this.langText = game.add.text(game.world.width-90,
 				  45,
 				  this.game.language,
 				  style)
-    this.langText.anchor.setTo(0, 0.5)
+    this.langText.anchor.setTo(0.5, 0.5)
     this.add(this.langText)
 
     var ws_style = { font: "20px Verdana", align: "center" };
