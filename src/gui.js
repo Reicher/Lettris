@@ -178,7 +178,7 @@ GUI.prototype.accept = function () {
     this.gameData.score += this.points
     this.scoreText.setText(this.gameData.score)
 
-    this.gameData.level = 1 + Math.floor(this.gameData.tiles_cleared / 5)
+    this.gameData.level = 1 + Math.floor(this.gameData.tiles_cleared / 15)
     this.levelText.setText("Level " + this.gameData.level)
 
     this.clear()
