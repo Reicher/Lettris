@@ -19,6 +19,7 @@ Lettris.Game.prototype = {
 	game.world.setBounds(0, 0, game.width, game.height-160);
 
 	this.gameData = {score: 0,
+			 level: 1,
 			 karma: 0,
 			 tiles_droped: 0,
 			 tiles_cleared: 0,
@@ -58,7 +59,7 @@ Lettris.Game.prototype = {
 	    }
 	}, this);
 
-	var box = this.bag.dropBox(this.gameData.karma)
+	var box = this.bag.dropBox(this.gameData)
 	box.clicked.add(this.gui.box_clicked, this.gui)
 
 	if(this.gameData.karma > 10)

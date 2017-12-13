@@ -5,7 +5,6 @@ GUI = function (game, gameData) {
     this.dictionary = game.cache.getJSON('dic')
     this.gameData = gameData
     this.markedList = []
-    this.level = 1
 
     // Sounds
     this.accept_sound = this.game.add.audio('accept', 0.5);
@@ -42,7 +41,7 @@ GUI = function (game, gameData) {
     var style = { font: "25px Arial", align: "center" };
     this.levelText = game.add.text(90,
 				   45,
-				   "Level " + this.level,
+				   "Level " + gameData.level,
 				   style)
     this.levelText.anchor.setTo(0.5)
     this.add(this.levelText)
@@ -178,6 +177,9 @@ GUI.prototype.accept = function () {
 
     this.gameData.score += this.points
     this.scoreText.setText(this.gameData.score)
+
+    this.gameData.level = 1 + Math.floor(this.gameData.tiles_cleared / 5)
+    this.levelText.setText("Level " + this.gameData.level)
 
     this.clear()
 

@@ -58,9 +58,9 @@ Bag.prototype.getBox = function (karma) {
 	return  new StandardBox(this.game, this.id++, tile)
 }
 
-Bag.prototype.dropBox = function (karma) {
+Bag.prototype.dropBox = function (gameData) {
 
-    var box = this.getBox(karma)
+    var box = this.getBox(gameData.karma)
 
     this.boxes.add(box)
     return box
