@@ -11,21 +11,36 @@ GUI = function (game, gameData) {
     this.clear_sound = this.game.add.audio('clear');
     this.select_sound = this.game.add.audio('select', 0.6);
 
+    this.text_style = { font: "30px Verdana",
+			fontWeight: 'bold',
+			stroke: '#000000',
+			strokeThickness: 2,
+			fill: "#EEEEEE"};
+
     this.add(game.add.button(25, 63, 'sprites', this.clear, this, 'clear', 'clear', 'clear-pressed'))
     this.add(game.add.button(145, 63, 'sprites', this.accept, this, 'accept', 'accept', 'accept-pressed'))
 
     var panel  = this.create(0, 0, 'sprites', 'panel')
     this.addLight(panel, 3, 3)
-    this.addLight(panel, this.game.world.width-17, 3)
-    this.addLight(panel, this.game.world.width-17, 140)
+    this.addLight(panel, 3, 66)
     this.addLight(panel, 3, 140)
-    this.addLight(panel, 130, 140)
-    this.addLight(panel, 130, 3)
+
+    this.addLight(panel, 127, 138)
+    this.addLight(panel, 127, 66)
+    this.addLight(panel, 127, 2)
+
+    this.addLight(panel, 231, 2)
+    this.addLight(panel, 231, 138)
+
+    this.addLight(panel, 337, 2)
+    this.addLight(panel, 337, 138)
+
+    this.addLight(panel, this.game.world.width-19, 3)
+    this.addLight(panel, this.game.world.width-19, 140)
 
     var style = { font: "25px Arial", align: "center" };
     this.scoreText = game.add.text(game.world.centerX,
-				   45,
-				   "0",
+				   45,				   "0",
 				   style)
     this.scoreText.anchor.setTo(0.5)
     this.add(this.scoreText)
@@ -93,11 +108,14 @@ GUI.prototype.showTutorial = function() {
     this.tutorial.y = 50
     var back = this.tutorial.create(0, 0, 'sprites', 'tutorial-panel');
 
-    var style = { font: "20px Verdana", wordWrap: true, wordWrapWidth: back.width-50 };
     var expl = this.game.add.text(30,
 				  140,
 				  "Create words by marking letter tiles in order, complete by pressing the big green button. Clear current word with the red button.",
-				  style)
+				  this.new_style)
+    expl.fontSize = 20
+    expl.wordWrap = true;
+    expl.wordWrapWidth = 280
+
     this.tutorial.add(expl)
 
     this.addLight(this.tutorial, 3, 3)

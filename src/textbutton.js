@@ -13,12 +13,14 @@ TextButton = function (game, text, x, y, func, ctx) {
     this.button = btn
     this.add(btn)
 
-    var style = { font: "30px Verdana", fill: "#EEEEEE", align: "center"};
+    var style = { font: "30px Verdana",
+		  fontWeight: 'bold',
+		  stroke: '#000000',
+		  strokeThickness: 2,
+		  fill: "#EEEEEE",
+		  align: "center"};
     var text = this.game.add.text(x, y, text, style)
     text.anchor.setTo(0.5)
-    text.fontWeight = 'bold';
-    text.stroke = '#000000';
-    text.strokeThickness = 2;
     this.text = text
     this.add(text);
 }
