@@ -23,17 +23,17 @@ GUI = function (game, gameData) {
     var panel  = this.create(0, 0, 'sprites', 'panel')
 
     this.addLight(panel, 3, 3)
-    this.addLight(panel, 3, 105)
-    this.addLight(panel, 3, 185)
+    this.addLight(panel, 3, 107)
+    this.addLight(panel, 3, 180)
     var interval = 105
     for(i = 0; i < 3; ++i){
 	this.addLight(panel, 127 + i * interval, 3)
-	this.addLight(panel, 127 + i * interval, 105)
-	this.addLight(panel, 127 + i * interval, 185)
+	this.addLight(panel, 127 + i * interval, 107)
+	this.addLight(panel, 127 + i * interval, 180)
     }
     this.addLight(panel, this.game.width-20, 3)
-    this.addLight(panel, this.game.width-20, 105)
-    this.addLight(panel, this.game.width-20, 185)
+    this.addLight(panel, this.game.width-20, 107)
+    this.addLight(panel, this.game.width-20, 180)
 
     var style = { font: "25px Arial", align: "center" };
     this.levelText = game.add.text(90,
@@ -95,8 +95,7 @@ GUI.prototype.clear = function () {
     }, this);
     this.markedList = []
     this.word.text = ""
-
-    if(!this.accept_sound.playing)
+    if(!this.accept_sound.playing && !this.game.masterMute)
 	this.clear_sound.play()
 }
 
@@ -140,7 +139,8 @@ GUI.prototype.accept = function () {
        this.dictionary.indexOf(word) == -1)
 	return
 
-    this.accept_sound.play()
+    if(!this.game.masterMute)
+	this.accept_sound.play()
 
     // Remove all word letters
     var info = []
@@ -186,7 +186,8 @@ GUI.prototype.accept = function () {
 GUI.prototype.box_clicked = function (box) {
     if( box.marked ){
 	this.markedList.push(box)
-	this.select_sound.play()
+	if(!this.game.masterMute)
+	    this.select_sound.play()
     }
     else{
 	var index = this.markedList.findIndex(b => b.id == box.id)
