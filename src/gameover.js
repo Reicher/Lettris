@@ -67,16 +67,6 @@ Lettris.GameOver.prototype = {
 				      function() {this.backButton.enable(true)},
 				      this)
 	}
-
-	this.game.time.events.add(Phaser.Timer.SECOND * 1.5, function() {
-	    this.curtain.animations.play('reveal')
-	    new Rocket(this.game,
-		       {x: this.game.world.centerX, y: 900},
-		       {x: 100, y: 100})
-	    new Rocket(this.game,
-		       {x: this.game.world.centerX, y: 900},
-		       {x: 400, y: 75})},
-				  this)
     },
     addLight: function(parent, x, y) {
 	var light = this.game.add.sprite(x, y, 'sprites', 'lamp-off')
@@ -107,6 +97,18 @@ Lettris.GameOver.prototype = {
 				  420)
     },
     input_highscore: function() {
+	this.game.time.events.add(Phaser.Timer.SECOND * 1.5, function() {
+	    this.curtain.animations.play('reveal')
+	    new Rocket(this.game,
+		       {x: this.game.world.centerX, y: 900},
+		       {x: 100, y: 100})
+	    new Rocket(this.game,
+		       {x: this.game.world.centerX, y: 900},
+		       {x: 250, y: 150})
+	    new Rocket(this.game,
+		       {x: this.game.world.centerX, y: 900},
+		       {x: 400, y: 75})
+	}, this)
 	// Controlls
 	this.letter = []
 	this.letter[0] = new NickControl(this.game, this.game.world.centerX - 100, 590)
