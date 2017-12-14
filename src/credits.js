@@ -9,12 +9,16 @@ Lettris.Credits.prototype = {
 	this.logo.anchor.setTo(0.5)
 
 	this.category(this.logo.bottom+50,
-		      "Programmers",
+		      "Programmers", //Programming?
 		      ["Robin Reicher", "Magnus Malm", "Andreas Galic"])
 
-	this.category(this.logo.bottom+250,
+	this.category(this.logo.bottom+200,
 		      "Art",
 		      ["David Levi"])
+
+	this.category(this.logo.bottom+300,
+		      "Special Thanks",
+		      ["Betatesters!", "Mom"])
 
 	new TextButton(this.game, "Main Menu",
 		       this.game.world.centerX,
