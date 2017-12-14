@@ -16,7 +16,7 @@ Lettris.Game.prototype = {
 	game.physics.p2.gravity.y = 300;
 	game.physics.p2.restitution = 0.05
 
-	game.world.setBounds(0, 0, game.width, game.height-160);
+	game.world.setBounds(0, 0, game.width, game.height-200);
 
 	this.gameData = {score: 0,
 			 level: 1,
@@ -44,7 +44,7 @@ Lettris.Game.prototype = {
 	for (row = 0; row < layers; row++) {
 	    for (col = 0; col < max_col; col++) {
 		var box = this.bag.placeBox(boxSize/2+(col*boxSize),
-					    600-(boxSize*row))
+					    560-(boxSize*row))
 		box.clicked.add(this.gui.box_clicked, this.gui)
 	    }
 	}

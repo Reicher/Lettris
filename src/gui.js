@@ -1,6 +1,6 @@
 GUI = function (game, gameData) {
     Phaser.Group.call(this, game);
-    this.y = game.height-160
+    this.y = game.height-200
 
     this.dictionary = game.cache.getJSON('dic')
     this.gameData = gameData
@@ -17,37 +17,34 @@ GUI = function (game, gameData) {
 			strokeThickness: 2,
 			fill: "#EEEEEE"};
 
-    this.add(game.add.button(25, 63, 'sprites', this.clear, this, 'clear', 'clear', 'clear-pressed'))
-    this.add(game.add.button(145, 63, 'sprites', this.accept, this, 'accept', 'accept', 'accept-pressed'))
+    this.add(game.add.button(25, 22, 'sprites', this.clear, this, 'clear', 'clear', 'clear-pressed'))
+    this.add(game.add.button(145, 22, 'sprites', this.accept, this, 'accept', 'accept', 'accept-pressed'))
 
     var panel  = this.create(0, 0, 'sprites', 'panel')
+
     this.addLight(panel, 3, 3)
-    this.addLight(panel, 3, 66)
-    this.addLight(panel, 3, 140)
-
-    this.addLight(panel, 127, 138)
-    this.addLight(panel, 127, 66)
-    this.addLight(panel, 127, 2)
-
-    this.addLight(panel, 231, 2)
-    this.addLight(panel, 231, 138)
-
-    this.addLight(panel, 337, 2)
-    this.addLight(panel, 337, 138)
-
-    this.addLight(panel, this.game.world.width-19, 3)
-    this.addLight(panel, this.game.world.width-19, 140)
+    this.addLight(panel, 3, 105)
+    this.addLight(panel, 3, 185)
+    var interval = 105
+    for(i = 0; i < 3; ++i){
+	this.addLight(panel, 127 + i * interval, 3)
+	this.addLight(panel, 127 + i * interval, 105)
+	this.addLight(panel, 127 + i * interval, 185)
+    }
+    this.addLight(panel, this.game.width-20, 3)
+    this.addLight(panel, this.game.width-20, 105)
+    this.addLight(panel, this.game.width-20, 185)
 
     var style = { font: "25px Arial", align: "center" };
     this.levelText = game.add.text(90,
-				   45,
+				   155,
 				   "Level " + gameData.level,
 				   style)
     this.levelText.anchor.setTo(0.5)
     this.add(this.levelText)
 
     this.scoreText = game.add.text(game.world.centerX,
-				   45,
+				   155,
 				   "0",
 				   style)
     this.scoreText.anchor.setTo(0.5)
@@ -55,11 +52,11 @@ GUI = function (game, gameData) {
 
     var word_style = { font: "40px Verdana", align: "center" };
     this.word = game.add.text(game.world.centerX-60,
-    			      70, "", word_style)
+    			      40, "", word_style)
     this.add(this.word)
 
     this.langText = game.add.text(game.world.width-90,
-				  45,
+				  155,
 				  this.game.language,
 				  style)
     this.langText.anchor.setTo(0.5, 0.5)
