@@ -22,7 +22,7 @@ Lettris.Credits.prototype = {
 
 	new TextButton(this.game, "Main Menu",
 		       this.game.world.centerX,
-		       this.game.world.height-70,
+		       this.game.world.height-10,
 		       this.back,
 		       this)
     },
