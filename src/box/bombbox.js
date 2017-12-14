@@ -39,7 +39,7 @@ BombBox.prototype.BOOM = function (){
 				   box.x,
 				   box.y)
 	if(!this.game.masterMute)
-	    this.game.add.audio('boom', 0.5).play()
+	    this.game.add.audio('boom', 0.2).play()
 
 	// For screen shake
 	this.game.camera.shake(0.03, 200);
