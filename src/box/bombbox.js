@@ -39,23 +39,10 @@ BombBox.prototype.BOOM = function (){
 				   box.x,
 				   box.y)
 
+	this.game.add.audio('boom', 0.5).play()
+
 	// For screen shake
-	// var t = this.game.time.create(true)
-	// t.repeat(20,10,this.shake,this);
-	// t.start();
-	// t.onComplete.addOnce(this.resetCam,this);
-    }
+	this.game.camera.shake(0.03, 200);
 
-    BombBox.prototype.resetCam = function(){
-        //Reset camera after shake
-        this.game.camera.x = 2;
-        this.game.camera.y = 2;
-    }
-
-    BombBox.prototype.shake = function(){
-        var min = -2;
-        var max = 2;
-        this.game.camera.x+= Math.floor(Math.random() * (max - min + 1)) + min;
-        this.game.camera.y+= Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
