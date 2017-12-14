@@ -16,7 +16,7 @@ Lettris.Splash.prototype = {
 		// Start to fade out
 		let fadeOutTween = this.game.add.tween(this.logo).to({alpha: 0}, 2000, Phaser.Easing.Linear.None, true)
 		fadeOutTween.onComplete.add(()=>{
-		    this.state.start('MainMenu')
+		    this.state.start('LangMenu')
 		}, this)
 	    }, this)
 	})
