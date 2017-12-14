@@ -16,9 +16,9 @@ Lettris.Preloader.prototype = {
  				      'assets/sprites.json')
 
 	// Sounds
-	this.load.audio('select', './assets/audio/select_bip.wav')
-	this.load.audio('clear', './assets/audio/no_bip.wav')
-	this.load.audio('accept', './assets/audio/accept_bip.wav')
+	this.game.load.audio('select', './assets/audio/select_bip.wav')
+	this.game.load.audio('clear', './assets/audio/no_bip.wav')
+	this.game.load.audio('accept', './assets/audio/accept_bip.wav')
     },
     create: function () {
 	// start the MainMenu state
