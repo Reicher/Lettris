@@ -41,7 +41,6 @@ Lettris.MainMenu.prototype = {
 
 	this.tip.anchor.setTo(0.5, 0)
 
-
 	// Buttons
 	this.boxes = 0
 	this.addMenuButton("PLAY", 'Game')
@@ -49,17 +48,17 @@ Lettris.MainMenu.prototype = {
 	this.addMenuButton("LANGUAGE", 'LangMenu')
 
 	// Sound buttons
-	this.game.masterMute = true
+	this.game.masterMute = !JSON.parse(localStorage.getItem('master-mute'))
 	this.masterMuteButton = this.game.add.sprite(10, this.game.height - 50, 'sprites', 'sound')
+	this.toggleMasterMute()
 	this.masterMuteButton.inputEnabled = true
 	this.masterMuteButton.events.onInputDown.add(this.toggleMasterMute, this)
 
-	this.game.musicMute = false
+	this.game.musicMute = !JSON.parse(localStorage.getItem('music-mute'))
 	this.musicMuteButton = this.game.add.sprite(70, this.game.height - 50, 'sprites', 'music')
+	this.toggleMusicMute()
 	this.musicMuteButton.inputEnabled = true
 	this.musicMuteButton.events.onInputDown.add(this.toggleMusicMute, this)
-
-
 
 	var style = { font: "20px Arial", fill: "#F0FFF0"}
 	this.version = this.game.add.text(this.game.width-5,
@@ -92,16 +91,20 @@ Lettris.MainMenu.prototype = {
     toggleMasterMute: function() {
 	this.game.masterMute = !this.game.masterMute
 	if( this.game.masterMute )
-	    this.masterMuteButton.frameName = 'sound'
-	else
 	    this.masterMuteButton.frameName = 'sound-pressed'
+	else
+	    this.masterMuteButton.frameName = 'sound'
+
+	localStorage.setItem('master-mute', JSON.stringify(this.game.masterMute));
     },
     toggleMusicMute: function() {
 	this.game.musicMute = !this.game.musicMute
 	if( this.game.musicMute )
-	    this.musicMuteButton.frameName = 'music'
-	else
 	    this.musicMuteButton.frameName = 'music-pressed'
+	else
+	    this.musicMuteButton.frameName = 'music'
+
+	localStorage.setItem('music-mute', JSON.stringify(this.game.musicMute));
     },
     startState: function (button) {
 	// start the Game state
