@@ -19,7 +19,7 @@ Lettris.MainMenu.prototype = {
 		    "Gold boxes are worth three times normal!",
 		    "Silver boxes are worth twice as much as regular boxes!",
 		    "Multiboxes multiplies the whole word two or three times!!",
-		    "Bomb boxes are allways worth 0 points."]
+		    "Bomb boxes are always worth 0 points."]
 	var style = { font: "22px Arial", fill: "#EEEEEE"}
 	this.tipHeader = this.game.add.text(this.game.world.centerX,
 					    this.logo.bottom + 50,
