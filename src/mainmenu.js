@@ -48,6 +48,19 @@ Lettris.MainMenu.prototype = {
 	this.addMenuButton("CREDITS", 'Credits')
 	this.addMenuButton("LANGUAGE", 'LangMenu')
 
+	// Sound buttons
+	this.game.masterMute = true
+	this.masterMuteButton = this.game.add.sprite(10, this.game.height - 50, 'sprites', 'sound')
+	this.masterMuteButton.inputEnabled = true
+	this.masterMuteButton.events.onInputDown.add(this.toggleMasterMute, this)
+
+	this.game.musicMute = false
+	this.musicMuteButton = this.game.add.sprite(70, this.game.height - 50, 'sprites', 'music')
+	this.musicMuteButton.inputEnabled = true
+	this.musicMuteButton.events.onInputDown.add(this.toggleMusicMute, this)
+
+
+
 	var style = { font: "20px Arial", fill: "#F0FFF0"}
 	this.version = this.game.add.text(this.game.width-5,
 					  this.game.height-5,
@@ -76,7 +89,20 @@ Lettris.MainMenu.prototype = {
 
 	return choice
     },
-
+    toggleMasterMute: function() {
+	this.game.masterMute = !this.game.masterMute
+	if( this.game.masterMute )
+	    this.masterMuteButton.frameName = 'sound'
+	else
+	    this.masterMuteButton.frameName = 'sound-pressed'
+    },
+    toggleMusicMute: function() {
+	this.game.musicMute = !this.game.musicMute
+	if( this.game.musicMute )
+	    this.musicMuteButton.frameName = 'music'
+	else
+	    this.musicMuteButton.frameName = 'music-pressed'
+    },
     startState: function (button) {
 	// start the Game state
 	this.state.start(button.state);
