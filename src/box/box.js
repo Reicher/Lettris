@@ -21,6 +21,10 @@ Box = function (game, id, key, letter, points, local_multi, multi, x, y) {
     // Physics
     game.physics.p2.enable(this)
     this.body.collideWorldBounds = true
+    this.body.onBeginContact.add(this.collision, this);
+
+    // Sound
+    this.smash_sound = this.game.add.audio('smash');
 
     // letter text
     var style = { font: "50px Verdana", fill: "#EEEEEE" }
@@ -142,4 +146,21 @@ Box.prototype.update = function() {
 	this.select_emitter.x = this.x+border
 	this.select_emitter.y = this.y+border
     }
+}
+
+Box.prototype.collision = function(body1, body2, shape, equation) {
+
+    var body = !body1 ? body2 : body1
+
+    var v = body.velocity.y;
+    var m = body.mass;
+
+    //calculate momentum
+    var momentum = m*v;
+
+    // Calculate volume
+    var vol = Math.abs(momentum / 400)
+
+    if(vol > 0.05 && !this.game.masterMute)
+	this.smash_sound.play('', 0, vol)
 }
