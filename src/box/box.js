@@ -21,7 +21,9 @@ Box = function (game, id, key, letter, points, local_multi, multi, x, y) {
     // Physics
     game.physics.p2.enable(this)
     this.body.collideWorldBounds = true
-    this.body.onBeginContact.add(this.collision, this);
+
+    // For having box collisions sound, doesnt work very well...
+    //this.body.onBeginContact.add(this.collision, this);
 
     // Sound
     this.smash_sound = this.game.add.audio('smash');
