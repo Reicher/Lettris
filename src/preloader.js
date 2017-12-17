@@ -20,8 +20,8 @@ Lettris.Preloader.prototype = {
 	this.game.load.audio('clear', './assets/audio/no_bip.wav')
 	this.game.load.audio('accept', './assets/audio/accept_bip.wav')
 	this.game.load.audio('boom', './assets/audio/explosion.wav')
-	this.game.load.audio('smash', './assets/audio/woodbox.mp3')
-	this.game.load.audio('music', './assets/audio/Lettris_theme.wav')
+	this.game.load.audio('music', './assets/audio/Lettris_theme.mp3')
+	this.game.load.audio('intro', './assets/audio/TNS_splash.wav')
     },
     create: function () {
 	// start the MainMenu state
