@@ -99,37 +99,6 @@ GUI.prototype.clear = function () {
 	this.clear_sound.play()
 }
 
-GUI.prototype.removeTutorial = function() {
-    this.game.add.tween(this.tutorial).to({alpha: 0},
-					  3000,
-					  Phaser.Easing.Quadratic.In,
-					  true);
-}
-
-GUI.prototype.showTutorial = function() {
-    this.tutorial = this.game.add.group();
-    this.tutorial.x = 80
-    this.tutorial.y = 50
-    var back = this.tutorial.create(0, 0, 'sprites', 'tutorial-panel');
-
-    var expl = this.game.add.text(30,
-				  140,
-				  "Create words by marking letter tiles in order, complete by pressing the big green button. Clear current word with the red button.",
-				  this.new_style)
-    expl.fontSize = 20
-    expl.wordWrap = true;
-    expl.wordWrapWidth = 280
-
-    this.tutorial.add(expl)
-
-    this.addLight(this.tutorial, 3, 3)
-    this.addLight(this.tutorial, this.tutorial.width-20, 3)
-    this.addLight(this.tutorial, 3, 113)
-    this.addLight(this.tutorial, this.tutorial.width-20, 113)
-    this.addLight(this.tutorial, 3, 339)
-    this.addLight(this.tutorial, this.tutorial.width-20, 339)
-}
-
 GUI.prototype.accept = function () {
 
     var word = this.word.text.toLowerCase()

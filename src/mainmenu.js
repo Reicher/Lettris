@@ -46,7 +46,7 @@ Lettris.MainMenu.prototype = {
 
 	// Buttons
 	this.boxes = 0
-	this.addMenuButton("PLAY", 'Game')
+	this.addMenuButton("PLAY", 'Tutorial')
 	this.addMenuButton("CREDITS", 'Credits')
 	this.addMenuButton("LANGUAGE", 'LangMenu')
 

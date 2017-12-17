@@ -26,14 +26,11 @@ Lettris.Game.prototype = {
 			 best_word : {score: 0, word: ""}}
 
 	this.gui = new GUI(game, this.gameData)
-	this.gui.showTutorial()
 
 	this.boxes = game.add.group();
 	this.bag = new Bag(game, this.boxes)
 
 	this.fill_bottom(1)
-
-	this.gui.word_accepted.addOnce(this.gui.removeTutorial, this.gui)
 
 	// Start box-droping loop
 	this.spawn_box()
