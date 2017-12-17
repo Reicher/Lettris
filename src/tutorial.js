@@ -21,7 +21,7 @@ Lettris.Tutorial.prototype = {
 					  this.new_style)
 	    expl.fontSize = 20
 	    expl.wordWrap = true;
-	    expl.wordWrapWidth = 280
+	    expl.wordWrapWidth = 270
 
 	    this.tutorial.add(expl)
 

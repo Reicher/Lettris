@@ -58,7 +58,7 @@ Lettris.MainMenu.prototype = {
 	this.masterMuteButton.events.onInputDown.add(this.toggleMasterMute, this)
 
 	this.game.music = this.game.add.audio('music')
-	if(!this.game.music.playing)
+	if(!this.game.music.isPlaying)
 	    this.game.music.play("", 0, 1, true)
 
 	this.game.music.mute = !JSON.parse(localStorage.getItem('music-mute'))

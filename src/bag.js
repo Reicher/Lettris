@@ -31,21 +31,23 @@ Bag.prototype.placeBox = function (x, y) {
 
 Bag.prototype.getBox = function (karma) {
 
+    console.log(karma)
+
     // Super Nice boxes
-    if ( karma > 13 )
+    if ( karma > 17 )
 	return new TripleBox(this.game, this.id++)
-    else if ( karma > 17 )
+    else if ( karma > 12 )
 	return new DoubleBox(this.game, this.id++)
 
     // Nice boxes
     var tile = this.getTile()
     if ( karma > 7 )
     	return new GoldBox(this.game, this.id++, tile)
-    else if ( karma > 5 )
+    else if ( karma > 3 )
     	return new SilverBox(this.game, this.id++, tile)
 
     // Bad Boxes
-    var dice = this.game.rnd.integer()%8
+    var dice = this.game.rnd.integer()%10
     if ( dice == 1)
 	return new BombBox(this.game, this.id++, tile, this.boxes)
     else if (dice == 2)

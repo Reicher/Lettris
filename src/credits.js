@@ -19,11 +19,12 @@ Lettris.Credits.prototype = {
 	this.category(this.logo.bottom+300,
 		      "Special Thanks",
 		      ["Betatesters!",
-		       "\"Fru\" och barn"])
+		       "\"Fru\" och barn",
+		       "Fröken Lind"])
 
 	new TextButton(this.game, "Main Menu",
 		       this.game.world.centerX,
-		       this.game.world.height-10,
+		       this.game.height-50,
 		       this.back,
 		       this)
     },

@@ -49,8 +49,7 @@ Lettris.GameOver.prototype = {
 	this.show_best_word()
 
 	this.highscore_key = 'Lettris-best-' +
-	    this.game.lang + '-' +
-	    'Lettris-best-' + this.game.version
+	    this.game.lang
 
 	this.highscore = JSON.parse(localStorage.getItem(this.highscore_key));
 
@@ -97,6 +96,9 @@ Lettris.GameOver.prototype = {
 				  420)
     },
     input_highscore: function() {
+	var firework_sound = this.game.add.audio('firework')
+	firework_sound.play()
+
 	this.game.time.events.add(Phaser.Timer.SECOND * 1.5, function() {
 	    this.curtain.animations.play('reveal')
 	    new Rocket(this.game,

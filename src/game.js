@@ -59,10 +59,7 @@ Lettris.Game.prototype = {
 	var box = this.bag.dropBox(this.gameData)
 	box.clicked.add(this.gui.box_clicked, this.gui)
 
-	if(this.gameData.karma > 10)
-	    this.gameData.karma = 10
-	if(this.gameData.karma > 0)
-	    this.gameData.karma /= 1.5
+	this.gameData.karma = 0
 
 	this.gameData.tiles_droped++
 
@@ -77,7 +74,7 @@ Lettris.Game.prototype = {
 	var start_speed = 3.2
 	this.speed = min_speed +
 	    ((start_speed - min_speed) *
-	     Math.pow(0.9, Math.trunc(tiles/15)))
+	     Math.pow(0.9, Math.trunc(tiles/10)))
 	return this.speed * Phaser.Timer.SECOND
     },
     update: function(){

@@ -38,8 +38,10 @@ BombBox.prototype.BOOM = function (){
 				    Math.sin(angle) * force * box.body.mass],
 				   box.x,
 				   box.y)
-	if(!this.game.masterMute)
-	    this.game.add.audio('boom', 0.2).play()
+	if(!this.game.masterMute){
+	    this.game.boom = this.game.add.audio('boom', 0.1)
+	    this.game.boom.play()
+	}
 
 	// For screen shake
 	this.game.camera.shake(0.03, 200);

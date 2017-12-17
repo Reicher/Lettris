@@ -7,9 +7,9 @@ GUI = function (game, gameData) {
     this.markedList = []
 
     // Sounds
-    this.accept_sound = this.game.add.audio('accept', 0.5);
-    this.clear_sound = this.game.add.audio('clear');
-    this.select_sound = this.game.add.audio('select', 0.6);
+    this.accept_sound = this.game.add.audio('accept')
+    this.clear_sound = this.game.add.audio('clear')
+    this.select_sound = this.game.add.audio('select')
 
     this.text_style = { font: "30px Verdana",
 			fontWeight: 'bold',
