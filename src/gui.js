@@ -10,6 +10,7 @@ GUI = function (game, gameData) {
     this.accept_sound = this.game.add.audio('accept')
     this.clear_sound = this.game.add.audio('clear')
     this.select_sound = this.game.add.audio('select')
+    this.deselect_sound = this.game.add.audio('deselect')
 
     this.text_style = { font: "30px Verdana",
 			fontWeight: 'bold',
@@ -162,6 +163,8 @@ GUI.prototype.box_clicked = function (box) {
     else{
 	var index = this.markedList.findIndex(b => b.id == box.id)
 	this.markedList.splice(index, 1)
+	if(!this.game.masterMute)
+	    this.deselect_sound.play()
     }
 
     this.base_points = 0
