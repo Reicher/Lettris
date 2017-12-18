@@ -31,6 +31,8 @@ Lettris.LangMenu.prototype = {
 
     },
     loadLang: function (b) {
+	b.parent.text.setText("Loading")
+
 	var path = 'assets/lang/' + b.lang + '/'
 	this.game.load.json('let', path + 'letters.json')
 	this.game.load.json('dic', path + 'dictionary.json')
