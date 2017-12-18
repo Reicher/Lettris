@@ -1,6 +1,8 @@
 TextButton = function (game, text, x, y, func, ctx) {
     Phaser.Group.call(this, game);
 
+    var sound = game.add.audio('button')
+
     var btn = this.game.add.button(x,
 				   y,
 				   'sprites',
@@ -10,6 +12,8 @@ TextButton = function (game, text, x, y, func, ctx) {
 				   'button',
 				   'button-pressed')
     btn.anchor.setTo(0.5)
+    btn.onInputDown.add(function(){sound.play()}, this);
+
     this.button = btn
     this.add(btn)
 
