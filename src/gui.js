@@ -95,7 +95,7 @@ GUI.prototype.clear = function () {
     }, this);
     this.markedList = []
     this.word.text = ""
-    if(!this.accept_sound.playing && !this.game.masterMute)
+    if(!this.accept_sound.isPlaying && !this.game.masterMute)
 	this.clear_sound.play()
 }
 
@@ -122,7 +122,8 @@ GUI.prototype.accept = function () {
 		   multi : box.multi,
 		   base_points : box.base_points})
 	box.remove()
-	full_word += box.text.text
+	if(box.text.text.length == 1) // To remove x2/x3
+	    full_word += box.text.text
     }, this);
 
     // Psychological EXPERIMENT
