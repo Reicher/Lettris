@@ -96,20 +96,17 @@ Lettris.GameOver.prototype = {
 				  420)
     },
     input_highscore: function() {
-	var firework_sound = this.game.add.audio('firework')
-	firework_sound.play()
-
 	this.game.time.events.add(Phaser.Timer.SECOND * 1.5, function() {
 	    this.curtain.animations.play('reveal')
 	    new Rocket(this.game,
 		       {x: this.game.world.centerX, y: 900},
-		       {x: 100, y: 100})
+		       {x: 100, y: 100}, 1400)
 	    new Rocket(this.game,
 		       {x: this.game.world.centerX, y: 900},
-		       {x: 250, y: 150})
+		       {x: 250, y: 150}, 1200)
 	    new Rocket(this.game,
 		       {x: this.game.world.centerX, y: 900},
-		       {x: 400, y: 75})
+		       {x: 400, y: 75}, 1700)
 	}, this)
 	// Controlls
 	this.letter = []

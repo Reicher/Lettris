@@ -1,8 +1,9 @@
-Rocket = function (game, from, to) {
+Rocket = function (game, from, to, speed) {
     Phaser.Sprite.call(this, game, from.x, from.y, 'sprites', 'firework1')
 
     this.anchor.setTo(0.5)
 
+    this.sound = this.game.add.audio('firework')
 
     var fly_frames = Phaser.Animation.generateFrameNames("firework", 1, 3)
     var boom_frames = Phaser.Animation.generateFrameNames("firework-explode", 1, 7)
@@ -11,10 +12,10 @@ Rocket = function (game, from, to) {
 
 
     var fly_tween = this.game.add.tween(this).to({x: to.x,
-						    y: to.y},
-						   1400,
-						   Phaser.Easing.Quadratic.In,
-						   true)
+						  y: to.y},
+						 speed,
+						 Phaser.Easing.Quadratic.In,
+						 true)
 
     fly_tween.onComplete.add(this.goBoom, this)
     this.animations.play('fly')
@@ -36,6 +37,7 @@ Rocket.prototype.goBoom = function () {
     emitter.start(true, 5000, null, 40);
 
     this.animations.play('boom')
+    this.sound.play()
 
     this.boom.onComplete.add(function () {this.destroy()}, this)
 }
