@@ -39,12 +39,11 @@ BombBox.prototype.BOOM = function (){
 				   box.x,
 				   box.y)
 	if(!this.game.masterMute){
-	    this.game.boom = this.game.add.audio('boom', 0.1)
-	    this.game.boom.play()
+	    var sound = this.game.add.audio('boom', 0.05)
+	    sound.play()
 	}
 
 	// For screen shake
 	this.game.camera.shake(0.03, 200);
-
     }
 }
