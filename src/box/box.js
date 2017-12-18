@@ -102,30 +102,13 @@ Box.prototype.spitParticles = function (sprites){
     this.game.time.events.add(lifetime, function () { emitter.destroy(); }, this);
 }
 
-Box.prototype.remove = function () {
-
-    // This should be standard later
-    if(this.num_frames != null){
-	this.coolRemove(this.frame_name, this.num_frames, this.stuff)
-	return
-    }
-
-    var shrink = this.game.add.tween(this.scale).to({x: 0, y: 0},
-						    400,
-						    Phaser.Easing.Quadratic.In,
-						    true);
-    shrink.onComplete.addOnce(function() {
-	this.destroy()
-    }, this);
-}
-
 Box.prototype.setCoolRemove = function (frame_name, num_frames, stuff) {
     this.frame_name = frame_name
     this.num_frames = num_frames
     this.stuff = stuff
 }
 
-Box.prototype.coolRemove = function () {
+Box.prototype.remove = function () {
 
     this.text.destroy()
     this.point_text.destroy()
