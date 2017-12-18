@@ -68,7 +68,7 @@ Lettris.MainMenu.prototype = {
 	this.musicMuteButton.events.onInputDown.add(this.toggleMusicMute, this)
 
 	// Facebook / Twitter share
-	window.open("www.phaser.io", "_blank");
+	//window.open("www.phaser.io", "_blank");
 
 	var style = { font: "20px Arial", fill: "#F0FFF0"}
 	this.version = this.game.add.text(this.game.width-5,
