@@ -24,6 +24,7 @@ Lettris.Splash.prototype = {
 	})
 
 	this.game.input.onDown.add(()=>{
+	    intro_sound.stop()
             this.state.start('LangMenu')
 	}, this)
     }
