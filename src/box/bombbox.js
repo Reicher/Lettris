@@ -17,11 +17,16 @@ BombBox.prototype.remove = function (boom = true) {
     if(boom)
 	this.BOOM()
 
+    if(!this.game.masterMute){
+	var sound = this.game.add.audio('boom', 0.5)
+	sound.play()
+	console.log("BOOOM!")
+    }
+
     Box.prototype.remove.call(this)
 }
 
 BombBox.prototype.BOOM = function (){
-
     for(var i=0;i<this.boxes.children.length;i++){
 	var box = this.boxes.children[i]
 	if(this.id == box.id)
@@ -38,10 +43,6 @@ BombBox.prototype.BOOM = function (){
 				    Math.sin(angle) * force * box.body.mass],
 				   box.x,
 				   box.y)
-	if(!this.game.masterMute){
-	    var sound = this.game.add.audio('boom', 0.05)
-	    sound.play()
-	}
 
 	// For screen shake
 	this.game.camera.shake(0.03, 200);
