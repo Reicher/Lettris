@@ -27,6 +27,7 @@ Lettris.Preloader.prototype = {
 	this.game.load.audio('intro', './assets/audio/TNS_splash.mp3')
 	this.game.load.audio('fanfare', './assets/audio/fanfare.wav')
 	this.game.load.audio('ambient', './assets/audio/funfair_ambient.mp3')
+	this.game.load.audio('level', './assets/audio/level_up.wav')
     },
     create: function () {
 	// start the MainMenu state

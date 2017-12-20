@@ -11,6 +11,7 @@ GUI = function (game, gameData) {
     this.clear_sound = this.game.add.audio('clear')
     this.select_sound = this.game.add.audio('select')
     this.deselect_sound = this.game.add.audio('deselect')
+    this.level_sound = this.game.add.audio('level')
 
     this.text_style = { font: "30px Verdana",
 			fontWeight: 'bold',
@@ -146,8 +147,12 @@ GUI.prototype.accept = function () {
     this.gameData.score += this.points
     this.scoreText.setText(this.gameData.score)
 
-    this.gameData.level = 1 + Math.floor(this.gameData.tiles_cleared / 15)
-    this.levelText.setText("Level " + this.gameData.level)
+    var level = 1 + Math.floor(this.gameData.tiles_cleared / 15)
+    if(level > this.gameData.level) {
+	this.gameData.level = level
+	this.levelText.setText("Level " + this.gameData.level)
+	this.level_sound.play()
+    }
 
     this.clear()
 
