@@ -93,7 +93,7 @@ Lettris.GameOver.prototype = {
     show_best_word: function() {
 	var style = { font: "30px Arial", fill: "#EEEEEE" }
 	var header = this.game.add.text(this.game.world.centerX,
-					370,
+					340,
 					"Best Word",
 					style)
 	header.anchor.setTo(0.5)
@@ -108,7 +108,7 @@ Lettris.GameOver.prototype = {
 	var panel = new MiniPanel(this.game,
 				  text,
 				  this.game.world.centerX,
-				  420)
+				  390)
     },
     input_highscore: function() {
 	this.game.time.events.add(Phaser.Timer.SECOND * 1.5, function() {
@@ -163,12 +163,12 @@ Lettris.GameOver.prototype = {
     show_highscore: function (id) {
 	var style = { font: "25px Verdana", fill: "#FFA90B"}
 	this.game.add.text(this.game.world.centerX,
-			   490,
+			   450,
 			   "High score (" + this.game.language + ")",
 			   style).anchor.setTo(0.5)
 
 	var header = this.game.add.text(this.game.world.centerX,
-					520,
+					480,
 					"Nick  |  Score  |  Date",
 					style)
 	header.anchor.setTo(0.5)
@@ -184,11 +184,26 @@ Lettris.GameOver.prototype = {
 	    else
 		style = { font: "25px Verdana", fill: "#FFA90B"}
 
-	    var y = 550 + (i * 40)
+	    var y = 510 + (i * 40)
 	    this.game.add.text(header.left, y, this.highscore[i].nick, style)
 	    this.game.add.text(this.game.world.centerX, y, this.highscore[i].score, style).anchor.setTo(0.5, 0)
 	    this.game.add.text(header.right, y, this.highscore[i].date, style).anchor.setTo(1, 0)
 	}
+
+	// Share score!
+	var share_score = this.game.add.text(140,
+					this.game.height-120,
+					"Share on: ",
+					     style)
+	this.game.add.sprite(250,
+			     this.game.height-125,
+			     'sprites',
+			     'face')
+
+	this.game.add.sprite(300,
+			     this.game.height-125,
+			     'sprites',
+			     'twitter')
 
 	this.backButton = new TextButton(this.game, "Main Menu",
 					 this.game.world.centerX, 760,
