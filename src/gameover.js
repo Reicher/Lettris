@@ -14,6 +14,9 @@ Lettris.GameOver.prototype = {
 	this.last_music_setting = this.game.music.mute
 	this.game.music.mute = true
 
+	this.ambient = this.game.add.audio('ambient')
+	this.ambient.play('', 0, 1, true)
+
 	this.game.add.sprite(0, 0, 'sprites', 'background');
 	var panel = this.game.add.sprite(50, 50, 'sprites', 'big-panel');
 	panel.alpha = 0.9
@@ -193,6 +196,7 @@ Lettris.GameOver.prototype = {
     },
     leave: function() {
 	this.game.music.mute = true
+	this.ambient.stop()
         this.state.start('MainMenu')
     },
 };
