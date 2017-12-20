@@ -29,7 +29,10 @@ Bag.prototype.placeBox = function (x, y) {
     return box
 }
 
-Bag.prototype.getBox = function (karma) {
+Bag.prototype.getBox = function (gameData) {
+
+    var karma = gameData.karma
+    var level = gameData.level
 
     // Super Nice boxes
     if ( karma > 17 )
@@ -46,21 +49,21 @@ Bag.prototype.getBox = function (karma) {
 
     // Bad Boxes
     var dice = this.game.rnd.integer()%10
-    if ( dice == 1)
+    if ( dice == 1 && level > 3)
 	return new BombBox(this.game, this.id++, tile, this.boxes)
-    else if (dice == 2)
-    	return new BigBox(this.game, this.id++, tile)
-    else if (dice == 3)
+    else if (dice == 2 && level > 2)
     	return new WideBox(this.game, this.id++, tile)
-    else if (dice == 4)
+    else if (dice == 3 && level > 2)
 	return new BallBox(this.game, this.id++, tile)
+    else if (dice == 4 && level > 1)
+    	return new BigBox(this.game, this.id++, tile)
     else  // Standard Box
 	return  new StandardBox(this.game, this.id++, tile)
 }
 
 Bag.prototype.dropBox = function (gameData) {
 
-    var box = this.getBox(gameData.karma)
+    var box = this.getBox(gameData)
 
     this.boxes.add(box)
     return box
