@@ -45,6 +45,9 @@ Lettris.GameOver.prototype = {
 	this.curtain.anchor.setTo(0.5, 0)
 	var curtain_frames = Phaser.Animation.generateFrameNames("point-reveal", 1, 10)
 	this.curtain.animations.add('reveal', curtain_frames, 10, false)
+	this.game.time.events.add(Phaser.Timer.SECOND * 1.5,
+				  this.revealScore,
+				  this)
 
 	this.show_best_word()
 
@@ -66,6 +69,12 @@ Lettris.GameOver.prototype = {
 				      function() {this.backButton.enable(true)},
 				      this)
 	}
+    },
+    revealScore: function() {
+	var fanfare = this.game.add.audio('fanfare')
+	this.curtain.animations.play('reveal')
+	fanfare.play()
+
     },
     addLight: function(parent, x, y) {
 	var light = this.game.add.sprite(x, y, 'sprites', 'lamp-off')
@@ -97,7 +106,6 @@ Lettris.GameOver.prototype = {
     },
     input_highscore: function() {
 	this.game.time.events.add(Phaser.Timer.SECOND * 1.5, function() {
-	    this.curtain.animations.play('reveal')
 	    new Rocket(this.game,
 		       {x: this.game.world.centerX, y: 900},
 		       {x: 100, y: 100}, 1400)
