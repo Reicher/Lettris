@@ -102,8 +102,11 @@ Lettris.GameOver.prototype = {
 	header.strokeThickness = 3;
 
 	var text = ""
+	var leter = ""
 	for(var i = 0; i < this.bestWord.length; ++i){
-	    text += this.bestWord[i].letter
+	    letter = this.bestWord[i].letter
+	    if(letter.length == 1)
+		text += letter
 	}
 	var panel = new MiniPanel(this.game,
 				  text,
