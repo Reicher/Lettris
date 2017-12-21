@@ -194,19 +194,30 @@ Lettris.GameOver.prototype = {
 	}
 
 	// Share score!
-	var share_score = this.game.add.text(140,
+	var share_score = this.game.add.text(120,
 					this.game.height-120,
 					"Share on: ",
 					     style)
-	this.game.add.sprite(250,
-			     this.game.height-125,
-			     'sprites',
-			     'face')
 
-	this.game.add.sprite(300,
-			     this.game.height-125,
-			     'sprites',
-			     'twitter')
+	var face = this.game.add.sprite(260,
+					this.game.height-125,
+					'sprites',
+					'face')
+	face.inputEnabled = true;
+	face.events.onInputDown.add(function(){
+	    window.open("https://www.facebook.com/sharer/sharer.php?u=http://trans-neptunian-studios.com/games/Lettris/&quote=I just got " + this.score + " points in the amazing game of Lettris.")
+	}, this);
+
+	var twitt = this.game.add.sprite(310,
+					 this.game.height-125,
+					 'sprites',
+					 'twitter')
+	twitt.inputEnabled = true
+	twitt.events.onInputDown.add(function(){
+	    window.open("https://twitter.com/intent/tweet?&text=" +
+			"I just got " + this.score +
+			" points in the amazing game of Lettris. http://trans-neptunian-studios.com/games/Lettris/")
+	}, this)
 
 	this.backButton = new TextButton(this.game, "Main Menu",
 					 this.game.world.centerX, 760,
