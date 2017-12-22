@@ -22,7 +22,9 @@ Lettris.MainMenu.prototype = {
 		    "Bomb boxes are always worth 0 points.",
 		    "The frequency of box drops is logarithmic",
 		    "Bombs destroys the closest boxes without granting you any points.",
-		    "You can use several multi boxes at a time!"]
+		    "You can use several multi boxes at a time!",
+		    "There is no bonus given for ",
+		    "Big boxes, balls and suitcases works like the common boxes"]
 	var style = { font: "22px Arial", fill: "#EEEEEE"}
 	this.tipHeader = this.game.add.text(this.game.world.centerX,
 					    this.logo.bottom + 50,
