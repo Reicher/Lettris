@@ -76,7 +76,7 @@ Lettris.Game.prototype = {
 	var start_speed = 3.2
 	this.speed = min_speed +
 	    ((start_speed - min_speed) *
-	     Math.pow(0.9, Math.trunc(tiles/5)))
+	     Math.pow(0.9, Math.trunc(tiles/8)))
 	console.log(this.speed)
 	return this.speed * Phaser.Timer.SECOND
     },
