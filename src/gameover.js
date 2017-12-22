@@ -10,6 +10,7 @@ Lettris.GameOver.prototype = {
 
     create: function(){
 	console.log("Game over man!")
+	ga('send', 'event', 'Lettris', 'game over', this.game.version);
 
 	this.last_music_setting = this.game.music.mute
 	this.game.music.mute = true
