@@ -3,6 +3,7 @@ Lettris.Game = function (game) {
 
 Lettris.Game.prototype = {
     create: function (game) {
+	ga('send', 'event', 'Lettris', 'new game', this.game.version);
 
 	game.stage.disableVisibilityChange = true;
 
