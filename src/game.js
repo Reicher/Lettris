@@ -13,6 +13,7 @@ Lettris.Game.prototype = {
 	// Physics stuff
 	game.physics.startSystem(Phaser.Physics.P2JS);
 	game.physics.p2.setBoundsToWorld(true, true, false, true)
+	game.physics.p2.world.defaultContactMaterial.friction = 0.5;
 	game.physics.p2.gravity.y = 250;
 	game.physics.p2.restitution = 0.05
 
