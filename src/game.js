@@ -13,7 +13,7 @@ Lettris.Game.prototype = {
 	// Physics stuff
 	game.physics.startSystem(Phaser.Physics.P2JS);
 	game.physics.p2.setBoundsToWorld(true, true, false, true)
-	game.physics.p2.gravity.y = 300;
+	game.physics.p2.gravity.y = 250;
 	game.physics.p2.restitution = 0.05
 
 	game.world.setBounds(0, 0, game.width, game.height-200);
@@ -21,7 +21,7 @@ Lettris.Game.prototype = {
 	this.gameData = {score: 0,
 			 level: 1,
 			 karma: 0,
-			 tiles_droped: 0,
+			 tiles_dropped: 0,
 			 tiles_cleared: 0,
 			 best_word : {score: 0, word: ""}}
 
@@ -57,11 +57,12 @@ Lettris.Game.prototype = {
 	}, this);
 
 	var box = this.bag.dropBox(this.gameData)
+	box.body.moveDown(this.gameData.tiles_cleared)
 	box.clicked.add(this.gui.box_clicked, this.gui)
 
 	this.gameData.karma = 0
 
-	this.gameData.tiles_droped++
+	this.gameData.tiles_dropped++
 
 	var spawnTime = this.spawn_time(this.gameData.tiles_cleared)
 	this.game.time.events.add(spawnTime,
@@ -70,11 +71,13 @@ Lettris.Game.prototype = {
     },
 
     spawn_time: function(tiles){
-	var min_speed = 0.8
+	console.log(tiles)
+	var min_speed = 0.5
 	var start_speed = 3.2
 	this.speed = min_speed +
 	    ((start_speed - min_speed) *
-	     Math.pow(0.9, Math.trunc(tiles/10)))
+	     Math.pow(0.9, Math.trunc(tiles/5)))
+	console.log(this.speed)
 	return this.speed * Phaser.Timer.SECOND
     },
     update: function(){
