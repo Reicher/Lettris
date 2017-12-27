@@ -52,7 +52,7 @@ Lettris.MainMenu.prototype = {
 	this.addMenuButton("CREDITS", 'Credits')
 
 	var takenWords = JSON.parse(localStorage.getItem('Stats-' + this.game.language)).length;
-	if( false && takenWords > 100)
+	if( takenWords > 100)
 	    this.addMenuButton("STATS", 'Stats')
 
 	this.addMenuButton("LANGUAGE", 'LangMenu')

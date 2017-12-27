@@ -8,9 +8,19 @@ Lettris.Stats.prototype = {
 	this.logo = this.game.add.sprite(this.game.width/2, 140, 'sprites', 'logo')
 	this.logo.anchor.setTo(0.5)
 
-	var style = { font: "25px Arial", fill: "#EEEEEE", wordWrap: true, wordWrapWidth: this.game.world.width - 40 };
-	var header = this.game.add.text(this.game.world.centerX, 270, "Word               Count", style)
-	header.fontSize = '26pt'
+
+    // this.label = game.add.text(x, y+3, text, style)
+    // this.label.anchor.setTo(0.5)
+    // this.label.fontWeight = 'bold';
+    // this.label.stroke = '#000000';
+    // this.label.strokeThickness = 3;
+
+
+	var style = { font: "25px Arial", align: "center", fill: "#EEEEEE"};
+	var header = this.game.add.text(this.game.world.centerX, 270, "Word        Count", style)
+	header.fontSize = '27pt'
+	header.stroke = '#000000';
+	header.strokeThickness = 3;
 	header.anchor.setTo(0.5)
 	let underline = this.game.add.graphics(header.left, header.bottom -3);
 	underline.lineStyle(2, 0xEEEEEE);
@@ -19,8 +29,12 @@ Lettris.Stats.prototype = {
 
 	var most = this.getTop(10, this.game.language)
 	for(i = 0; i < most.length; ++i){
-	    this.game.add.text(this.game.world.centerX-130, 300 + i * 30, most[i][0], style)
-	    this.game.add.text(this.game.world.centerX+130, 300 + i * 30, most[i][1], style)
+	    var word = this.game.add.text(this.game.world.centerX-105, 300 + i * 40, most[i][0], style)
+	    word.stroke = '#000000';
+	    word.strokeThickness = 3;
+	    var count = this.game.add.text(this.game.world.centerX+100, 300 + i * 40, most[i][1], style)
+	    count.stroke = '#000000';
+	    count.strokeThickness = 3;
 	}
 
 
