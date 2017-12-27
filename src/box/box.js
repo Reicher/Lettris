@@ -66,7 +66,7 @@ Box.prototype.click = function () {
 
 Box.prototype.mark = function (mark) {
     if( mark ){
-	this.tint = 0xe3e268
+	this.tint = 0xe0e000
 
 	var border = 10
 	var emitter = this.game.add.emitter(this.x+border,
