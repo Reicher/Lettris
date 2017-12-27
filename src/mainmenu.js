@@ -49,8 +49,12 @@ Lettris.MainMenu.prototype = {
 	// Buttons
 	this.boxes = 0
 	this.addMenuButton("PLAY", 'Tutorial')
-	this.addMenuButton("STATS", 'Stats')
 	this.addMenuButton("CREDITS", 'Credits')
+
+	var takenWords = JSON.parse(localStorage.getItem('Stats-' + this.game.language)).length;
+	if( false && takenWords > 100)
+	    this.addMenuButton("STATS", 'Stats')
+
 	this.addMenuButton("LANGUAGE", 'LangMenu')
 
 	// Sound buttons
