@@ -131,6 +131,9 @@ Box.prototype.update = function() {
 	this.select_emitter.x = this.x+border
 	this.select_emitter.y = this.y+border
     }
+
+    if(this.body.y >= 0 && this.body.velocity.y < 0)
+	this.body.velocity.y = 0
 }
 
 Box.prototype.collision = function(body1, body2, shape, equation) {
