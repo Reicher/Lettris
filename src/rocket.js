@@ -37,7 +37,8 @@ Rocket.prototype.goBoom = function () {
     emitter.start(true, 5000, null, 40);
 
     this.animations.play('boom')
-    this.sound.play()
+    if(!this.game.masterMute)
+	this.sound.play()
 
     this.boom.onComplete.add(function () {this.destroy()}, this)
 }

@@ -151,7 +151,8 @@ GUI.prototype.accept = function () {
     if(level > this.gameData.level) {
 	this.gameData.level = level
 	this.levelText.setText("Level " + this.gameData.level)
-	this.level_sound.play()
+	if(!this.game.masterMute)
+	    this.level_sound.play()
     }
 
     this.clear()

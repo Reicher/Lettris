@@ -8,7 +8,8 @@ Lettris.Splash.prototype = {
 	this.logo.anchor.setTo(0.5)
 	this.logo.alpha = 0
 	var intro_sound = this.game.add.audio('intro');
-	intro_sound.play()
+	if(!this.game.masterMute)
+	    intro_sound.play()
 
 	// Start fade in of TNS logo
 	let fadeInTween = this.game.add.tween(this.logo).to({alpha: 1}, 2000, Phaser.Easing.Linear.None, true)

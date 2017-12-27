@@ -16,7 +16,8 @@ Lettris.GameOver.prototype = {
 	this.game.music.mute = true
 
 	this.ambient = this.game.add.audio('ambient')
-	this.ambient.play('', 0, 1, true)
+	if(!this.game.music.mute)
+	    this.ambient.play('', 0, 1, true)
 
 	this.game.add.sprite(0, 0, 'sprites', 'background');
 	var panel = this.game.add.sprite(50, 50, 'sprites', 'big-panel');
@@ -80,7 +81,8 @@ Lettris.GameOver.prototype = {
     revealScore: function() {
 	var fanfare = this.game.add.audio('fanfare')
 	this.curtain.animations.play('reveal')
-	fanfare.play()
+	if(!this.game.masterMute)
+	    fanfare.play()
 
     },
     addLight: function(parent, x, y) {

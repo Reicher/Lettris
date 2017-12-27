@@ -20,7 +20,6 @@ BombBox.prototype.remove = function (boom = true) {
     if(!this.game.masterMute){
 	var sound = this.game.add.audio('boom', 0.5)
 	sound.play()
-	console.log("BOOOM!")
     }
 
     Box.prototype.remove.call(this)
