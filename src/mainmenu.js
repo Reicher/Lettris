@@ -49,6 +49,7 @@ Lettris.MainMenu.prototype = {
 	// Buttons
 	this.boxes = 0
 	this.addMenuButton("PLAY", 'Tutorial')
+	this.addMenuButton("STATS", 'Stats')
 	this.addMenuButton("CREDITS", 'Credits')
 	this.addMenuButton("LANGUAGE", 'LangMenu')
 
@@ -88,7 +89,7 @@ Lettris.MainMenu.prototype = {
 
 	var choice = new TextButton(this.game,
 				    text, this.game.world.centerX,
-				    440 + (this.boxes * 110),
+				    430 + (this.boxes * 90),
 				    this.startState,
 				    this)
 	choice.button.state = next_state

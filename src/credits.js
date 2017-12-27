@@ -22,7 +22,7 @@ Lettris.Credits.prototype = {
 		       "\"Fru\" och barn",
 		       "Fröken Lind"])
 
-	new TextButton(this.game, "Main Menu",
+	new TextButton(this.game, "Back",
 		       this.game.world.centerX,
 		       this.game.height-50,
 		       this.back,
