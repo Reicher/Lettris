@@ -2,6 +2,12 @@ Lettris.Game = function (game) {
 };
 
 Lettris.Game.prototype = {
+    init: function(diff = "Normal") {
+	if(diff == "Normal")
+	    this.diff = 1.0
+	else
+	    this.diff = 0.6
+    },
     create: function (game) {
 	ga('send', 'event', 'Lettris', 'new game', this.game.version);
 
@@ -23,6 +29,7 @@ Lettris.Game.prototype = {
 	this.gameData = {score: 0,
 			 level: 1,
 			 karma: 0,
+			 diff: this.diff,
 			 tiles_dropped: 0,
 			 tiles_cleared: 0,
 			 best_word : {score: 0, word: ""}}
@@ -73,14 +80,16 @@ Lettris.Game.prototype = {
     },
 
     spawn_time: function(tiles){
-	var min_speed = 0.5
-	var start_speed = 3.2
+	var min_speed = 2.5
+	var start_speed = 5.2 - (this.diff * 2)
+	var incline = tiles/8 * this.diff
 
 	// Its logaritmic :D
 	this.speed = min_speed +
 	    ((start_speed - min_speed) *
-	     Math.pow(0.9, Math.trunc(tiles/8)))
+	     Math.pow(0.9, Math.trunc(incline)))
 
+	console.log(this.speed)
 	return this.speed * Phaser.Timer.SECOND
     },
     update: function(){
