@@ -66,11 +66,11 @@ Lettris.GameOver.prototype = {
 	this.highscore = JSON.parse(localStorage.getItem(this.highscore_key));
 	this.nick =localStorage.getItem('Nick')
 
-
-	if(!this.highscore || !this.nick){ // first time player
+	 // first time player
+	if(!this.highscore)
 	    this.highscore = []
+	if(!this.nick)
 	    this.nick = "AAA"
-	}
 
 	if(this.diff == "Easy")
 	    this.show_easy_mode()
