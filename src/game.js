@@ -3,6 +3,7 @@ Lettris.Game = function (game) {
 
 Lettris.Game.prototype = {
     init: function(diff = "Normal") {
+	this.difficulty = diff
 	if(diff == "Normal")
 	    this.diff = 1.0
 	else
@@ -29,7 +30,7 @@ Lettris.Game.prototype = {
 	this.gameData = {score: 0,
 			 level: 1,
 			 karma: 0,
-			 diff: this.diff,
+			 diff: 	this.difficulty,
 			 tiles_dropped: 0,
 			 tiles_cleared: 0,
 			 best_word : {score: 0, word: ""}}
@@ -89,7 +90,7 @@ Lettris.Game.prototype = {
 	    ((start_speed - min_speed) *
 	     Math.pow(0.9, Math.trunc(incline)))
 
-	console.log(this.speed)
+	//console.log(this.speed)
 	return this.speed * Phaser.Timer.SECOND
     },
     update: function(){

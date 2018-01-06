@@ -6,6 +6,7 @@ Lettris.GameOver.prototype = {
 	this.score = gameData.score
 	this.bestWord = gameData.best_word.word
 	this.bestWordScore = gameData.best_word.score
+	this.diff = gameData.diff
     },
 
     create: function(){
@@ -67,7 +68,9 @@ Lettris.GameOver.prototype = {
 	if(!this.highscore) // first time player
 	    this.highscore = []
 
-	if(this.highscore.length < 4 ||
+	if(this.diff == "Easy")
+	    this.show_easy_mode()
+	else if(this.highscore.length < 4 ||
 	   this.highscore[this.highscore.length-1].score < this.score)
 	    this.input_highscore()
 	else{
@@ -77,6 +80,19 @@ Lettris.GameOver.prototype = {
 				      function() {this.backButton.enable(true)},
 				      this)
 	}
+    },
+    show_easy_mode: function (){
+
+	var style = { font: "28px Verdana", fill: "#FFA90B", wordWrap: true, wordWrapWidth: 250}
+	this.game.add.text(this.game.world.centerX,
+			   600,
+			   "(Highscore available on normal difficulty)",
+			   style).anchor.setTo(0.5)
+
+
+	this.backButton = new TextButton(this.game, "Main Menu",
+					 this.game.world.centerX, 760,
+					 this.leave, this)
     },
     revealScore: function() {
 	var fanfare = this.game.add.audio('fanfare')
