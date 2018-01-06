@@ -64,9 +64,13 @@ Lettris.GameOver.prototype = {
 	    this.game.lang
 
 	this.highscore = JSON.parse(localStorage.getItem(this.highscore_key));
+	this.nick =localStorage.getItem('Nick')
 
-	if(!this.highscore) // first time player
+
+	if(!this.highscore || !this.nick){ // first time player
 	    this.highscore = []
+	    this.nick = "AAA"
+	}
 
 	if(this.diff == "Easy")
 	    this.show_easy_mode()
@@ -146,9 +150,9 @@ Lettris.GameOver.prototype = {
 	}, this)
 	// Controlls
 	this.letter = []
-	this.letter[0] = new NickControl(this.game, this.game.world.centerX - 100, 590)
-	this.letter[1] = new NickControl(this.game, this.game.world.centerX, 590)
-	this.letter[2] = new NickControl(this.game, this.game.world.centerX + 100, 590)
+	this.letter[0] = new NickControl(this.game, this.game.world.centerX - 100, 590, this.nick[0])
+	this.letter[1] = new NickControl(this.game, this.game.world.centerX, 590, this.nick[1])
+	this.letter[2] = new NickControl(this.game, this.game.world.centerX + 100, 590, this.nick[2])
 
 	this.submit = new TextButton(this.game, "Submit",
 				    this.game.world.centerX, 760,
@@ -179,6 +183,7 @@ Lettris.GameOver.prototype = {
 	    letter.destroy();
 	});
 	localStorage.setItem(this.highscore_key, JSON.stringify(this.highscore));
+	localStorage.setItem("Nick", nick);
 
 	this.show_highscore(id)
     },

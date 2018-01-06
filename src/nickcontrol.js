@@ -1,10 +1,13 @@
-NickControl = function (game, x, y) {
+NickControl = function (game, x, y, letter) {
     Phaser.Group.call(this, game);
     this.x = x
     this.y = y
 
     this.alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    this.letter_index = 0
+    if(letter)
+	this.letter_index = this.alph.indexOf(letter)
+    else
+	this.letter_index = 0
     this.letter = this.alph[this.letter_index]
 
     var up = game.add.button(0, -76, 'sprites', this.up, this, 'arrow', 'arrow', 'arrow-pressed')
