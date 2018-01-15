@@ -81,8 +81,8 @@ Lettris.Game.prototype = {
     },
 
     spawn_time: function(tiles){
-	var min_speed = 2.5
-	var start_speed = 5.2 - (this.diff * 2)
+	var min_speed = 0.5
+	var start_speed = 3.2
 	var incline = tiles/8 * this.diff
 
 	// Its logaritmic :D
@@ -90,7 +90,6 @@ Lettris.Game.prototype = {
 	    ((start_speed - min_speed) *
 	     Math.pow(0.9, Math.trunc(incline)))
 
-	//console.log(this.speed)
 	return this.speed * Phaser.Timer.SECOND
     },
     update: function(){
